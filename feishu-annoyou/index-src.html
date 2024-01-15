@@ -3,13 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <title>UA router</title>
+    <style>
+        .hide {
+            display: none;
+        }
+    </style>
 </head>
 <body>
+    <div id="tip">请在桌面端 飞书 内打开。<br><br>Windows：按住 Ctrl 并点击链接可在飞书内新的后台标签页中打开<br>Mac：按住 ⌘ 并点击链接可在飞书内新的后台标签页中打开</div>
     <div id="container"></div> 
     <script>
         var userAgentString = navigator.userAgent;
         var iframeDiv = document.getElementById('container');
         if (userAgentString.includes('SuperApp') && userAgentString.includes('Lark')) {
+            document.getElementById('tip').classList.add('hide');
             var ifrm = document.createElement('iframe');
             ifrm.setAttribute('src', 'annoy.html');
             ifrm.style.width = '100%';
