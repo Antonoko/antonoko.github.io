@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>UA router</title>
+</head>
+<body>
+    <div id="container"></div> 
+    <script>
+        var userAgentString = navigator.userAgent;
+        var iframeDiv = document.getElementById('container');
+        if (userAgentString.includes('SuperApp') && userAgentString.includes('Lark')) {
+            var ifrm = document.createElement('iframe');
+            ifrm.setAttribute('src', 'annoy.html');
+            ifrm.style.width = '100%';
+            ifrm.style.height = '100%';
+            iframeDiv.appendChild(ifrm);
+        } else {
+            alert('请在桌面端 飞书 内打开。\n\nWindows：按住 Ctrl 并点击链接可在飞书内新的后台标签页中打开\nMac：按住 ⌘ 并点击链接可在飞书内新的后台标签页中打开');
+        }
+    </script>
+</body>
+</html>
