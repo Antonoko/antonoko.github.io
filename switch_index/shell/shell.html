@@ -1,0 +1,116 @@
+<head>
+
+
+
+<style type="text/css">
+
+    #myContent, #myContent blink{
+        width:100%;
+        height:auto;
+        color: #ffffff;
+        font-family:courier;
+        font-size:14px;
+    }    
+    blink{
+        display:inline;
+    }
+    </style>
+    
+   <script language="JavaScript">
+   function startTime()   
+   {   
+       var today=new Date();  
+       var yyyy = today.getFullYear();   
+       var Month = new Array('Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec');//感谢hatsuroku帮忙订正呆码！
+       var MM = Month[today.getMonth()+1];  
+       var dd = today.getDate();
+       var hh=today.getHours();
+       var mm=today.getMinutes();  
+       var ss=today.getSeconds();
+       var Week = new Array('Sun','Mon','Tue','Wed','Thu','Fri','Sat');    
+       var ww = Week[today.getDay()];   
+       MM=checkTime(MM);
+       dd=checkTime(dd);
+       mm=checkTime(mm);   
+       ss=checkTime(ss);    
+       document.getElementById('nowDateTimeSpan').innerHTML=ww+"&nbsp;"+MM+"&nbsp;"+dd+"&nbsp;"+hh+":"+mm+":"+ss+"&nbsp;UTC&nbsp;"+yyyy;     
+       setTimeout('startTime()',1000); 
+   }   
+    
+   function checkTime(i)   
+   {   
+       if (i<10){
+           i="0" + i;
+       }   
+         return i;
+   }  
+   </script>
+    
+    
+    <script type="text/javascript"> 
+    var charIndex = -1;
+    var stringLength = 0;
+    var inputText;
+    function writeContent(init){
+        if(init){
+            inputText = "Connecting to Hostker .<br>[ ok ] Waiting for /tonoko.moe to be fully populated…done .<br>[....] Checking root file system...fsck from CentOS 7<br>[info] Loading kernel module switch_GUI...done .<br>Booting SLEEPSCREEN...";
+        }
+        if(charIndex==-1){
+            charIndex = 0;
+            stringLength = inputText.length;
+        }
+        var initString = document.getElementById('myContent').innerHTML;
+        initString = initString.replace(/<SPAN.*$/gi,"");
+
+        var theChar = inputText.charAt(charIndex);
+        var nextFourChars = inputText.substr(charIndex,4);
+        if(nextFourChars=='<BR>' || nextFourChars=='<br>'){
+            theChar  = '<BR>';
+            charIndex+=3;
+        }
+        initString = initString + theChar + "<SPAN id='blink'>_</SPAN>";
+        document.getElementById('myContent').innerHTML = initString;
+
+        charIndex = charIndex+1;
+        if(charIndex%2==1){
+             document.getElementById('blink').style.display='none';
+        }else{
+             document.getElementById('blink').style.display='inline';
+        }
+
+        if(charIndex<=stringLength){
+            setTimeout('writeContent(false)',0);
+            }else{
+                blinkSpan();
+            }  
+    }
+
+    var currentStyle = 'inline';
+    function blinkSpan(){
+        if(currentStyle=='inline'){
+        currentStyle='none';
+        }else{
+        currentStyle='inline';
+        }
+        document.getElementById('blink').style.display = currentStyle;
+        setTimeout('blinkSpan()',100);
+
+    }
+    </script>
+
+
+    
+</head>
+
+    <body onload="startTime()">
+    <p style="color:white;font-size:14px;font-family:courier;"><span id="nowDateTimeSpan"></p>
+    <div id="myContent"></div>
+        
+        
+        
+    </body>
+
+
+<script type="text/javascript">
+writeContent(true);
+</script>

@@ -1,0 +1,98 @@
+<head>
+    <meta charset='UTF-8'>
+
+
+<style type="text/css">
+
+    #content {
+    font-family:courier;
+    font-size:14px;
+	line-height: 12px;
+	overflow: hidden;
+	color:white;
+	}
+    </style>
+    
+   <script language="JavaScript">
+   function startTime()   
+   {   
+       var today=new Date();  
+       var yyyy = today.getFullYear();   
+       var Month = new Array('Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec');//感谢hatsuroku帮忙订正呆码！
+       var MM = Month[today.getMonth()+1];  
+       var dd = today.getDate();
+       var hh=today.getHours();
+       var mm=today.getMinutes();  
+       var ss=today.getSeconds();
+       var Week = new Array('Sun','Mon','Tue','Wed','Thu','Fri','Sat');    
+       var ww = Week[today.getDay()];   
+       MM=checkTime(MM);
+       dd=checkTime(dd);
+       mm=checkTime(mm);   
+       ss=checkTime(ss);    
+       document.getElementById('nowDateTimeSpan').innerHTML=ww+"&nbsp;"+MM+"&nbsp;"+dd+"&nbsp;"+hh+":"+mm+":"+ss+"&nbsp;UTC&nbsp;"+yyyy;
+       document.getElementById('test').innerHTML="test233"   
+       setTimeout('startTime()',1000); 
+   }   
+    
+   function checkTime(i)   
+   {   
+       if (i<10){
+           i="0" + i;
+       }   
+         return i;
+   }  
+   </script>
+    
+
+
+
+    
+</head>
+
+    <body onload="startTime()">
+    <p style="color:white;font-size:14px;font-family:courier;line-height: 14px;">
+    ┌一一一一一一一一一一一一一一一一一┐<br>
+    │夏祭りに二人で見上げた花火は今でも│ <br>
+	│私にとってかけがえない宝物　　　　│ <br>
+	│二人を見ていたあの月みたいにきれい│ <br>
+	└一一一一一一一一一一一一一一一一一┘<br>
+	<span id="nowDateTimeSpan"></p>
+<p id='content'>
+<br>
+Connecting to Hostker .<br>
+[ <font color="#00e105">ok</font> ] Waiting for /tonoko.moe to be fully populated…done .<br>
+[<font color="#FF0000">....</font>] Checking root file system...fsck from CentOS 7<br>
+[info] Loading kernel module switch_GUI...done .<br>
+Booting SLEEPSCREEN...<br>
+Under-voltage detected! (0x00050005)<br></p>
+
+        
+        
+        
+    </body>
+
+
+<script type="text/javascript">
+writeContent(true);
+</script>
+
+    <script>
+	function getStyle (obj, attr) {
+	return obj.currentStyle ? obj.currentStyle[attr] : getComputedStyle(obj)[attr]
+	}
+	var content = document.getElementById('content')
+	var autoHeight = content.offsetHeight // 元素原始高度
+	content.style.height = 0 // 获取到原始高度后，置0
+	console.log(autoHeight)
+	var lineHeight = Number(getStyle(content, 'lineHeight').replace('px', '')) // 获取行高，每次增减行高
+	var tempHeight = 0
+	var interval = setInterval(function () {
+	tempHeight += lineHeight
+	content.style.height = tempHeight + 'px'
+	if (tempHeight > (autoHeight - lineHeight)) {
+	//content.style.height = 0
+	//tempHeight = 0
+	}
+	}, 30)
+	</script>
