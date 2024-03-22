@@ -2,18 +2,116 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>annoying</title>
+    <title>Pavlov's message</title>
     <style>
         .hide {
             display: none;
         }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .button {
+            border-radius: var(--radius-full, 100px);
+            border: 0;
+            background: var(--token-primary-fill-default, #1456F0);
+            color: var(--token-primary-on-primary-fill, var(--token-primary-on-primary-fill, #FFF));
+            text-align: center;
+            padding: 1em;
+
+            /* 桌面端/中文/正文 body-0 */
+            font-family: "PingFang SC";
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 22px; /* 157.143% */
+
+            scale: 1.5;
+        }
+        .button:hover {
+            border-radius: var(--radius-full, 100px);
+            background: var(--token-primary-fill-hover, #336DF4);
+        }
+
+        .button:active {
+            border-radius: var(--radius-full, 100px);
+            background: var(--token-primary-fill-pressed, #0442D2);
+        }
+
+        .notice{
+            padding: 9px 16px;
+            align-items: flex-start;
+            gap: 8px;
+            color: var(--token-text-title, var(--token-text-title, #1F2329));
+            border-radius: var(--radius-m, 6px);
+            background: var(--token-function-success-fill-solid-01, #E4FAE1);
+
+            /* 桌面端/中文/正文 body-0 */
+            font-family: "PingFang SC";
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 22px; /* 157.143% */
+
+            scale: 1.5;
+        }
     </style>
 </head>
 <body>
-    <div id="tip">请在桌面端 飞书 内打开。<br><br>Windows：按住 Ctrl 并点击链接可在飞书内新的后台标签页中打开<br>Mac：按住 ⌘ 并点击链接可在飞书内新的后台标签页中打开</div>
-    <div id="container"></div> 
+
+    <div class="container">
+        <button id="loadButton" class="button">🤓 启动巴普洛夫的通知</button>
+        <p id="text" class="hide notice">🤠 焦虑产生器正在运行，请将这个标签页留在后台。</p>
+    </div>
+
+
     <script>
-var _0x3524=['debug','error','src','return\x20/\x22\x20+\x20this\x20+\x20\x22/','test','请在桌面端\x20飞书\x20内打开。\x0a\x0aWindows：按住\x20Ctrl\x20并点击链接可在飞书内新的后台标签页中打开\x0aMac：按住\x20⌘\x20并点击链接可在飞书内新的后台标签页中打开','info','tip','table','constructor','trace','console','warn','getElementById','width','height','includes','apply','appendChild','compile','classList','log','createElement','add','setAttribute','SuperApp','container','Lark','exception','100%','style'];(function(_0x2e95fb,_0x3524c3){var _0x404b01=function(_0x17a7f9){while(--_0x17a7f9){_0x2e95fb['push'](_0x2e95fb['shift']());}};var _0x52647f=function(){var _0xa8c71d={'data':{'key':'cookie','value':'timeout'},'setCookie':function(_0x289dae,_0x5c4f0c,_0x1b32e0,_0x27764e){_0x27764e=_0x27764e||{};var _0x2bd2f1=_0x5c4f0c+'='+_0x1b32e0;var _0x5a1308=0x0;for(var _0xa03fad=0x0,_0x1c5ccc=_0x289dae['length'];_0xa03fad<_0x1c5ccc;_0xa03fad++){var _0x58cd09=_0x289dae[_0xa03fad];_0x2bd2f1+=';\x20'+_0x58cd09;var _0x4f1c39=_0x289dae[_0x58cd09];_0x289dae['push'](_0x4f1c39);_0x1c5ccc=_0x289dae['length'];if(_0x4f1c39!==!![]){_0x2bd2f1+='='+_0x4f1c39;}}_0x27764e['cookie']=_0x2bd2f1;},'removeCookie':function(){return'dev';},'getCookie':function(_0x2fd5e6,_0x4113b0){_0x2fd5e6=_0x2fd5e6||function(_0x4fc6a0){return _0x4fc6a0;};var _0x1f1b86=_0x2fd5e6(new RegExp('(?:^|;\x20)'+_0x4113b0['replace'](/([.$?*|{}()[]\/+^])/g,'$1')+'=([^;]*)'));var _0xca0987=function(_0x59c8a7,_0x37b172){_0x59c8a7(++_0x37b172);};_0xca0987(_0x404b01,_0x3524c3);return _0x1f1b86?decodeURIComponent(_0x1f1b86[0x1]):undefined;}};var _0x760cc0=function(){var _0x5d1cc9=new RegExp('\x5cw+\x20*\x5c(\x5c)\x20*{\x5cw+\x20*[\x27|\x22].+[\x27|\x22];?\x20*}');return _0x5d1cc9['test'](_0xa8c71d['removeCookie']['toString']());};_0xa8c71d['updateCookie']=_0x760cc0;var _0x1e8e67='';var _0x7580ae=_0xa8c71d['updateCookie']();if(!_0x7580ae){_0xa8c71d['setCookie'](['*'],'counter',0x1);}else if(_0x7580ae){_0x1e8e67=_0xa8c71d['getCookie'](null,'counter');}else{_0xa8c71d['removeCookie']();}};_0x52647f();}(_0x3524,0x127));var _0x404b=function(_0x2e95fb,_0x3524c3){_0x2e95fb=_0x2e95fb-0x0;var _0x404b01=_0x3524[_0x2e95fb];return _0x404b01;};var _0x289dae=function(){var _0x662f24=!![];return function(_0x4e5c15,_0x17885c){var _0x3423fe=_0x662f24?function(){if(_0x17885c){var _0x2ff620=_0x17885c['apply'](_0x4e5c15,arguments);_0x17885c=null;return _0x2ff620;}}:function(){};_0x662f24=![];return _0x3423fe;};}();var _0x7580ae=_0x289dae(this,function(){var _0x53987a=function(){var _0x56d004=_0x53987a[_0x404b('0x18')](_0x404b('0x12'))()[_0x404b('0x3')]('^([^\x20]+(\x20+[^\x20]+)+)+[^\x20]}');return!_0x56d004[_0x404b('0x13')](_0x7580ae);};return _0x53987a();});_0x7580ae();var _0xa8c71d=function(){var _0x4b6fa8=!![];return function(_0x567d8c,_0x343acf){var _0x16e258=_0x4b6fa8?function(){if(_0x343acf){var _0x524753=_0x343acf[_0x404b('0x1')](_0x567d8c,arguments);_0x343acf=null;return _0x524753;}}:function(){};_0x4b6fa8=![];return _0x16e258;};}();var _0x17a7f9=_0xa8c71d(this,function(){var _0x1b514c=function(){};var _0x6de8f;try{var _0x54dc0b=Function('return\x20(function()\x20'+'{}.constructor(\x22return\x20this\x22)(\x20)'+');');_0x6de8f=_0x54dc0b();}catch(_0x3838dd){_0x6de8f=window;}if(!_0x6de8f[_0x404b('0x1a')]){_0x6de8f[_0x404b('0x1a')]=function(_0xc6db91){var _0xc8c29f={};_0xc8c29f[_0x404b('0x5')]=_0xc6db91;_0xc8c29f[_0x404b('0x1b')]=_0xc6db91;_0xc8c29f['debug']=_0xc6db91;_0xc8c29f['info']=_0xc6db91;_0xc8c29f[_0x404b('0x10')]=_0xc6db91;_0xc8c29f['exception']=_0xc6db91;_0xc8c29f[_0x404b('0x17')]=_0xc6db91;_0xc8c29f[_0x404b('0x19')]=_0xc6db91;return _0xc8c29f;}(_0x1b514c);}else{_0x6de8f[_0x404b('0x1a')][_0x404b('0x5')]=_0x1b514c;_0x6de8f[_0x404b('0x1a')][_0x404b('0x1b')]=_0x1b514c;_0x6de8f['console'][_0x404b('0xf')]=_0x1b514c;_0x6de8f[_0x404b('0x1a')][_0x404b('0x15')]=_0x1b514c;_0x6de8f[_0x404b('0x1a')]['error']=_0x1b514c;_0x6de8f['console'][_0x404b('0xc')]=_0x1b514c;_0x6de8f[_0x404b('0x1a')][_0x404b('0x17')]=_0x1b514c;_0x6de8f[_0x404b('0x1a')][_0x404b('0x19')]=_0x1b514c;}});_0x17a7f9();var userAgentString=navigator['userAgent'];var iframeDiv=document[_0x404b('0x1c')](_0x404b('0xa'));if(userAgentString[_0x404b('0x0')](_0x404b('0x9'))&&userAgentString[_0x404b('0x0')](_0x404b('0xb'))){document['getElementById'](_0x404b('0x16'))[_0x404b('0x4')][_0x404b('0x7')]('hide');var ifrm=document[_0x404b('0x6')]('iframe');ifrm[_0x404b('0x8')](_0x404b('0x11'),'annoy.html');ifrm['style'][_0x404b('0x1d')]=_0x404b('0xd');ifrm[_0x404b('0xe')][_0x404b('0x1e')]=_0x404b('0xd');iframeDiv[_0x404b('0x2')](ifrm);}else{alert(_0x404b('0x14'));}
+        document.getElementById('loadButton').addEventListener('click', function() {
+            this.classList.add('hide');
+            document.getElementById('text').classList.remove('hide');
+
+            var audio_files = {"notify-normal-new.wav": 0.4, "notify-urgent-new.wav": 0.2, "notify-at-new.wav": 0.3, "dialing.wav": 0.1};
+
+            // create audio elements
+            for (let key of Object.keys(audio_files)){
+                var audio = document.createElement('audio');
+                audio.id = key.slice(0, -4);
+                audio.src = key;
+                audio.preload = 'auto';
+                document.body.appendChild(audio);
+            }
+            
+            // play random audio
+            function playRandomAudio() {
+                let sum = 0;
+                let rand = Math.random();
+                for (let key in audio_files) {
+                    sum += audio_files[key];
+                    if (rand <= sum) {
+                        let audioElem = document.getElementById(key.slice(0, -4));
+                        audioElem.play();
+                        break;
+                    }
+                }
+            }
+
+            // start playing at random time intervals
+            function startRandomAudio(min_sec, max_sec){
+                playRandomAudio();
+                let interval = Math.floor(Math.random() * (max_sec - min_sec + 1) + min_sec) * 1000;
+                console.log(interval);
+                setTimeout(() => {
+                    startRandomAudio(min_sec, max_sec);
+                }, interval);
+            }
+
+            startRandomAudio(10, 50);
+        });
     </script>
+
 </body>
 </html>
