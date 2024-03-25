@@ -13,59 +13,61 @@
             align-items: center;
             height: 100vh;
             margin: 0;
+            background: linear-gradient(180deg, #D8E3F1 0%, #DFE4F3 100%);
         }
 
         .button {
-            border-radius: var(--radius-full, 100px);
+            border-radius: 12px;
             border: 0;
-            background: var(--token-primary-fill-default, #1456F0);
-            color: var(--token-primary-on-primary-fill, var(--token-primary-on-primary-fill, #FFF));
-            text-align: center;
-            padding: 1em;
-
-            /* 桌面端/中文/正文 body-0 */
-            font-family: "PingFang SC";
-            font-size: 14px;
-            font-style: normal;
-            font-weight: 400;
-            line-height: 22px; /* 157.143% */
-
-            scale: 1.5;
+            background-image: url('btn-normal.svg');
+            width: 486px;
+            height: 108px;
         }
         .button:hover {
-            border-radius: var(--radius-full, 100px);
-            background: var(--token-primary-fill-hover, #336DF4);
+            background-image: url('btn-hover.svg');
         }
 
-        .button:active {
-            border-radius: var(--radius-full, 100px);
-            background: var(--token-primary-fill-pressed, #0442D2);
+        .offset{
+            position: relative;
+            left: 134px;
+            top: 140px;
         }
 
         .notice{
-            padding: 9px 16px;
-            align-items: flex-start;
-            gap: 8px;
-            color: var(--token-text-title, var(--token-text-title, #1F2329));
-            border-radius: var(--radius-m, 6px);
-            background: var(--token-function-success-fill-solid-01, #E4FAE1);
-
-            /* 桌面端/中文/正文 body-0 */
-            font-family: "PingFang SC";
-            font-size: 14px;
-            font-style: normal;
-            font-weight: 400;
-            line-height: 22px; /* 157.143% */
-
-            scale: 1.5;
+            border-radius: 12px;
+            border: 0;
+            background-image: url('btn-active.svg');
+            width: 486px;
+            height: 108px;
         }
+
+        .cursorDisable{
+            cursor: not-allowed;
+        }
+
+        #stateFrame{
+            background-image: url('stateFrame.svg');
+            width: 728px;
+            height: 943px;
+            scale: .75;
+        }
+
+        #bottomArea{
+            position: relative;
+            left: 115px;
+            top: 485px;
+            width: 524px;
+            height: 77px;
+        }
+
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <button id="loadButton" class="button">🤓 启动巴普洛夫的通知</button>
-        <p id="text" class="hide notice">🤠 焦虑产生器正在运行，请将这个标签页留在后台。</p>
+    <div id="stateFrame">
+        <button id="loadButton" class="button offset"></button>
+        <div id="text" class="hide notice offset cursorDisable"></div>
+        <div id="bottomArea" class="cursorDisable"></div>
     </div>
 
 
