@@ -16,22 +16,22 @@
 <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
 <feOffset dy="18"/>
 <feGaussianBlur stdDeviation="19.5"/>
-<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0.152941 0 0 0 0 0.211765 0 0 0 0 0.286275 0 0 0 0.1 0"/>
 <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_3796_16086"/>
 <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
 <feOffset dy="72"/>
 <feGaussianBlur stdDeviation="36"/>
-<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.09 0"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0.152941 0 0 0 0 0.211765 0 0 0 0 0.286275 0 0 0 0.09 0"/>
 <feBlend mode="normal" in2="effect1_dropShadow_3796_16086" result="effect2_dropShadow_3796_16086"/>
 <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
 <feOffset dy="161"/>
 <feGaussianBlur stdDeviation="48.5"/>
-<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.05 0"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0.152941 0 0 0 0 0.211765 0 0 0 0 0.286275 0 0 0 0.05 0"/>
 <feBlend mode="normal" in2="effect2_dropShadow_3796_16086" result="effect3_dropShadow_3796_16086"/>
 <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
 <feOffset dy="287"/>
 <feGaussianBlur stdDeviation="57.5"/>
-<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.01 0"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0.152941 0 0 0 0 0.211765 0 0 0 0 0.286275 0 0 0 0.01 0"/>
 <feBlend mode="normal" in2="effect3_dropShadow_3796_16086" result="effect4_dropShadow_3796_16086"/>
 <feBlend mode="normal" in="SourceGraphic" in2="effect4_dropShadow_3796_16086" result="shape"/>
 </filter>

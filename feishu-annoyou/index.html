@@ -60,10 +60,20 @@
             height: 77px;
         }
 
+        .preload::before{
+            background: 
+                url('btn-hover.svg') no-repeat -9999px -9999px,
+                url('btn-active.svg') no-repeat -9999px -9999px;
+            width: 1px;
+            height: 1px;
+            position: absolute;
+            overflow: hidden;
+            z-index: -1;
+        }
+
     </style>
 </head>
-<body>
-
+<body class="preload">
     <div id="stateFrame">
         <button id="loadButton" class="button offset"></button>
         <div id="text" class="hide notice offset cursorDisable"></div>
