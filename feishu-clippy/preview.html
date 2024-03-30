@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Preview Clippy</title>
+    <style>
+        body, html{
+            padding: 0;
+            margin: 0;
+            height: 100%; 
+            width: 100%; 
+            -ms-overflow-style: none;  
+            scrollbar-width: none;
+        }
+        body::-webkit-scrollbar {
+            display: none;
+        }
+        .preview-page{
+            position: absolute;
+            top:0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            -ms-overflow-style: none; /* 适用于 Internet Explorer、Edge */
+            scrollbar-width: none; /* 适用于 Firefox */
+        }
+        #download{
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #1758ee;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            z-index: 100;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <iframe src="https://bytedance.larkoffice.com/docx/RNZ6dnIAwoppeSxq1ZscJaM2nzc" class="preview-page"></iframe>
+    <a id="download" href="https://greasyfork.org/en/scripts/491246-feifei-clippy-%E6%96%87%E6%A1%A3%E5%B0%8F%E5%B8%AE%E6%89%8B">Download on Tampermonkey | 通过油猴脚本添加 📎 到你的在线文档</a>
+
+
+    <script>
+    // 创建 draggable div
+    var draggable = document.createElement('div');
+    draggable.style.width = '170px';
+    draggable.style.height = '320px';
+    draggable.style.position = 'fixed';
+    draggable.style.right = '10%';
+    draggable.style.bottom = '10%';
+
+    // 创建 iframe
+    var iframe = document.createElement('iframe');
+    iframe.src = 'index.html';
+    iframe.style.width = '100%';
+    iframe.style.height = '100%';
+    iframe.style.position = 'absolute';
+    iframe.style.border = 'none';
+
+    // 创建用于拖动的handle
+    var handle = document.createElement('div');
+    handle.style.width = '100%';
+    handle.style.height = '30%';
+    handle.style.position = 'absolute';
+    handle.style.cursor = 'move';
+    handle.style.bottom = '0';
+
+    draggable.appendChild(iframe);
+    draggable.appendChild(handle);
+    document.body.appendChild(draggable);
+
+    handle.addEventListener('mousedown', function(e) {
+        var coords = getCoords(draggable);
+        var shiftX = e.pageX - coords.left;
+        var shiftY = e.pageY - coords.top;
+
+        draggable.style.position = 'absolute';
+        document.body.appendChild(draggable);
+        moveAt(e);
+
+        draggable.style.zIndex = 1000; // over other elements
+
+        function moveAt(e) {
+            var newLeft = e.pageX - shiftX,
+                newTop = e.pageY - shiftY,
+                draggableWidth = draggable.offsetWidth,
+                draggableHeight = draggable.offsetHeight;
+
+            // Prevent the draggable div from moving outside the document's top boundary
+            if (newTop < 0) newTop = 0;
+            // Prevent the draggable div from moving outside the document's left boundary
+            if (newLeft < 0) newLeft = 0;
+
+            // Prevent the draggable div from moving outside the document's bottom boundary
+            if (newTop + draggableHeight > window.innerHeight) {
+                newTop = window.innerHeight - draggableHeight;
+            }
+            // Prevent the draggable div from moving outside the document's right boundary
+            if (newLeft + draggableWidth > document.body.clientWidth) {
+                newLeft = document.body.clientWidth - draggableWidth;
+            }
+
+            draggable.style.left = newLeft + 'px';
+            draggable.style.top = newTop + 'px';
+        }
+
+        document.addEventListener('mousemove', onMouseMove);
+
+        function onMouseMove(e) {
+            moveAt(e);
+        }
+
+        draggable.onmouseup = function() {
+            document.removeEventListener('mousemove', onMouseMove);
+            draggable.onmouseup = null;
+        };
+    });
+
+    function getCoords(elem) { // crossbrowser version
+        var box = elem.getBoundingClientRect();
+
+        return {
+            top: box.top + pageYOffset,
+            left: box.left + pageXOffset
+        };
+    }
+    </script>
+
+</body>
+</html>
