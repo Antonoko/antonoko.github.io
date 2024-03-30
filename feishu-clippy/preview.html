@@ -51,6 +51,7 @@
     draggable.style.position = 'fixed';
     draggable.style.right = '10%';
     draggable.style.bottom = '10%';
+    draggable.style.userSelect = 'none';
 
     // 创建 iframe
     var iframe = document.createElement('iframe');
@@ -72,13 +73,14 @@
     draggable.appendChild(handle);
     document.body.appendChild(draggable);
 
+    let dragging = false;
+
     handle.addEventListener('mousedown', function(e) {
         var coords = getCoords(draggable);
         var shiftX = e.pageX - coords.left;
         var shiftY = e.pageY - coords.top;
 
         draggable.style.position = 'absolute';
-        document.body.appendChild(draggable);
         moveAt(e);
 
         draggable.style.zIndex = 1000; // over other elements
@@ -112,11 +114,13 @@
         function onMouseMove(e) {
             moveAt(e);
         }
-
-        draggable.onmouseup = function() {
+        function clearMouseMove() {
             document.removeEventListener('mousemove', onMouseMove);
             draggable.onmouseup = null;
+            document.removeEventListener('mouseup', clearMouseMove);
         };
+
+        document.addEventListener('mouseup', clearMouseMove);
     });
 
     function getCoords(elem) { // crossbrowser version
