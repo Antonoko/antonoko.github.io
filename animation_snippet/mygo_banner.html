@@ -11,20 +11,28 @@
             height: 100%;
             overflow: hidden;
         }
-        .background {
+        #backgroundContainer {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
+            overflow: hidden;
+        }
+        .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 200%;
             background-size: cover;
-            background-position: center;
+            background-position: left top;
             animation: moveUpwards 20s linear infinite;
             transition: opacity 1s;
         }
         @keyframes moveUpwards {
             from { transform: translateY(0); }
-            to { transform: translateY(-50%); }
+            to { transform: translateY(-25%); }
         }
     </style>
 </head>
@@ -50,7 +58,6 @@
             const newElement = createBackgroundElement(images[currentIndex]);
             document.getElementById('backgroundContainer').appendChild(newElement);
             
-            // 使用 setTimeout 来确保新元素被添加到 DOM 后再设置不透明度
             setTimeout(() => {
                 newElement.style.opacity = '1';
             }, 50);
@@ -59,7 +66,6 @@
                 const oldElement = elements[elements.length - 1];
                 oldElement.style.opacity = '0';
                 
-                // 在过渡完成后移除旧元素
                 setTimeout(() => {
                     oldElement.remove();
                 }, 1000);
@@ -75,7 +81,7 @@
         }
 
         function startSlideshow() {
-            changeBackground(); // 立即显示第一张图片
+            changeBackground();
             setInterval(changeBackground, 5000);
         }
 
