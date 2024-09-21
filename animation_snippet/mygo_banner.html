@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>持续移动的图片轮播动画</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            animation: moveUpwards 20s linear infinite;
+            transition: opacity 1s;
+        }
+        @keyframes moveUpwards {
+            from { transform: translateY(0); }
+            to { transform: translateY(-50%); }
+        }
+    </style>
+</head>
+<body>
+    <div id="backgroundContainer"></div>
+
+    <script>
+        // 定义图片列表
+        const images = ['mygo_pic/5話場面写①.webp', 'mygo_pic/5話場面写②.webp', 'mygo_pic/5話場面写③.webp', 'mygo_pic/BD_Mygo_ep03_230523_H264_16873F.webp', 'mygo_pic/BD_Mygo_ep03_230523_H264_21402F_2.webp', 'mygo_pic/BD_Mygo_ep03_230523_H264_4754F_1.webp', 'mygo_pic/BD_Mygo_ep04_230530_H265_04961.webp', 'mygo_pic/BD_Mygo_ep04_230530_H265_08351.webp', 'mygo_pic/BD_Mygo_ep04_230530_H265_17509.webp', 'mygo_pic/BD_Mygo_ep06_230613_PR422HQ-2_00006.webp', 'mygo_pic/BD_Mygo_ep06_230613_PR422HQ-2_00040.webp', 'mygo_pic/BD_Mygo_ep06_230613_PR422HQ-2_00052.webp', 'mygo_pic/BD_Mygo_ep07_230620_PR422HQ-2_00024.webp', 'mygo_pic/BD_Mygo_ep07_230620_PR422HQ-2_00031.webp', 'mygo_pic/BD_Mygo_ep07_230620_PR422HQ-2_00059.webp', 'mygo_pic/BD_Mygo_ep08_230713_PR422HQ_re_00036.webp', 'mygo_pic/BD_Mygo_ep08_230713_PR422HQ_re_00043.webp', 'mygo_pic/BD_Mygo_ep08_230713_PR422HQ_re_00062-1.webp', 'mygo_pic/BD_Mygo_ep09_230626_PR422HQ_00008.webp', 'mygo_pic/BD_Mygo_ep09_230626_PR422HQ_00012.webp', 'mygo_pic/BD_Mygo_ep09_230626_PR422HQ_00031.webp', 'mygo_pic/BD_Mygo_ep10_230705_PR422HQ_00005.webp', 'mygo_pic/BD_Mygo_ep10_230705_PR422HQ_00008.webp', 'mygo_pic/BD_Mygo_ep10_230705_PR422HQ_00020.webp', 'mygo_pic/BD_Mygo_ep11_230711_PR422HQ_00025.webp', 'mygo_pic/BD_Mygo_ep11_230711_PR422HQ_00040.webp', 'mygo_pic/BD_Mygo_ep11_230711_PR422HQ_00042.webp', 'mygo_pic/BD_Mygo_ep12_230824_PR422HQ_kokuchiNASHI_00000.webp', 'mygo_pic/BD_Mygo_ep12_230824_PR422HQ_kokuchiNASHI_00001.webp', 'mygo_pic/BD_Mygo_ep12_230824_PR422HQ_kokuchiNASHI_00002-1.webp', 'mygo_pic/BD_Mygo_ep12_230824_PR422HQ_kokuchiNASHI_00003-2.webp', 'mygo_pic/BD_Mygo_ep12_230824_PR422HQ_kokuchiNASHI_00004-1.webp', 'mygo_pic/BD_Mygo_ep13_230725_PR422HQ_00022.webp', 'mygo_pic/BD_Mygo_ep13_230725_PR422HQ_00052.webp', 'mygo_pic/BD_Mygo_ep13_230725_PR422HQ_00062.webp', 'mygo_pic/NOVA_02_0002_V503_00000.webp', 'mygo_pic/NOVA_02_0005_V503_00000.webp', 'mygo_pic/NOVA_02_0248_V504_00000.webp', 'mygo_pic/xf12pxdd1g_NOVA_01_0065_V504_00000.webp', 'mygo_pic/xf12pxdd1g_NOVA_01_0070_V503_00000.webp', 'mygo_pic/xf12pxdd1g_NOVA_01_0267_V502_00000.webp'];
+
+        let currentIndex = 0;
+        let elements = [];
+
+        function createBackgroundElement(src) {
+            const element = document.createElement('div');
+            element.className = 'background';
+            element.style.backgroundImage = `url('${src}')`;
+            element.style.opacity = '0';
+            return element;
+        }
+
+        function changeBackground() {
+            const newElement = createBackgroundElement(images[currentIndex]);
+            document.getElementById('backgroundContainer').appendChild(newElement);
+            
+            // 使用 setTimeout 来确保新元素被添加到 DOM 后再设置不透明度
+            setTimeout(() => {
+                newElement.style.opacity = '1';
+            }, 50);
+
+            if (elements.length > 0) {
+                const oldElement = elements[elements.length - 1];
+                oldElement.style.opacity = '0';
+                
+                // 在过渡完成后移除旧元素
+                setTimeout(() => {
+                    oldElement.remove();
+                }, 1000);
+            }
+
+            elements.push(newElement);
+
+            if (elements.length > 2) {
+                elements.shift();
+            }
+
+            currentIndex = (currentIndex + 1) % images.length;
+        }
+
+        function startSlideshow() {
+            changeBackground(); // 立即显示第一张图片
+            setInterval(changeBackground, 5000);
+        }
+
+        startSlideshow();
+    </script>
+</body>
+</html>
