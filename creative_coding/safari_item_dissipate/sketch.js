@@ -226,10 +226,18 @@ function setup() {
   load_img()
 }
 
-function mouseReleased() {
+function releaseCheck(){
   if (mouseX > base_image_x1 && mouseX < base_image_x2 && mouseY > base_image_y1 && mouseY < base_image_y2){
     is_dissipated = true;
   }
+}
+
+function mouseReleased() {
+  releaseCheck()
+}
+
+function touchEnded() {
+  releaseCheck()
 }
 
 function draw() {
