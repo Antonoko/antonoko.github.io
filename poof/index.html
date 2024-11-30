@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>音量检测图片切换</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/addons/p5.sound.min.js"></script>
+    <style>
+        body { margin: 0; padding: 0; }
+        canvas { display: block; }
+        #startButton {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <button id="startButton">点击开始</button>
+    <script>
+        let mic;
+        let imgA;
+        let imgB;
+        let currentImg;
+        let switched = false;
+        let volume = 0;
+        let started = false;
+
+        function setup() {
+            createCanvas(windowWidth, windowHeight);
+            textAlign(CENTER, CENTER);
+            
+            // 初始化麦克风，但不立即开始
+            mic = new p5.AudioIn();
+
+            // 加载初始图片
+            imgA = loadImage('rec.png');
+            currentImg = imgA;
+
+            // 设置开始按钮的点击事件
+            let startButton = select('#startButton');
+            startButton.mousePressed(startAudio);
+        }
+
+        function startAudio() {
+            if (getAudioContext().state !== 'running') {
+                getAudioContext().resume();
+            }
+            mic.start();
+            started = true;
+            select('#startButton').hide();
+        }
+
+        function draw() {
+            background(220);
+
+            if (started) {
+                // 获取当前音量
+                volume = mic.getLevel();
+
+                // 显示当前图片
+                if (currentImg) {
+                    let imgWidth = min(width, height) * 0.8;
+                    let imgHeight = imgWidth * (currentImg.height / currentImg.width);
+                    image(currentImg, width/2 - imgWidth/2, height/2 - imgHeight/2, imgWidth, imgHeight);
+                }
+
+                // 显示当前音量
+                fill(0);
+                textSize(20);
+                text(`Current Volume: ${nf(volume, 1, 2)}`, width/2, height - 30);
+
+                // 检查音量并切换图片
+                if (!switched && volume > 0.7) {
+                    loadImage('poof.gif', img => {
+                        currentImg = img;
+                        switched = true;
+                    });
+                }
+            } else {
+                // 显示提示信息
+                fill(0);
+                textSize(24);
+                text("点击开始按钮以启动", width/2, height/2 + 60);
+            }
+        }
+
+        // 窗口大小改变时调整画布大小
+        function windowResized() {
+            resizeCanvas(windowWidth, windowHeight);
+        }
+    </script>
+</body>
+</html>
