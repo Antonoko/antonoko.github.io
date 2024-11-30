@@ -76,7 +76,7 @@
                 text(`Current Volume: ${nf(volume, 1, 2)}`, width/2, height - 30);
 
                 // 检查音量并切换图片
-                if (!switched && volume > 0.7) {
+                if (!switched && volume > 0.05) {
                     loadImage('poof.gif', img => {
                         currentImg = img;
                         switched = true;
