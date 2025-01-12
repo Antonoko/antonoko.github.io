@@ -186,7 +186,7 @@ function lcl_blast_canvas(){
     let event = lcl_events[index]
     lcl_events[index]["t"] -= 1;
     if (random(0, 1)<.3){
-      floor_canvas.stroke(255+random(-5,0),133+random(-5,5),random(-5,5),random(150,255));
+      floor_canvas.stroke(255+random(-20,0),133+random(-10,10),random(-10,10),random(150,255));
       floor_canvas.strokeWeight(random(event["t"]/2, event["t"])*3);
       floor_canvas.point(
         event["x"]+random(-event["t_reserve"]-event["t"], event["t_reserve"]-event["t"])*1.5, 
