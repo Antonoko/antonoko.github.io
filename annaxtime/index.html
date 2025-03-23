@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no"/>
+    <title>Happy new page Jo !</title>
+    <link rel="stylesheet" type="text/css" href="vh_resource/va11.css" />   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel="stylesheet" type="text/css" href="vh_resource/crt_effect.css" />
+  </head>
+
+  <body>
+    <div class="crt_container">    
+
+
+
+    <!-- BGM -->
+    <!-- will you remember me -->
+    <audio src='http://music.163.com/song/media/outer/url?id=441491914.mp3' style='display:inline' volume="0.3" id="will_you_remember_me"></audio>
+    <!-- a gaze that invited disaster -->
+    <audio src='http://music.163.com/song/media/outer/url?id=441489910.mp3' style='display:inline' volume="0.3" id="a_gaze_that_invited_disaster"></audio>
+    <!-- meet the staff -->
+    <audio src='http://music.163.com/song/media/outer/url?id=441489930.mp3' style='display:inline' volume="0.3" id="meet_the_staff"></audio>
+    <!-- neo avatar -->
+    <audio src='http://music.163.com/song/media/outer/url?id=441491897.mp3' style='display:inline' volume="0.3" id="neo_avatar"></audio>
+    <!-- strictly business -->
+    <audio src='http://music.163.com/song/media/outer/url?id=441489938.mp3' style='display:inline' volume="0.3" id="strictly_business"></audio>
+    <!-- winter -->
+    <!-- <div class="snow-container">
+      <div class="snow foreground"></div>
+      <div class="snow foreground layered"></div>
+      <div class="snow middleground"></div>
+      <div class="snow middleground layered"></div>
+      <div class="snow background"></div>
+      <div class="snow background layered"></div>
+    </div> -->
+
+
+    <div id="backgroundDiv"></div>
+    <div class="mainWindow">
+    
+    <div class="talkingBox">
+        <div class="characterIMG">
+          <img src="vh_resource/anna/anna_whiteshirt.png" id="anna_whiteshirt" class="annaImg">
+          <img src="vh_resource/anna/anna_talk_normal.gif" id="anna_talk_normal" class="annaImg">
+          <img src="vh_resource/anna/anna_talk_normal_done.gif" id="anna_talk_normal_done" class="annaImg">
+          <img src="vh_resource/anna/anna_talk_despise.gif" id="anna_talk_despise" class="annaImg">
+          <img src="vh_resource/anna/anna_talk_despise_done.gif" id="anna_talk_despise_done" class="annaImg">
+          <img src="vh_resource/anna/anna_talk_happy.gif" id="anna_talk_happy" class="annaImg">
+          <img src="vh_resource/anna/anna_talk_happy_done.gif" id="anna_talk_happy_done"class="annaImg">
+          <img src="vh_resource/anna/anna_eyeclosed.gif" id="anna_eyeclosed" class="annaImg">
+          <img src="vh_resource/anna/anna_eyeclosed.gif" id="anna_eyeclosed2" class="annaImg">
+        </div>
+
+        <div class="textBox">
+          <p class="characterName" id="chAnna">Anna:</p>
+          <span class="writer" id="dialog_1"></span>
+          <p id="textPointer">▼</p>
+          <audio src='vh_resource/anna/talkSound_anna.mp3' style='display:inline' id='talkSound1'></audio>
+          <audio src='vh_resource/anna/talkSound_anna.mp3' style='display:inline' id='talkSound2'></audio>
+          <audio src='vh_resource/anna/talkSound_anna.mp3' style='display:inline' id='talkSound3'></audio>
+          <audio src='vh_resource/anna/talkSound_anna.mp3' style='display:inline' id='talkSound4'></audio>
+          <audio src='vh_resource/anna/talkSound_anna.mp3' style='display:inline' id='talkSound5'></audio>
+        </div>
+
+        <div class="linkBox" id="linkBoxId">
+            <span class="linkToWhereText" id="linkTo">前往 "tonoko.moe" </span>
+            <p class="linkBoxPointer">→</p>
+            <button type="button" class="caliButton"  onclick="jumptoLink()" id="linkButton_pink"></button>
+          </div>
+
+    </div>
+
+    
+    <div class="calicompFrame"  id="calicompFrameInside_ID">
+        <audio src='vh_resource/other/sys_sound_1.mp3' style='display:inline' id='sys_sound_1'></audio>
+        <audio src='vh_resource/other/sys_sound_2.mp3' style='display:inline' id='sys_sound_2'></audio>
+        <audio src='vh_resource/other/sys_sound_3.mp3' style='display:inline' id='sys_sound_3'></audio>
+        <audio src='vh_resource/other/sys_sound_4.mp3' style='display:inline' id='sys_sound_4'></audio>
+
+      <p class="calicompFrameMenu">By Type &nbsp;&nbsp;&nbsp;tonoko.moe</p>
+      
+
+      <div class="calicompFrameInside">
+      <div id="calicompFrame_disable"></div>
+      <div id="calicompFrame_aboutBox">
+          <div class="linkBox_aboutBack" id="linkBoxId">
+              <span class="linkToWhereText">返回</span>
+              <p class="linkBoxPointer">←</p>
+              <button type="button" class="caliButton_aboutBack"  onclick="aboutBack()" id="linkButton_pink"></button>
+            </div>
+        <img src="vh_resource/other/nowAskMeAnything.jpg" width="100%">
+        <h2>关于 v.0.31</h2>
+        <p><li>2020.1.28 <a href="https://codepen.io/lbebber/pen/XJRdrV/?__cf_chl_jschl_tk__=b4ab4aeb7cac65f7c2d2ee4642a3940993139904-1580205676-0-AauQWnzg1jLsuohYMWqeRSivoK4kn3BfteBveOzc75tUS-wO4OAalucwUcMlwRUraNTDAqsHbkME6WatmY6fd0h7mtjFgkL35O48syEx3h_wC6t-p2lrRkhL59BFKS9jr_Ewr1xn9xprR8WRXFow-TqRT7ZEXRiNhxyGegJqLShX6vG8JK6Zw8p1cpePghYYozp4-C_PL8ynTa8pBCo7Tldeo-xPEF4MP4iimh5T74mKd_UunAJCrggQiOO3bSVZVIjy5WRFdemo5o_UcR5NDGE7PFZYd0ZdHdTA2SKHFLImjZipeKPe2lLKGzOG3dHggaptfvsqpsThAWgaSBIXciMXFcAComgE6l4JWuBTzsc3" target="_blank">扫描线</a></li></p>
+        <p><li>2020.1.19 添加了随机点唱机。</li></p>
+        <p><li>2020.5.24 将显示字体由 Zpix 更换为丁卯点阵体（DEMO）。</li></p>
+        <p><li>2022.3.27 将显示字体更换为 Cubic 11；由 Shellbin 强力驱动🥺。</li></p>
+        <br>
+        <p><li>本页面由 tonoko 缝合</li></p>
+        <p><li>活动块的美术与声音素材版权归 Sakube Games 所有</li></p>
+        <p><li>世界观基于 <a href="https://store.steampowered.com/app/447530/VA11_HallA_Cyberpunk_Bartender_Action" target="_blank">VA-11 Hall-A: Cyberpunk Bartender Action</a></li></p>
+        <p><li>Typing Script modify from: <a href="https://github.com/Jiasm/TypeWriter" target="_blank">github.com/Jiasm/TypeWriter</a></li></p>
+        <p><li>背景图像: <a href="https://twitter.com/waneella_" target="_blank">twiiter @waneella_</a></li></p>
+        <p><li>像素字体: <a href="https://github.com/ACh-K/Cubic-11" target="_blank">俐方體11號／Cubic 11</a></li></p>
+        <br>
+        <p>Special Thanks</p>
+        <p>Program Consultant: <a href="http://kazamihatsuroku.top/">Hatsuroku</a></p>
+        <p>Affection Consultant: <a href="https://shellbin.me/">Shellbin</a></p>
+        <br>
+        <p>友情链接</p>
+        <div class="linkBox_aboutBack" id="linkBoxId">
+            <span class="linkToWhereText">初春静流 uiharuhi.me</span>
+            <p class="linkBoxPointer">→</p>
+            <button type="button" class="caliButton_aboutBack"  onclick="document.getElementById('sys_sound_1').play();window.open('http://www.uiharuhi.me/')" id="linkButton_pink"></button>
+          </div>          
+        <div class="linkBox_aboutBack" id="linkBoxId">
+              <span class="linkToWhereText">module ZephRay;</span>
+              <p class="linkBoxPointer">→</p>
+              <button type="button" class="caliButton_aboutBack"  onclick="document.getElementById('sys_sound_1').play();window.open('http://zephray.cnvintage.org/')" id="linkButton_pink"></button>
+          </div>
+          <div class="linkBox_aboutBack" id="linkBoxId">
+              <span class="linkToWhereText">Lithia's Core / t'</span>
+              <p class="linkBoxPointer">→</p>
+              <button type="button" class="caliButton_aboutBack"  onclick="document.getElementById('sys_sound_1').play();window.open('https://lithcore.cn/')" id="linkButton_pink"></button>
+          </div>
+          <div class="linkBox_aboutBack" id="linkBoxId">
+              <span class="linkToWhereText">ntzyz's space</span>
+              <p class="linkBoxPointer">→</p>
+              <button type="button" class="caliButton_aboutBack"  onclick="document.getElementById('sys_sound_1').play();window.open('https://www.ntzyz.cn/')" id="linkButton_pink"></button>
+          </div>
+          <div class="linkBox_aboutBack" id="linkBoxId">
+              <span class="linkToWhereText">Boxjan</span>
+              <p class="linkBoxPointer">→</p>
+              <button type="button" class="caliButton_aboutBack"  onclick="document.getElementById('sys_sound_1').play();window.open('https://boxjan.li/')" id="linkButton_pink"></button>
+          </div>
+          <div class="linkBox_aboutBack" id="linkBoxId">
+              <span class="linkToWhereText">pokitpokit 的万叶集</span>
+              <p class="linkBoxPointer">→</p>
+              <button type="button" class="caliButton_aboutBack"  onclick="document.getElementById('sys_sound_1').play();window.open('http://www.pokitpokit.tech/work/')" id="linkButton_pink"></button>
+          </div>
+          <div class="linkBox_aboutBack" id="linkBoxId">
+              <span class="linkToWhereText">陆初 脑子好用的天才。</span>
+              <p class="linkBoxPointer">→</p>
+              <button type="button" class="caliButton_aboutBack"  onclick="document.getElementById('sys_sound_1').play();window.open('http://kazamihatsuroku.top/')" id="linkButton_pink"></button>
+          </div>
+          <div class="linkBox_aboutBack" id="linkBoxId">
+              <span class="linkToWhereText">Shellbin's World</span>
+              <p class="linkBoxPointer">→</p>
+              <button type="button" class="caliButton_aboutBack"  onclick="document.getElementById('sys_sound_1').play();window.open('https://shellbin.me/')" id="linkButton_pink"></button>
+          </div>
+          <div class="linkBox_aboutBack" id="linkBoxId">
+            <span class="linkToWhereText">jpswing Blog</span>
+            <p class="linkBoxPointer">→</p>
+            <button type="button" class="caliButton_aboutBack"  onclick="document.getElementById('sys_sound_1').play();window.open('https://jpswing.github.io/')" id="linkButton_pink"></button>
+          </div>
+          <div class="linkBox_aboutBack" id="linkBoxId">
+            <!-- i am sorry -->
+              <span class="linkToWhereText" style="color:#000">Anna Tsuki</span>
+              <p class="linkBoxPointer" style="color:#000">→</p>
+              <button type="button" class="caliButton_aboutBack"  onclick="document.getElementById('sys_sound_3').play();window.open('https://twitter.com/annaxtime')" id="linkButton_pink"></button>
+          </div>
+        <br>
+        <img src="vh_resource/anna/anna_glitch.gif">
+        <p>Contact Me:</p>
+        <p><li>Email: antonoko@outlook.com</li></p>
+        <p><li>Telegram: <a href="https://t.me/kasugamomo" target="_blank">@kasugamomo</a></li></p>
+        <br>
+        <img src="vh_resource/other/nowAskMeAnything2.jpg" width="100%">
+        <p>Packaged at 03/27/22</p>
+        <p>tonoko.moe 2022 copyright</p>
+        <p>Powered by Zilog Z80 System</p>
+        <br>
+      </div>
+
+        <p class="calicompFrameTitle">调制饮料，<br>改变人生。</p>
+
+          <div class="calicompButtonFrame">
+            <!-- <img src="vh_resource/drink/SunshineCloud.png" class="caliDrinkImg"> -->
+            <div class="calicompIconImg" style="background-image: url(vh_resource/drink/SunshineCloud.png);"></div>
+            <div class="calicompButtonFrameTextBox">
+              <p class="calicompButtonFrameText1">部落格</p>
+              <p class="calicompButtonFrameText2">blog.T.M</p>
+            </div>
+          <button type="button" class="caliButton"  onclick="caliButton('blog')" id="caliButton_yellow"></button>
+          </div>
+
+        <div class="calicompButtonFrame">
+          <!-- <img src="vh_resource/drink/SugarRush.png" class="caliDrinkImg"> -->
+          <div class="calicompIconImg"  style="background-image: url(vh_resource/drink/SugarRush.png);"></div>
+          <div class="calicompButtonFrameTextBox">
+            <p class="calicompButtonFrameText1">哔哩哔哩</p>
+            <p class="calicompButtonFrameText2">@tonoko</p>
+          </div>
+          <button type="button" class="caliButton"  onclick="caliButton('bilibili')" id="caliButton_red"></button>
+        </div>
+
+        <div class="calicompButtonFrame">
+          <!-- <img src="vh_resource/drink/BlueFairy.png" class="caliDrinkImg"> -->
+          <div class="calicompIconImg"  style="background-image: url(vh_resource/drink/BlueFairy.png);"></div>
+          <div class="calicompButtonFrameTextBox">
+            <p class="calicompButtonFrameText1">Pixiv</p>
+            <p class="calicompButtonFrameText2">@桉月殿子</p>
+          </div>
+          <button type="button" class="caliButton"  onclick="caliButton('pixiv')" id="caliButton_blue"></button>
+        </div>
+
+        <div class="calicompButtonFrame">
+          <!-- <img src="vh_resource/drink/BloomLight.png" class="caliDrinkImg"> -->
+          <div class="calicompIconImg"  style="background-image: url(vh_resource/drink/BloomLight.png);"></div>
+          <div class="calicompButtonFrameTextBox">
+            <p class="calicompButtonFrameText1">渣浪微博</p>
+            <p class="calicompButtonFrameText2">/antonoko</p>
+          </div>
+          <button type="button" class="caliButton"  onclick="caliButton('weibo')" id="caliButton_red"></button>
+        </div>
+
+        <div class="calicompButtonFrame">
+          <!-- <img src="vh_resource/drink/PianoWoman.png" class="caliDrinkImg"> -->
+          <div class="calicompIconImg"  style="background-image: url(vh_resource/drink/PianoWoman.png);"></div>
+          <div class="calicompButtonFrameTextBox">
+            <p class="calicompButtonFrameText1">Twitter</p>
+            <p class="calicompButtonFrameText2">@yasutonoko</p>
+          </div>
+          <button type="button" class="caliButton"  onclick="caliButton('twitter')" id="caliButton_blue"></button>
+        </div>
+
+        <div class="calicompButtonFrame">
+          <!-- <img src="vh_resource/drink/SparkleStar.png" class="caliDrinkImg"> -->
+          <div class="calicompIconImg"  style="background-image: url(vh_resource/drink/SparkleStar.png);"></div>
+          <div class="calicompButtonFrameTextBox">
+            <p class="calicompButtonFrameText1">网易云音乐</p>
+            <p class="calicompButtonFrameText2">@tonoko_</p>
+          </div>
+          <button type="button" class="caliButton"  onclick="caliButton('music')" id="caliButton_red"></button>
+        </div>
+
+        <div class="calicompButtonFrame">
+          <!-- <img src="vh_resource/drink/Beer.png" class="caliDrinkImg"> -->
+          <div class="calicompIconImg"  style="background-image: url(vh_resource/drink/Beer.png);"></div>
+          <div class="calicompButtonFrameTextBox">
+            <p class="calicompButtonFrameText1">Steam</p>
+            <p class="calicompButtonFrameText2">/antonoko</p>
+          </div>
+          <button type="button" class="caliButton"  onclick="caliButton('steam')" id="caliButton_orange"></button>
+        </div>
+
+        <div class="calicompButtonFrame">
+          <!-- <img src="vh_resource/drink/FlamingMoai.png" class="caliDrinkImg"> -->
+          <div class="calicompIconImg"  style="background-image: url(vh_resource/drink/FlamingMoai.png);"></div>
+          <div class="calicompButtonFrameTextBox">
+            <p class="calicompButtonFrameText1">Nintendo</p>
+            <p class="calicompButtonFrameText2">Switch</p>
+          </div>
+          <button type="button" class="caliButton"  onclick="caliButton('switch')" id="caliButton_purple"></button>
+        </div>
+
+
+        
+
+      </div>
+
+
+
+    </div>
+
+    <div class="calicompFrameOutside" id="calicompFrameOutside_ID">
+        <button type="button" id="buttonMin" onclick="caliWinClose()">-</button>
+        <div class="timeBox"><span id="nowDateTimeSpan"></span></div>
+        <div class="timeBoxBG"><p style="color:rgba(0, 0, 0, 0);display: inline;">H△g</p>&nbsp&nbsp&nbsp&nbsp&nbsp88:88</div>
+
+        <div id="calicompFrame_disable2"></div>
+      <img src="vh_resource/other/calicomptitle1.png" class="calicompFrameOutsideIMG">
+      <button type="button" class="caliButton"  onclick="caliButton('about')" id="caliButton_black"></button>
+    </div>
+
+    </div>
+    
+
+  
+
+
+
+    <script src="vh_resource/type.js" charset="utf-8"></script>
+    <script src="vh_resource/main.js" charset="utf-8"></script>
+
+    <!-- 错误诊断页面 -->
+    <div class="CRASHED" id="CRASHED_STATUE">
+        <div class="CRASHED_BOX">
+        <img src="vh_resource/other/calicomptitle1.png" width="120px">
+        <center><p class="CRASHED_TEXT">&#42;&#42;&#42;&#42;&#32;&#67;&#79;&#77;&#77;&#79;&#68;&#79;&#82;&#69;&#32;&#54;&#52;&#32;&#72;&#79;&#83;&#84;&#75;&#69;&#82;&#32;&#42;&#42;&#42;&#42;</p></center>
+        <center><p class="CRASHED_TEXT">&#54;&#52;&#75;&#32;&#82;&#65;&#77;&#32;&#83;&#89;&#83;&#84;&#69;&#77;&#32;&#32;&#51;&#56;&#57;&#49;&#49;&#32;&#66;&#65;&#83;&#73;&#67;&#32;&#66;&#89;&#84;&#69;&#83;&#32;&#70;&#82;&#69;&#69;</p></center>
+        <p class="CRASHED_TEXT">&#82;&#69;&#65;&#68;&#89;&#46;</p><br>
+        <p class="CRASHED_TEXT">&#67;&#65;&#76;&#73;&#67;&#79;&#77;&#80;&#32;&#85;&#73;&#32;&#76;&#79;&#65;&#68;&#73;&#78;&#71;&#46;&#46;&#46;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#12288;&#53;&#37;</p>
+        <p class="CRASHED_TEXT">&#67;&#65;&#84;&#65;&#83;&#84;&#82;&#79;&#80;&#72;&#73;&#67;&#32;&#70;&#65;&#73;&#76;&#85;&#82;&#69;&#32;&#72;&#65;&#80;&#80;&#69;&#78;</p>
+        <p class="CRASHED_TEXT">&#49;&#48;&#32;&#80;&#82;&#73;&#78;&#84;</p><br>
+        <p class="CRASHED_TEXT">&#21908;&#21727;&#65292;&#23849;&#28291;&#21862;&#65281;</p>
+        <p class="CRASHED_TEXT">&#21152;&#36733;&#27492;&#31995;&#32479;&#26102;&#20986;&#20102;&#28857;&#38382;&#39064;&#12290;</p>
+        <p class="CRASHED_TEXT" id="CRASHED_REASON">错误代码变量</p><br>
+        <p class="CRASHED_TEXT">请重新启动系统。</p>
+        </div>
+      </div>
+
+
+      <div class="crt_overlay">AV-1</div>
+    </div>
+  </body>
+</html>

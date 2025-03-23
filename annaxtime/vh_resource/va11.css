@@ -1,0 +1,651 @@
+@charset "utf-8";
+@font-face {
+    font-family: '丁卯点阵体';
+    src: url('font/Cubic_11_1.000_R.ttf');
+    src:url('font/Cubic_11_1.000_R.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'NixieOne';
+    src: url('font/NixieOne-Regular.ttf');
+    src:url('font/NixieOne-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+/* winter */
+.snow-container {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    max-width: 100%;
+    top: 0;
+    overflow: hidden;
+    z-index: 0;
+    pointer-events: none;
+    /* background-color: red; */
+  }
+  
+  .snow {
+    display: block;
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    pointer-events: none;
+    opacity: 50%;
+    -webkit-transform: translate3d(0, -100%, 0);
+            transform: translate3d(0, -100%, 0);
+    -webkit-animation: snow linear infinite;
+            animation: snow linear infinite;
+  }
+  .snow.foreground {
+    background-image: url("https://dl6rt3mwcjzxg.cloudfront.net/assets/snow/snow-large-075d267ecbc42e3564c8ed43516dd557.png");
+    -webkit-animation-duration: 15s;
+            animation-duration: 15s;
+  }
+  .snow.foreground.layered {
+    -webkit-animation-delay: 7.5s;
+            animation-delay: 7.5s;
+  }
+  .snow.middleground {
+    background-image: url(https://dl6rt3mwcjzxg.cloudfront.net/assets/snow/snow-medium-0b8a5e0732315b68e1f54185be7a1ad9.png);
+    -webkit-animation-duration: 20s;
+            animation-duration: 20s;
+  }
+  .snow.middleground.layered {
+    -webkit-animation-delay: 10s;
+            animation-delay: 10s;
+  }
+  .snow.background {
+    background-image: url(https://dl6rt3mwcjzxg.cloudfront.net/assets/snow/snow-small-1ecd03b1fce08c24e064ff8c0a72c519.png);
+    -webkit-animation-duration: 30s;
+            animation-duration: 30s;
+  }
+  .snow.background.layered {
+    -webkit-animation-delay: 15s;
+            animation-delay: 15s;
+  }
+  
+  @-webkit-keyframes snow {
+    0% {
+      -webkit-transform: translate3d(0, -100%, 0);
+              transform: translate3d(0, -100%, 0);
+    }
+    100% {
+      -webkit-transform: translate3d(15%, 100%, 0);
+              transform: translate3d(15%, 100%, 0);
+    }
+  }
+  
+  @keyframes snow {
+    0% {
+      -webkit-transform: translate3d(0, -100%, 0);
+              transform: translate3d(0, -100%, 0);
+    }
+    100% {
+      -webkit-transform: translate3d(15%, 100%, 0);
+              transform: translate3d(15%, 100%, 0);
+    }
+  }
+/* winter */
+
+/* ============================================== */
+.CRASHED{
+    width: 100%;
+    height: 100%;
+    background-color: #6e62cf;
+    z-index: 99;
+    position: absolute;
+    top: 0;
+    left: 0;
+    color:#6e62cf;
+    display: none;
+}
+.CRASHED_TEXT{
+
+}
+.CRASHED_BOX{
+    width: 640px;
+    height: 480px;
+    top: 50%;
+    left: 50%;
+    position: relative;
+    background-color: #352a94;
+    transform: translateX(-50%) translateY(-50%);
+}
+
+body{
+    margin: 0 0 ;
+    padding: 0 0;
+    font-family: '丁卯点阵体';
+    background-color: rgb(0, 0, 0);
+    /* background-image: url(other/background-glitchcity.jpg); */
+    height: 100%;
+    overflow: hidden;
+}
+p{
+    margin: 0 0;
+    padding: 0 0;
+}
+img{
+    margin: 0 0;
+    padding: 0 0;
+}
+a{
+    color: #ff80bf;
+}
+
+#backgroundDiv{
+    width: 100vw;
+    height: 100vh;
+    z-index: -2;
+    background-color: rgb(110, 110, 110);
+    /* background-repeat:repeat-x; */
+    /* background-attachment:fixed; */
+    background-position:center;
+    background-size: cover;
+}
+
+
+.annaImg{
+    width: 250px;
+}
+.writer{
+    color: #fff;
+}
+
+.characterIMG{
+    position: absolute;
+    left: 170px;
+    bottom: 100px;
+}
+
+#textPointer{
+    color: #fff;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    display: none;
+    animation: flicker 2s cubic-bezier(0,1,0,1) infinite;
+}
+@keyframes flicker {
+    /* from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    } */
+    0% {opacity: 1;}
+    25% {opacity: 1;}
+    50% {opacity: 0.66;}
+    75% {opacity: 0.33;}
+	100% {opacity: 0;}
+  }
+.linkBox{
+    width: 400px;
+    height: 1.5em;
+    background: rgb(0, 0, 0);
+    bottom: -50px;
+    position: absolute;
+    font-size: 1.2em;
+    padding: 0.5em 0 0 1em;
+    display: none;
+}
+.linkBox_aboutBack{
+    width: 400px;
+    height: 1.5em;
+    background: rgb(0, 0, 0);
+    font-size: 1.2em;
+    padding: 0.25em 0 0 1em;
+    display: inline-block;
+    position: relative;
+}
+.caliButton_aboutBack{
+    margin: 0;
+    padding: 0;
+    display: inline;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0);
+    border: solid 0px rgba(0, 0, 0, 0);
+}
+.linkBoxPointer{
+    color: rgb(255, 255, 255);
+    display: inline-block;
+    text-align: right;
+}
+.linkToWhereText{
+    display: inline-block;
+    color: rgb(0, 200, 236);
+    text-align: right;
+}
+
+#chJill{
+    color:rgb(0, 195, 255);
+    display: inline-block;
+}
+#chAnna{
+    color:rgb(255, 86, 170);
+    display: inline-block;
+}
+#anna_whiteshirt{
+    display: none;
+    z-index: 10;
+    position: absolute;
+    top: -2px;
+}
+#anna_talk_normal{
+    display: none;
+}
+#anna_talk_normal_done{
+    display: none;
+}
+#anna_talk_despise{
+    display: none;
+}
+#anna_talk_despise_done{
+    display: none;
+}
+#anna_talk_happy{
+    display: none;
+}
+#anna_talk_happy_done{
+    display: none;
+}
+#anna_eyeclosed{
+    display: none;
+}
+#anna_eyeclosed2{
+    display: none;
+}
+
+
+/* @keyframes calicompFrameScaleMin{
+    0% {width: 500px;}
+	100% {width: 0px;display: none;}
+} */
+@keyframes calicompFrameFadeIn{
+    0% {opacity: 0;}
+    33% {opacity: 0.33;}
+    66% {opacity: 0.66;}
+	100% {opacity: 0.95;}
+}
+#calicompFrame_disable{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: rgb(0, 0, 0);
+    opacity: 0.4;
+    z-index: 10;
+    display: inline;
+    /* backdrop-filter: blur(2px); */
+}
+#calicompFrame_disable2{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: rgb(0, 0, 0);
+    opacity: 0;
+    z-index: 10;
+    display: inline;
+    /* backdrop-filter: blur(2px); */
+}
+#calicompFrame_aboutBox{
+    width: 90%;
+    height: 95%;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(2px);
+    z-index: 12;
+    display: none;
+    color: #eee;
+    padding: 5% 5% 0 5%;
+    line-height: 1.5em;
+    overflow-y: scroll;
+    animation: calicompFrameFadeIn 0.7s cubic-bezier(0,1,0,1) none;
+    opacity: 1;
+}
+.calicompFrameInside{
+    background-color: #000;
+    width: 490px;
+    height: 470px;
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+}
+.calicompFrameOutside{
+    width: 180px;
+    height: 150px;
+    background-color: #2241fd;
+    position: absolute;
+    right: -190px;
+    top:0;
+}
+.calicompFrameOutsideIMG{
+    width: 150px;
+    position: absolute;
+    right: 2px;
+    display: inline;
+}
+.calicompFrameMenu{
+    font-size: 1.2em;
+    margin: 0.15em 0 0 0.5em;
+}
+#buttonMin{
+    width: 1em;
+    height: 1em;
+    font-size: 1.5em;
+    background-color: #fff;
+    border: 0px;
+    border-right: solid 3px #2241fd;
+    border-bottom: solid 3px #2241fd;
+    color: #2241fd;
+    line-height: 0;
+    position: absolute;
+    left: 0;
+    bottom: -1em;
+    z-index: 15;
+}
+.timeBox{
+    font-family: 'NixieOne';
+    height: 24px;
+    width: 156px;
+    position: absolute;
+    left: 1em;
+    bottom: -24px;
+    /* background-color: rgba(41, 23, 0, 0.7); */
+    color: rgb(255, 145, 0);
+    text-shadow: rgb(255, 51, 0) 0px 0px 5px;
+    font-size: 1em;
+    text-align: right;
+    padding: 0px 6px 0 0;
+    /* backdrop-filter: blur(2px); */
+    letter-spacing: 0.2em;
+    z-index: 2;
+    /* display: none; */
+}
+.timeBoxBG{
+    font-family: 'NixieOne';
+    height: 24px;
+    width: 156px;
+    position: absolute;
+    left: 1em;
+    bottom: -24px;
+    background-color: rgba(41, 23, 0, 0.7);
+    color: rgb(110, 110, 110);
+    text-shadow: rgb(0, 0, 0) 0px 0px 5px;
+    font-size: 1em;
+    text-align: right;
+    padding: 0px 6px 0 2px;
+    backdrop-filter: blur(2px);
+    letter-spacing: 0.2em;
+    z-index: 1;
+    /* display: none; */
+}
+
+.calicompButtonFrame{
+    width: 200px;
+    height: 65px;
+    background-color: #000000;
+    margin: 15px 0 0 25px;
+    border: 2px solid #eee;
+    position: relative;
+    left: 0px;
+    float: left;
+}
+.caliButton{
+    margin: 0;
+    padding: 0;
+    display: inline;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0);
+    border: solid 0px rgba(0, 0, 0, 0);
+    /* opacity: 0; */
+}
+.caliButton:active{
+    /* opacity: 0.2; */
+    background-color: rgba(0, 0, 0, 0.3);
+}
+#caliButton_yellow:hover{
+    background-color: rgb(255, 217, 0,0.2);
+}
+#caliButton_red:hover{
+    background-color: rgb(255, 0, 0,0.2);
+}
+#caliButton_blue:hover{
+    background-color: rgb(0, 195, 255,0.2);
+}
+#caliButton_orange:hover{
+    background-color: rgb(255, 153, 0,0.2);
+}
+#caliButton_purple:hover{
+    background-color: rgb(174, 0, 255,0.2);
+}
+#caliButton_black:hover{
+    background-color: rgba(0, 0, 0, 0.1);
+    border-bottom: 2px solid #fff;
+}
+#linkButton_pink:hover{
+    /* background-color: rgba(255, 86, 170, 0.2); */
+    border: solid 3px rgb(255, 86, 170);
+}
+.calicompButtonFrame a{
+    background-color: #ff1f1f;
+}
+.calicompButtonFrame a:hover{
+    background-color: #8b8b8b;
+}
+.caliDrinkImg{
+    height: 48px;
+    margin: 6px 0 0 6px;
+}
+.calicompIconImg{
+    height: 45px;
+    width: 45px;
+    background-position: center;
+    background-size: contain;
+    margin: 8px 0 0 11px;
+    background-repeat: no-repeat;
+}
+.calicompButtonFrameTextBox{
+    left: 72px;
+    top: 9px;
+    position: absolute;
+}
+.calicompButtonFrameText1{
+    color: rgb(252, 247, 223);
+    font-size: 1.2em;
+    line-height: 1.5em;
+}
+.calicompButtonFrameText2{
+    color: rgb(255, 177, 113);
+    font-size: 1em;
+    line-height: 1.2em;
+}
+
+
+
+
+
+@media screen and (max-width:600px)
+{
+/* mobile */
+    .mainWindow{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        /* background-color: #8b8b8b; */
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+    }
+    .talkingBox{
+        zoom: 0.8;
+        width: 100%;
+        height: 400px;
+        /* border: 1px solid rgb(255, 0, 0); */
+        position: absolute;
+        top:0px;
+        left: 2%;
+    }
+    .textBox{
+        width: 92%;
+        height: 100px;
+        background-color: rgba(0, 0, 0, 0.8);
+        padding: 7px 0 0 20px;
+        font-size: 1.4em;
+        position: absolute;
+        bottom: 0px;
+        line-height: 1.5em;
+        backdrop-filter: blur(2px);
+    }
+    .calicompFrame{
+        zoom: 0.8;
+        width: 500px;
+        height: 500px;
+        position: absolute;
+        left: 0px;
+        bottom: 0px;
+        background-color: rgb(255, 255, 255);
+        border: solid 4px #2241fd;
+        opacity: 0.9;
+        display: inline;
+        animation: calicompFrameFadeIn 0.7s cubic-bezier(0,1,0,1) none;
+    }
+    .calicompFrameTitle::before{
+        content: "移动端未适配完全（呜呜";
+        color: rgb(252, 248, 232);
+        font-size: 1.5em;
+        padding: 1em 0 0.7em 1em;
+        line-height: 1.2em;
+    }
+}
+@media screen and (min-width:601px) and (max-width:1280px){
+    /* for damn 4:3 orz*/
+    .characterIMG{
+        position: absolute;
+        left: 120px;
+        bottom: 100px;
+    }
+    .mainWindow{
+        position: absolute;
+        /* width: 1150px; */
+        width: 95vw;
+        height: 505px;
+        /* background-color: #8b8b8b; */
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+    }
+    .talkingBox{
+        width: 600px;
+        height: 400px;
+        /* border: 1px solid rgb(255, 0, 0); */
+        position: absolute;
+        bottom:60px;
+        left: 0;
+    }
+    .calicompFrame{
+        width: 500px;
+        height: 500px;
+        position: absolute;
+        right: -10px;
+        top: 0px;
+        background-color: rgb(255, 255, 255);
+        border: solid 4px #2241fd;
+        opacity: 0.9;
+        display: inline;
+        animation: calicompFrameFadeIn 0.7s cubic-bezier(0,1,0,1) none;
+        z-index: -1;
+    }
+    .calicompFrameOutside{
+        width: 180px;
+        height: 150px;
+        background-color: #2241fd;
+        position: absolute;
+        right:-10px;
+        top:-180px;
+    }
+    .textBox{
+        width: 470px;
+        height: 120px;
+        background-color: rgba(0, 0, 0, 0.8);
+        padding: 7px 0 0 20px;
+        font-size: 1.4em;
+        position: absolute;
+        bottom: -20px;
+        line-height: 1.5em;
+        backdrop-filter: blur(2px);
+    }
+    .calicompFrameTitle{
+        color: rgb(252, 248, 232);
+        font-size: 1.5em;
+        padding: 1em 0 0.7em 1em;
+        line-height: 1.2em;
+    }
+    }
+    
+@media screen and (min-width:1281px){
+/* desktop */
+.mainWindow{
+    position: absolute;
+    /* width: 1150px; */
+    width: 60vw;
+    height: 505px;
+    /* background-color: #8b8b8b; */
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}
+.talkingBox{
+    width: 600px;
+    height: 400px;
+    /* border: 1px solid rgb(255, 0, 0); */
+    position: absolute;
+    bottom:60px;
+    left: 0;
+}
+.calicompFrame{
+    width: 500px;
+    height: 500px;
+    position: absolute;
+    right: -10px;
+    top: 0px;
+    background-color: rgb(255, 255, 255);
+    border: solid 4px #2241fd;
+    opacity: 0.9;
+    display: inline;
+    animation: calicompFrameFadeIn 0.7s cubic-bezier(0,1,0,1) none;
+    z-index: -1;
+}
+.textBox{
+    width: 580px;
+    height: 100px;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 7px 0 0 20px;
+    font-size: 1.4em;
+    position: absolute;
+    bottom: 0px;
+    line-height: 1.5em;
+    backdrop-filter: blur(2px);
+}
+.calicompFrameTitle{
+    color: rgb(252, 248, 232);
+    font-size: 1.5em;
+    padding: 1em 0 0.7em 1em;
+    line-height: 1.2em;
+}
+}
+

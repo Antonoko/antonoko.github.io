@@ -1,0 +1,223 @@
+@keyframes flicker_crt_mine {
+  0% {
+    opacity: 1;
+  }
+  /* 30%{
+    opacity: 0.98;
+  }
+  60%{
+    opacity: 1;
+  } */
+  30% {
+    opacity: 0.98;
+  }
+  50%{
+    opacity: 1;
+  }
+  100%{
+    opacity: 1;
+  }
+}
+
+@keyframes flicker_crt {
+    0% {
+      opacity: 0.77481;
+    }
+    5% {
+      opacity: 0.99679;
+    }
+    10% {
+      opacity: 0.29263;
+    }
+    15% {
+      opacity: 0.49649;
+    }
+    20% {
+      opacity: 0.07799;
+    }
+    25% {
+      opacity: 0.81483;
+    }
+    30% {
+      opacity: 0.48874;
+    }
+    35% {
+      opacity: 0.36764;
+    }
+    40% {
+      opacity: 0.28781;
+    }
+    45% {
+      opacity: 0.60239;
+    }
+    50% {
+      opacity: 0.38547;
+    }
+    55% {
+      opacity: 0.91421;
+    }
+    60% {
+      opacity: 0.50368;
+    }
+    65% {
+      opacity: 0.98623;
+    }
+    70% {
+      opacity: 0.02571;
+    }
+    75% {
+      opacity: 0.00865;
+    }
+    80% {
+      opacity: 0.93461;
+    }
+    85% {
+      opacity: 0.65966;
+    }
+    90% {
+      opacity: 0.89143;
+    }
+    95% {
+      opacity: 0.45442;
+    }
+    100% {
+      opacity: 0.44859;
+    }
+  }
+  .crt_container {
+    background: #121010;
+    /* width: 800px;
+    height: 600px; */
+    /* margin-top: 10px; */
+    position: relative;
+    overflow: hidden;
+    /* border: 2px solid #666; */
+    animation: flicker_crt_mine 0.3s infinite;
+  }
+  .crt_container::after {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(18, 16, 16, 0.1);
+    opacity: 0;
+    z-index: 100;
+    pointer-events: none;
+  }
+  .crt_container::before {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+    z-index: 100;
+    background-size: 100% 2px, 3px 100%;
+    pointer-events: none;
+  }
+  
+  #switch:checked ~ .crt_container::after {
+    animation: flicker_crt 0.15s infinite;
+  }
+  
+  @keyframes turn-on {
+    0% {
+      transform: scale(1, 0.8) translate3d(0, 0, 0);
+      -webkit-filter: brightness(30);
+      filter: brightness(30);
+      opacity: 1;
+    }
+    3.5% {
+      transform: scale(1, 0.8) translate3d(0, 100%, 0);
+    }
+    3.6% {
+      transform: scale(1, 0.8) translate3d(0, -100%, 0);
+      opacity: 1;
+    }
+    9% {
+      transform: scale(1.3, 0.6) translate3d(0, 100%, 0);
+      -webkit-filter: brightness(30);
+      filter: brightness(30);
+      opacity: 0;
+    }
+    11% {
+      transform: scale(1, 1) translate3d(0, 0, 0);
+      -webkit-filter: contrast(0) brightness(0);
+      filter: contrast(0) brightness(0);
+      opacity: 0;
+    }
+    100% {
+      transform: scale(1, 1) translate3d(0, 0, 0);
+      -webkit-filter: contrast(1) brightness(1.2) saturate(1.3);
+      filter: contrast(1) brightness(1.2) saturate(1.3);
+      opacity: 1;
+    }
+  }
+  @keyframes turn-off {
+    0% {
+      transform: scale(1, 1.3) translate3d(0, 0, 0);
+      -webkit-filter: brightness(1);
+      filter: brightness(1);
+      opacity: 1;
+    }
+    60% {
+      transform: scale(1.3, 0.001) translate3d(0, 0, 0);
+      -webkit-filter: brightness(10);
+      filter: brightness(10);
+    }
+    100% {
+      animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+      transform: scale(0, 0.0001) translate3d(0, 0, 0);
+      -webkit-filter: brightness(50);
+      filter: brightness(50);
+    }
+  }
+  .screen {
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+  
+  #switch ~ .crt_container > .screen {
+    animation: turn-off 0.55s cubic-bezier(0.23, 1, 0.32, 1);
+    animation-fill-mode: forwards;
+  }
+  
+  #switch:checked ~ .crt_container > .screen {
+    animation: turn-on 4s linear;
+    animation-fill-mode: forwards;
+  }
+  
+  @keyframes overlay-anim {
+    0% {
+      visibility: hidden;
+    }
+    20% {
+      visibility: hidden;
+    }
+    21% {
+      visibility: visible;
+    }
+    100% {
+      visibility: hidden;
+    }
+  }
+  .crt_overlay {
+    color: #00FF00;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 60px;
+    visibility: hidden;
+    pointer-events: none;
+  }
+  
+  #switch:checked ~ .crt_container .crt_overlay {
+    animation: overlay-anim 5s linear;
+    animation-fill-mode: forwards;
+  }
