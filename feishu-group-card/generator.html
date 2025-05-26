@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>飞书群卡片 URL 生成器</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        button {
+            background: #3370ff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        button:hover {
+            background: #2860e0;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f5f5f5;
+            border-radius: 4px;
+            word-break: break-all;
+        }
+
+        #imagePreview {
+            max-width: 100px;
+            max-height: 100px;
+            margin-top: 10px;
+            border-radius: 50%;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>飞书群卡片 URL 生成器</h1>
+    
+    <!-- <div class="form-group">
+        <label for="lang">语言 / Language：</label>
+        <select id="lang">
+            <option value="zh">中文</option>
+            <option value="en">English</option>
+        </select>
+    </div> -->
+
+    <div class="form-group">
+        <label for="title_zh">标题名（中文）：</label>
+        <input type="text" id="title_zh" placeholder="输入中文标题">
+    </div>
+
+    <div class="form-group">
+        <label for="title_en">Title (English)：</label>
+        <input type="text" id="title_en" placeholder="Enter English title">
+    </div>
+
+    <div class="form-group">
+        <label for="description_zh">介绍文本（中文）：</label>
+        <textarea id="description_zh" rows="3" placeholder="输入中文介绍文本"></textarea>
+    </div>
+
+    <div class="form-group">
+        <label for="description_en">Description (English)：</label>
+        <textarea id="description_en" rows="3" placeholder="Enter English description"></textarea>
+    </div>
+
+    <div class="form-group">
+        <label for="joinUrl">加入按钮跳转链接 / Join Button URL：</label>
+        <input type="text" id="joinUrl" placeholder="输入跳转链接 / Enter URL">
+    </div>
+
+    <div class="form-group">
+        <label for="groupText_zh">Group 文本（中文）：</label>
+        <input type="text" id="groupText_zh" placeholder="输入中文 Group 文本">
+    </div>
+
+    <div class="form-group">
+        <label for="groupText_en">Group Text (English)：</label>
+        <input type="text" id="groupText_en" placeholder="Enter English group text">
+    </div>
+
+    <div class="form-group">
+        <label for="avatar">头像图片 / Avatar：</label>
+        <input type="file" id="avatar" accept="image/*">
+        <img id="imagePreview">
+    </div>
+
+    <button onclick="generateUrl()">生成 URL / Generate URL</button>
+
+    <div class="result" id="result" style="display: none;">
+        <h3>生成的 URL：</h3>
+        <p id="generatedUrl"></p>
+        <h3>iframe 代码：</h3>
+        <p id="iframeCode"></p>
+    </div>
+
+    <script>
+        // 压缩图片函数
+        function compressImage(file) {
+            return new Promise((resolve) => {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = new Image();
+                    img.onload = function() {
+                        const canvas = document.createElement('canvas');
+                        canvas.width = 64;
+                        canvas.height = 64;
+                        const ctx = canvas.getContext('2d');
+                        
+                        // 在绘制前清空画布
+                        ctx.clearRect(0, 0, canvas.width, canvas.height);
+                        
+                        // 绘制图片，保持比例
+                        const size = Math.min(img.width, img.height);
+                        const startX = (img.width - size) / 2;
+                        const startY = (img.height - size) / 2;
+                        
+                        ctx.drawImage(img, startX, startY, size, size, 0, 0, 64, 64);
+                        
+                        // 转换为中等质量的JPEG
+                        const compressedBase64 = canvas.toDataURL('image/jpeg', 0.7);
+                        resolve(compressedBase64);
+                    };
+                    img.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            });
+        }
+
+        // 预览图片
+        document.getElementById('avatar').addEventListener('change', async function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const compressedBase64 = await compressImage(file);
+                const preview = document.getElementById('imagePreview');
+                preview.src = compressedBase64;
+                preview.style.display = 'block';
+            }
+        });
+
+        // 生成URL
+        async function generateUrl() {
+            const title_zh = encodeURIComponent(document.getElementById('title_zh').value);
+            const title_en = encodeURIComponent(document.getElementById('title_en').value);
+            const description_zh = encodeURIComponent(document.getElementById('description_zh').value);
+            const description_en = encodeURIComponent(document.getElementById('description_en').value);
+            const joinUrl = encodeURIComponent(document.getElementById('joinUrl').value);
+            const groupText_zh = encodeURIComponent(document.getElementById('groupText_zh').value);
+            const groupText_en = encodeURIComponent(document.getElementById('groupText_en').value);
+            
+            let avatarBase64 = '';
+            const preview = document.getElementById('imagePreview');
+            if (preview.style.display !== 'none') {
+                avatarBase64 = preview.src;
+            }
+
+            // 构建基础URL
+            const baseUrl = window.location.href.replace('generator.html', 'index.html');
+            
+            // 构建完整URL，不再需要lang参数，改为传递双语内容
+            const fullUrl = `${baseUrl}?title_zh=${title_zh}&title_en=${title_en}&description_zh=${description_zh}&description_en=${description_en}&joinUrl=${joinUrl}&avatar=${encodeURIComponent(avatarBase64)}&groupText_zh=${groupText_zh}&groupText_en=${groupText_en}`;
+            
+            // 显示结果
+            document.getElementById('result').style.display = 'block';
+            document.getElementById('generatedUrl').textContent = fullUrl;
+            
+            // 生成iframe代码
+            const iframeCode = `<iframe src="${fullUrl}" style="width: 100%; height: 200px; border: none;"></iframe>`;
+            document.getElementById('iframeCode').textContent = iframeCode;
+        }
+    </script>
+</body>
+</html>
