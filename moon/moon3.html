@@ -42,6 +42,10 @@
         function resizeCanvas() {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
+                        // 确保 Rive 动画也调整其绘制表面大小
+            if (r && r.resizeDrawingSurfaceToCanvas) {
+                r.resizeDrawingSurfaceToCanvas();
+            }
         }
 
         // 初始化时和窗口大小改变时调整canvas大小
