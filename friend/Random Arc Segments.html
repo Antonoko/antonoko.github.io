@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Random Arc Segments (Vanilla JS)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  /* --- Layout --- */
+  :root { --gap: 10px; --pad: 12px; --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+  html, body { margin: 0; padding: 0; background: #fff; color: #222; font: 14px/1.4 system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji"; }
+  header { padding: var(--pad) var(--pad) 0; }
+  h1 { font-size: 18px; margin: 0 0 6px; }
+  .wrap { padding: var(--pad); display: grid; gap: var(--gap); }
+  .controls {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: var(--gap);
+    align-items: end;
+  }
+  .control { display: grid; gap: 4px; }
+  .control label { font-size: 12px; opacity: 0.85; }
+  .control input[type="number"],
+  .control input[type="text"] {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 6px 8px;
+    border: 1px solid #ccc; border-radius: 6px; background: #fff;
+    font-family: var(--mono);
+  }
+  .control input[type="range"] { width: 100%; }
+  .row { display: flex; gap: var(--gap); flex-wrap: wrap; }
+  button {
+    padding: 8px 12px; border: 1px solid #ccc; border-radius: 6px; background: #f6f6f6; cursor: pointer;
+  }
+  button:active { transform: translateY(0.5px); }
+  canvas { display: block; margin: 0 auto; border: 1px solid #ddd; background: #fff; max-width: 100%; }
+  .hint { font-size: 12px; opacity: 0.7; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Random Arc Segments</h1>
+</header>
+
+<div class="wrap">
+  <div class="controls" id="controls">
+    <div class="control">
+      <label for="width">Canvas Width (px)</label>
+      <input id="width" type="number" inputmode="numeric" min="50" value="800" />
+    </div>
+    <div class="control">
+      <label for="height">Canvas Height (px)</label>
+      <input id="height" type="number" inputmode="numeric" min="50" value="500" />
+    </div>
+    <div class="control">
+      <label for="count">Count</label>
+      <input id="count" type="number" inputmode="numeric" min="1" value="60" />
+    </div>
+    <div class="control">
+      <label for="arcLength">Arc Length (px)</label>
+      <input id="arcLength" type="number" inputmode="decimal" min="1" value="20" />
+    </div>
+    <div class="control">
+      <label for="radius">Radius (px)</label>
+      <input id="radius" type="number" inputmode="decimal" min="1" value="12" />
+    </div>
+    <div class="control">
+      <label for="strokeWidth">Stroke Width (px)</label>
+      <input id="strokeWidth" type="number" inputmode="decimal" min="0.5" step="0.5" value="2" />
+    </div>
+    <div class="control">
+      <label for="cluster">Cluster (0..1)</label>
+      <input id="cluster" type="range" min="0" max="1" step="0.01" value="0.75" />
+    </div>
+    <div class="control">
+      <label for="margin">Margin (px)</label>
+      <input id="margin" type="number" inputmode="numeric" min="0" value="20" />
+    </div>
+    <div class="control">
+      <label for="seed">Seed (optional, integer)</label>
+      <input id="seed" type="text" placeholder="random if empty" />
+    </div>
+  </div>
+
+  <div class="row">
+    <button id="regen" title="Regenerate with current params">Regenerate</button>
+    <button id="download" title="Download as PNG">Download PNG</button>
+    <span class="hint">Tip: move the Cluster slider to see points gather near center. Use Seed to reproduce a pattern.</span>
+  </div>
+
+  <canvas id="canvas"></canvas>
+</div>
+
+<script>
+  // ---------- PRNG + math helpers (deterministic when seed provided) ----------
+  function mulberry32(seed) {
+    // Deterministic 32-bit PRNG; seed must be uint32
+    return function () {
+      let t = seed += 0x6D2B79F5;
+      t = Math.imul(t ^ (t >>> 15), t | 1);
+      t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+  function toUInt32(x) {
+    // Coerce a JS number (or string) into uint32 range
+    let n = Number(x);
+    if (!Number.isFinite(n)) n = Math.random() * 0xFFFFFFFF;
+    return (n >>> 0);
+  }
+  function randn(prng) {
+    // Box–Muller transform (Gaussian N(0,1))
+    let u = 0, v = 0;
+    while (u === 0) u = prng();
+    while (v === 0) v = prng();
+    return Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
+  }
+  function clamp(x, a, b) { return Math.min(Math.max(x, a), b); }
+  function angleFromArcLength(L, r) { return L / Math.max(1e-6, r); }
+
+  // ---------- DOM ----------
+  const el = (id) => document.getElementById(id);
+  const inputs = {
+    width: el('width'),
+    height: el('height'),
+    count: el('count'),
+    arcLength: el('arcLength'),
+    radius: el('radius'),
+    strokeWidth: el('strokeWidth'),
+    cluster: el('cluster'),
+    margin: el('margin'),
+    seed: el('seed'),
+  };
+  const canvas = el('canvas');
+  const ctx = canvas.getContext('2d', { alpha: false });
+
+  // Prevent accidental mouse-wheel changing numbers while scrolling
+  document.querySelectorAll('input[type="number"]').forEach(inp => {
+    inp.addEventListener('wheel', e => inp.blur(), { passive: true });
+  });
+
+  // ---------- Core draw ----------
+  function readParams() {
+    // Parse values with sane defaults and clamping
+    const width = Math.max(50, parseInt(inputs.width.value, 10) || 800);
+    const height = Math.max(50, parseInt(inputs.height.value, 10) || 500);
+    const count = clamp(parseInt(inputs.count.value, 10) || 60, 1, 5000);
+    const arcLength = Math.max(0.5, parseFloat(inputs.arcLength.value) || 20);
+    const radius = Math.max(0.5, parseFloat(inputs.radius.value) || 12);
+    const strokeWidth = Math.max(0.1, parseFloat(inputs.strokeWidth.value) || 2);
+    const cluster = clamp(parseFloat(inputs.cluster.value), 0, 1);
+    const margin = Math.max(0, parseFloat(inputs.margin.value) || 20);
+
+    // Build PRNG
+    const seedStr = inputs.seed.value.trim();
+    const seed = seedStr === '' ? (Math.random() * 0xFFFFFFFF) : toUInt32(seedStr);
+    const rnd = mulberry32(seed >>> 0);
+
+    return { width, height, count, arcLength, radius, strokeWidth, cluster, margin, rnd, seed };
+  }
+
+  function draw(params = readParams()) {
+    const { width, height, count, arcLength, radius, strokeWidth, cluster, margin, rnd } = params;
+
+    // Resize canvas
+    if (canvas.width !== width) canvas.width = width;
+    if (canvas.height !== height) canvas.height = height;
+
+    // Clear to white
+    ctx.save();
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(0, 0, width, height);
+
+    // Stroke style
+    ctx.strokeStyle = '#000000';
+    ctx.lineWidth = strokeWidth;
+    ctx.lineCap = 'round';
+
+    // Compute angular span from arc length and radius
+    const theta = angleFromArcLength(arcLength, radius);
+    const half = theta / 2;
+
+    // Gaussian cluster toward center
+    const baseSigma = Math.min(width, height) * 0.35;          // wide-ish baseline
+    const sigma = baseSigma * (1 - clamp(cluster, 0, 1)) + 4;  // cluster=1 -> very tight
+
+    // Keep centers within safe area so arcs don't clip out of bounds
+    const safeLeft = margin + radius;
+    const safeRight = width - margin - radius;
+    const safeTop = margin + radius;
+    const safeBottom = height - margin - radius;
+
+    for (let i = 0; i < count; i++) {
+      const cx = clamp(width / 2 + randn(rnd) * sigma, safeLeft, safeRight);
+      const cy = clamp(height / 2 + randn(rnd) * sigma, safeTop, safeBottom);
+      const baseAngle = rnd() * Math.PI * 2;
+      ctx.beginPath();
+      ctx.arc(cx, cy, radius, baseAngle - half, baseAngle + half, false);
+      ctx.stroke();
+    }
+
+    ctx.restore();
+  }
+
+  // ---------- Events (Firefox-friendly) ----------
+  function redraw() { draw(); }
+
+  // Update on both 'input' (while sliding/typing) and 'change' (fallback)
+  Object.values(inputs).forEach(node => {
+    node.addEventListener('input', redraw);
+    node.addEventListener('change', redraw);
+  });
+
+  el('regen').addEventListener('click', redraw);
+
+  el('download').addEventListener('click', () => {
+    // Download current canvas as PNG
+    const link = document.createElement('a');
+    link.download = 'random-arcs.png';
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+  });
+
+  // Initial draw
+  draw();
+</script>
+</body>
+</html>
