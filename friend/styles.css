@@ -1,0 +1,51 @@
+@import url("https://fontsapi.zeoseven.com/309/main/result.css");
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: radial-gradient(148.28% 113.03% at 50% -6.21%, #786175 0%, #CF857A 13.03%, #EA9E7C 26.15%, #ECAE87 36.33%, #EDBC99 47.69%, #E5CAB7 61.11%, #D1CED5 74.38%, #B2C3DD 86.62%, #92B3DC 100%);
+    /* box-shadow: 0 0 250px 0 rgba(42, 15, 72, 0.24) inset; */
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.container {
+    display: flex;
+    width: 540px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 48px;
+}
+
+.main-text {
+    align-self: stretch;
+    color: #000;
+    text-align: center;
+    font-family: 'KingHwaOldSong', serif;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 31.2px */
+    mix-blend-mode: overlay;
+}
+
+.footnote {
+    align-self: stretch;
+    color: rgba(0, 0, 0, 0.35);
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    text-transform: uppercase;
+    mix-blend-mode: overlay;
+}
