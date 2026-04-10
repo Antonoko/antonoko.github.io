@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>friend</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="main-text">
+一直不喜欢凡事都要解读出某种隐喻的评论家，<br>
+本质乃表象之表象，本作的叙事很有趣，<br>
+“人类”并非自由之敌，应当享有自由。<br>
+        </div>
+        <div class="footnote">
+            PLANET. 02970
+        </div>
+    </div>
+</body>
+</html>
