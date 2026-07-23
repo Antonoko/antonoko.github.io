@@ -44,6 +44,8 @@ h1 { margin: 0; font-size: clamp(20px, 1.8vw, 24px); letter-spacing: -.03em; }
 .control-panel { border-radius: 22px; overflow: hidden; }
 .panel-section { padding: 25px; }
 .panel-section + .panel-section { border-top: 1px solid var(--line); }
+.title-guideline { margin: 0 0 18px; border-left: 3px solid #79a9d2; padding: 1px 0 1px 10px; color: #6f8294; font-size: 10px; line-height: 1.65; }
+.title-guideline strong { color: #294f72; font-weight: 700; }
 .field-label { display: block; margin: 0 0 8px; font-size: 12px; font-weight: 750; }
 .field-label span { color: #90a0af; font-weight: 500; }
 textarea {
