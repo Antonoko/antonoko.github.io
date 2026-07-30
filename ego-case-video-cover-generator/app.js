@@ -9,6 +9,7 @@ const controls = {
   iconX: document.querySelector('#iconX'),
   iconY: document.querySelector('#iconY'),
   guideToggle: document.querySelector('#guideToggle'),
+  darkMode: document.querySelector('#darkModeToggle'),
 };
 
 const state = {
@@ -17,11 +18,17 @@ const state = {
   dragging: false,
   pointerStart: null,
   dragDepth: 0,
+  darkMode: false,
 };
 
-const background = new Image();
-background.src = 'titleBG.png';
-background.onload = drawCover;
+const backgrounds = {
+  light: new Image(),
+  dark: new Image(),
+};
+backgrounds.light.src = 'titleBG.png';
+backgrounds.dark.src = 'titleBG-dark.png';
+backgrounds.light.onload = drawCover;
+backgrounds.dark.onload = drawCover;
 
 const TEXT_MAX_WIDTH = 1564;
 const TITLE_MAX_SIZE = 86;
@@ -115,8 +122,9 @@ function getIconRect() {
 
 function drawCover() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
+  const background = state.darkMode ? backgrounds.dark : backgrounds.light;
   if (background.complete && background.naturalWidth) ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
-  else { ctx.fillStyle = '#f5f9fc'; ctx.fillRect(0, 0, canvas.width, canvas.height); }
+  else { ctx.fillStyle = state.darkMode ? '#08121e' : '#f5f9fc'; ctx.fillRect(0, 0, canvas.width, canvas.height); }
 
   const iconRect = getIconRect();
   if (iconRect) ctx.drawImage(state.icon, iconRect.x, iconRect.y, iconRect.width, iconRect.height);
@@ -124,7 +132,7 @@ function drawCover() {
   const title = controls.title.value.trim() || '输入主标题';
   const titleSize = fitSingleLine(title, TEXT_MAX_WIDTH);
   setFont({ size: titleSize, weight: 600 });
-  ctx.fillStyle = '#044281';
+  ctx.fillStyle = state.darkMode ? '#f5faff' : '#044281';
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
   drawTrackedText(title, canvas.width / 2, iconRect ? TITLE_Y_WITH_ICON : TITLE_Y_NO_ICON, titleTracking(titleSize));
@@ -132,7 +140,7 @@ function drawCover() {
   const subtitle = controls.subtitle.value.trim();
   if (subtitle) {
     setFont({ size: SUBTITLE_SIZE, weight: 400, italic: true });
-    ctx.fillStyle = 'rgba(4, 66, 129, 0.8)';
+    ctx.fillStyle = state.darkMode ? '#f5faff' : 'rgba(4, 66, 129, 0.8)';
     const lines = wrapText(subtitle, TEXT_MAX_WIDTH, 2, SUBTITLE_TRACKING);
     const firstY = (iconRect ? TITLE_Y_WITH_ICON : TITLE_Y_NO_ICON) + 105;
     lines.forEach((line, index) => drawTrackedText(line, canvas.width / 2, firstY + index * SUBTITLE_LINE_HEIGHT, SUBTITLE_TRACKING));
@@ -140,12 +148,14 @@ function drawCover() {
 }
 
 function updateUI() {
+  state.darkMode = controls.darkMode.checked;
   document.querySelector('#titleCount').textContent = `${controls.title.value.length} / 120`;
   document.querySelector('#subtitleCount').textContent = `${controls.subtitle.value.length} / 160`;
   document.querySelector('#iconSizeValue').textContent = `${controls.iconSize.value} px`;
   document.querySelector('#iconXValue').textContent = `${controls.iconX.value} px`;
   document.querySelector('#iconYValue').textContent = `${controls.iconY.value} px`;
   document.querySelector('#iconGuide').classList.toggle('is-hidden', !controls.guideToggle.checked);
+  document.body.classList.toggle('cover-dark', state.darkMode);
   canvas.classList.toggle('is-draggable', Boolean(state.icon));
   drawCover();
 }
@@ -283,7 +293,7 @@ document.querySelector('#exportButton').addEventListener('click', async () => {
     if (!blob) return;
     const link = document.createElement('a');
     const cleanTitle = controls.title.value.trim().replace(/[\\/:*?"<>|]+/g, '-').slice(0, 48) || 'video-cover';
-    link.download = `${cleanTitle}-1920x1080.png`;
+    link.download = `${cleanTitle}${state.darkMode ? '-dark' : ''}-1920x1080.png`;
     link.href = URL.createObjectURL(blob);
     link.click();
     setTimeout(() => URL.revokeObjectURL(link.href), 1000);

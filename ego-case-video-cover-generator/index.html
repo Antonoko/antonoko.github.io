@@ -16,10 +16,17 @@
         <div>
           <h1>封面生成器</h1>
         </div>
-        <button class="export-button" id="exportButton" type="button">
-          <span>导出封面</span>
-          <span class="export-size">1920 × 1080 PNG</span>
-        </button>
+        <div class="topbar-actions">
+          <label class="mode-toggle" for="darkModeToggle">
+            <span>暗色模式</span>
+            <input id="darkModeToggle" type="checkbox" />
+            <span class="toggle-ui" aria-hidden="true"></span>
+          </label>
+          <button class="export-button" id="exportButton" type="button">
+            <span>导出封面</span>
+            <span class="export-size">1920 × 1080 PNG</span>
+          </button>
+        </div>
       </header>
 
       <section class="workspace">

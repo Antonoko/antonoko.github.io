@@ -28,6 +28,12 @@ button { color: inherit; }
 
 .topbar { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; margin-bottom: 28px; }
 h1 { margin: 0; font-size: clamp(20px, 1.8vw, 24px); letter-spacing: -.03em; }
+.topbar-actions { display: flex; align-items: center; gap: 16px; }
+.mode-toggle { display: flex; align-items: center; gap: 9px; color: #526c84; font-size: 11px; font-weight: 650; cursor: pointer; }
+.mode-toggle input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+.mode-toggle input:checked + .toggle-ui { background: #1d3851; }
+.mode-toggle input:checked + .toggle-ui::after { transform: translateX(14px); }
+.mode-toggle input:focus-visible + .toggle-ui { outline: 3px solid rgba(54,127,188,.2); outline-offset: 2px; }
 
 .export-button {
   display: flex; align-items: center; gap: 18px; border: 0; border-radius: 14px; padding: 13px 18px;
@@ -102,6 +108,8 @@ canvas.is-dragging { cursor: grabbing; }
 .icon-guide::before { top: 50%; left: -6px; width: calc(100% + 12px); height: 1px; }
 .icon-guide::after { top: -6px; left: 50%; width: 1px; height: calc(100% + 12px); }
 .icon-guide.is-hidden { opacity: 0; }
+.cover-dark .icon-guide { border-color: rgba(245,250,255,.46); }
+.cover-dark .icon-guide::before, .cover-dark .icon-guide::after { background: rgba(245,250,255,.3); }
 .preview-tip { margin: 12px 4px 0; color: #8a9aa9; font-size: 10px; text-align: center; }
 
 .toast { position: fixed; left: 50%; bottom: 26px; transform: translate(-50%, 24px); border-radius: 999px; padding: 10px 17px; color: white; background: #173d62; box-shadow: 0 10px 30px rgba(23,61,98,.25); font-size: 12px; opacity: 0; pointer-events: none; transition: .25s ease; }
@@ -122,6 +130,8 @@ canvas.is-dragging { cursor: grabbing; }
 
 @media (max-width: 560px) {
   .topbar { align-items: stretch; flex-direction: column; }
+  .topbar-actions { align-items: stretch; flex-direction: column; }
+  .mode-toggle { justify-content: space-between; }
   .export-button { justify-content: space-between; }
   .panel-section { padding: 20px; }
   .preview-panel { padding: 10px; border-radius: 16px; }
