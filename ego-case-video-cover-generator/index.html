@@ -7,7 +7,7 @@
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230a4f91'/%3E%3Cpath d='M18 22h20a6 6 0 0 1 6 6v14H18z' fill='white'/%3E%3Cpath d='m44 29 9-5v17l-9-5z' fill='white'/%3E%3C/svg%3E" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
@@ -17,6 +17,11 @@
           <h1>封面生成器</h1>
         </div>
         <div class="topbar-actions">
+          <label class="mode-toggle" for="verticalModeToggle">
+            <span>竖屏封面</span>
+            <input id="verticalModeToggle" type="checkbox" />
+            <span class="toggle-ui" aria-hidden="true"></span>
+          </label>
           <label class="mode-toggle" for="darkModeToggle">
             <span>暗色模式</span>
             <input id="darkModeToggle" type="checkbox" />
@@ -68,7 +73,7 @@
                 <label for="iconSize">图标大小</label>
                 <output id="iconSizeValue">180 px</output>
               </div>
-              <input id="iconSize" type="range" min="64" max="360" value="180" />
+              <input id="iconSize" type="range" min="64" max="480" value="180" />
             </div>
 
             <div class="position-grid">
@@ -84,7 +89,7 @@
                   <label for="iconY">垂直位置</label>
                   <output id="iconYValue">0 px</output>
                 </div>
-                <input id="iconY" type="range" min="-260" max="260" value="0" />
+                <input id="iconY" type="range" min="-600" max="600" value="0" />
               </div>
             </div>
 
@@ -94,8 +99,10 @@
 
         <section class="preview-panel">
           <div class="canvas-wrap" id="canvasWrap">
-            <canvas id="coverCanvas" width="1920" height="1080" aria-label="视频封面预览"></canvas>
-            <div class="icon-guide" id="iconGuide" aria-hidden="true"></div>
+            <div class="canvas-stage" id="canvasStage">
+              <canvas id="coverCanvas" width="1920" height="1080" aria-label="视频封面预览"></canvas>
+              <div class="icon-guide" id="iconGuide" aria-hidden="true"></div>
+            </div>
           </div>
           <p class="preview-tip">提示：上传图标后，可直接在画布上拖动调整位置。</p>
         </section>

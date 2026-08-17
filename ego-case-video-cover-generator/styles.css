@@ -99,7 +99,10 @@ input[type="range"] { width: 100%; height: 4px; accent-color: #367fbc; cursor: p
 .reset-button:hover { background: #f5f9fc; }
 
 .preview-panel { min-width: 0; border-radius: 22px; padding: 18px; }
-.canvas-wrap { position: relative; overflow: hidden; border-radius: 12px; background: #e8eff5; box-shadow: inset 0 0 0 1px rgba(17,58,94,.06); }
+.canvas-wrap { overflow: hidden; border-radius: 12px; background: #e8eff5; box-shadow: inset 0 0 0 1px rgba(17,58,94,.06); }
+.canvas-stage { position: relative; width: 100%; }
+.canvas-wrap.is-vertical { display: flex; justify-content: center; padding: 18px; }
+.canvas-wrap.is-vertical .canvas-stage { width: min(100%, 506px); }
 canvas { display: block; width: 100%; height: auto; cursor: default; }
 canvas.is-draggable { cursor: grab; }
 canvas.is-dragging { cursor: grabbing; }
@@ -108,6 +111,7 @@ canvas.is-dragging { cursor: grabbing; }
 .icon-guide::before { top: 50%; left: -6px; width: calc(100% + 12px); height: 1px; }
 .icon-guide::after { top: -6px; left: 50%; width: 1px; height: calc(100% + 12px); }
 .icon-guide.is-hidden { opacity: 0; }
+.canvas-wrap.is-vertical .icon-guide { top: 21.25%; left: 36.1111%; width: 27.7778%; height: 10.4167%; }
 .cover-dark .icon-guide { border-color: rgba(245,250,255,.46); }
 .cover-dark .icon-guide::before, .cover-dark .icon-guide::after { background: rgba(245,250,255,.3); }
 .preview-tip { margin: 12px 4px 0; color: #8a9aa9; font-size: 10px; text-align: center; }

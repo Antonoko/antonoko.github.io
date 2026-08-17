@@ -10,6 +10,7 @@ const controls = {
   iconY: document.querySelector('#iconY'),
   guideToggle: document.querySelector('#guideToggle'),
   darkMode: document.querySelector('#darkModeToggle'),
+  verticalMode: document.querySelector('#verticalModeToggle'),
 };
 
 const state = {
@@ -19,25 +20,64 @@ const state = {
   pointerStart: null,
   dragDepth: 0,
   darkMode: false,
+  orientation: 'landscape',
+  iconSettings: {
+    landscape: { size: 180, x: 0, y: 0 },
+    vertical: { size: 300, x: 0, y: 0 },
+  },
 };
 
 const backgrounds = {
-  light: new Image(),
-  dark: new Image(),
+  landscape: { light: new Image(), dark: new Image() },
+  vertical: { light: new Image(), dark: new Image() },
 };
-backgrounds.light.src = 'titleBG.png';
-backgrounds.dark.src = 'titleBG-dark.png';
-backgrounds.light.onload = drawCover;
-backgrounds.dark.onload = drawCover;
+backgrounds.landscape.light.src = 'background-wordmark.png';
+backgrounds.landscape.dark.src = 'background-wordmark-dark.png';
+backgrounds.vertical.light.src = 'background-wordmark-vertical.png';
+backgrounds.vertical.dark.src = 'background-wordmark-vertical-dark.png';
+Object.values(backgrounds).flatMap((pair) => Object.values(pair)).forEach((image) => { image.onload = drawCover; });
 
-const TEXT_MAX_WIDTH = 1564;
-const TITLE_MAX_SIZE = 86;
+const LAYOUTS = {
+  landscape: {
+    width: 1920,
+    height: 1080,
+    textMaxWidth: 1564,
+    titleMaxSize: 86,
+    titleMaxLines: 1,
+    titleLineHeight: 129,
+    titleFirstY: 524,
+    titleFirstYNoIcon: 470,
+    textGap: 6,
+    iconCenterY: 352,
+    defaultIconSize: 180,
+    lightTextColor: '#044281',
+    lightSubtitleColor: '#044281',
+  },
+  vertical: {
+    width: 1080,
+    height: 1920,
+    textMaxWidth: 960,
+    titleMaxSize: 86,
+    titleMaxLines: 2,
+    titleLineHeight: 103.2,
+    titleFirstY: 803.6,
+    titleFirstYNoIcon: 731.6,
+    textGap: 64,
+    iconCenterY: 508,
+    defaultIconSize: 300,
+    lightTextColor: '#1c3274',
+    lightSubtitleColor: '#1c3274',
+  },
+};
+
 const TITLE_MIN_SIZE = 8;
-const TITLE_Y_WITH_ICON = 524;
-const TITLE_Y_NO_ICON = 470;
 const SUBTITLE_SIZE = 52;
 const SUBTITLE_TRACKING = -2.6;
 const SUBTITLE_LINE_HEIGHT = 70.2;
+
+function currentLayout() {
+  return LAYOUTS[state.orientation];
+}
 
 function currentValue(input) {
   return Number(input.value);
@@ -68,14 +108,20 @@ function titleTracking(size) {
   return size * -0.04;
 }
 
-function fitSingleLine(text, maxWidth) {
-  let size = TITLE_MAX_SIZE;
+function fitTitle(text, layout) {
+  let size = layout.titleMaxSize;
   while (size > TITLE_MIN_SIZE) {
     setFont({ size, weight: 600 });
-    if (measureTrackedText(text, titleTracking(size)) <= maxWidth) break;
+    const tracking = titleTracking(size);
+    const lines = wrapText(text, layout.textMaxWidth, Number.POSITIVE_INFINITY, tracking);
+    if (lines.length <= layout.titleMaxLines) return { size, lines };
     size -= 0.5;
   }
-  return size;
+  setFont({ size, weight: 600 });
+  return {
+    size,
+    lines: wrapText(text, layout.textMaxWidth, layout.titleMaxLines, titleTracking(size)),
+  };
 }
 
 function wrapText(text, maxWidth, maxLines = 2, tracking = 0) {
@@ -111,18 +157,20 @@ function wrapText(text, maxWidth, maxLines = 2, tracking = 0) {
 
 function getIconRect() {
   if (!state.icon) return null;
+  const layout = currentLayout();
   const size = currentValue(controls.iconSize);
   const aspect = state.icon.naturalWidth / state.icon.naturalHeight || 1;
   const width = aspect >= 1 ? size : size * aspect;
   const height = aspect >= 1 ? size / aspect : size;
   const centerX = canvas.width / 2 + currentValue(controls.iconX);
-  const centerY = 352 + currentValue(controls.iconY);
+  const centerY = layout.iconCenterY + currentValue(controls.iconY);
   return { x: centerX - width / 2, y: centerY - height / 2, width, height };
 }
 
 function drawCover() {
+  const layout = currentLayout();
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  const background = state.darkMode ? backgrounds.dark : backgrounds.light;
+  const background = backgrounds[state.orientation][state.darkMode ? 'dark' : 'light'];
   if (background.complete && background.naturalWidth) ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
   else { ctx.fillStyle = state.darkMode ? '#08121e' : '#f5f9fc'; ctx.fillRect(0, 0, canvas.width, canvas.height); }
 
@@ -130,25 +178,48 @@ function drawCover() {
   if (iconRect) ctx.drawImage(state.icon, iconRect.x, iconRect.y, iconRect.width, iconRect.height);
 
   const title = controls.title.value.trim() || '输入主标题';
-  const titleSize = fitSingleLine(title, TEXT_MAX_WIDTH);
-  setFont({ size: titleSize, weight: 600 });
-  ctx.fillStyle = state.darkMode ? '#f5faff' : '#044281';
+  const fittedTitle = fitTitle(title, layout);
+  setFont({ size: fittedTitle.size, weight: 600 });
+  ctx.fillStyle = state.darkMode ? '#f5faff' : layout.lightTextColor;
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
-  drawTrackedText(title, canvas.width / 2, iconRect ? TITLE_Y_WITH_ICON : TITLE_Y_NO_ICON, titleTracking(titleSize));
+  const titleFirstY = iconRect ? layout.titleFirstY : layout.titleFirstYNoIcon;
+  fittedTitle.lines.forEach((line, index) => {
+    drawTrackedText(line, canvas.width / 2, titleFirstY + index * layout.titleLineHeight, titleTracking(fittedTitle.size));
+  });
 
   const subtitle = controls.subtitle.value.trim();
   if (subtitle) {
-    setFont({ size: SUBTITLE_SIZE, weight: 400, italic: true });
-    ctx.fillStyle = state.darkMode ? '#f5faff' : 'rgba(4, 66, 129, 0.8)';
-    const lines = wrapText(subtitle, TEXT_MAX_WIDTH, 2, SUBTITLE_TRACKING);
-    const firstY = (iconRect ? TITLE_Y_WITH_ICON : TITLE_Y_NO_ICON) + 105;
+    ctx.save();
+    ctx.globalAlpha = 0.8;
+    setFont({ size: SUBTITLE_SIZE, weight: 300, italic: true });
+    ctx.fillStyle = state.darkMode ? '#f5faff' : layout.lightSubtitleColor;
+    const lines = wrapText(subtitle, layout.textMaxWidth, 2, SUBTITLE_TRACKING);
+    const titleBlockBottom = titleFirstY + (fittedTitle.lines.length - 1) * layout.titleLineHeight + layout.titleLineHeight / 2;
+    const firstY = titleBlockBottom + layout.textGap + SUBTITLE_LINE_HEIGHT / 2;
     lines.forEach((line, index) => drawTrackedText(line, canvas.width / 2, firstY + index * SUBTITLE_LINE_HEIGHT, SUBTITLE_TRACKING));
+    ctx.restore();
   }
 }
 
-function updateUI() {
+function saveCurrentIconSettings() {
+  state.iconSettings[state.orientation] = {
+    size: currentValue(controls.iconSize),
+    x: currentValue(controls.iconX),
+    y: currentValue(controls.iconY),
+  };
+}
+
+function loadCurrentIconSettings() {
+  const settings = state.iconSettings[state.orientation];
+  controls.iconSize.value = settings.size;
+  controls.iconX.value = settings.x;
+  controls.iconY.value = settings.y;
+}
+
+function updateUI({ saveSettings = true } = {}) {
   state.darkMode = controls.darkMode.checked;
+  if (saveSettings) saveCurrentIconSettings();
   document.querySelector('#titleCount').textContent = `${controls.title.value.length} / 120`;
   document.querySelector('#subtitleCount').textContent = `${controls.subtitle.value.length} / 160`;
   document.querySelector('#iconSizeValue').textContent = `${controls.iconSize.value} px`;
@@ -156,12 +227,27 @@ function updateUI() {
   document.querySelector('#iconYValue').textContent = `${controls.iconY.value} px`;
   document.querySelector('#iconGuide').classList.toggle('is-hidden', !controls.guideToggle.checked);
   document.body.classList.toggle('cover-dark', state.darkMode);
+  document.body.classList.toggle('cover-vertical', state.orientation === 'vertical');
   canvas.classList.toggle('is-draggable', Boolean(state.icon));
   drawCover();
 }
 
 Object.values(controls).forEach((control) => {
-  if (control !== controls.iconInput) control.addEventListener('input', updateUI);
+  if (control !== controls.iconInput && control !== controls.verticalMode) {
+    control.addEventListener('input', () => updateUI());
+  }
+});
+
+controls.verticalMode.addEventListener('input', () => {
+  saveCurrentIconSettings();
+  state.orientation = controls.verticalMode.checked ? 'vertical' : 'landscape';
+  loadCurrentIconSettings();
+  const layout = currentLayout();
+  canvas.width = layout.width;
+  canvas.height = layout.height;
+  document.querySelector('#canvasWrap').classList.toggle('is-vertical', state.orientation === 'vertical');
+  document.querySelector('.export-size').textContent = `${layout.width} × ${layout.height} PNG`;
+  updateUI({ saveSettings: false });
 });
 
 function showToast(message) {
@@ -243,7 +329,7 @@ document.querySelector('#removeIcon').addEventListener('click', () => {
 });
 
 document.querySelector('#resetPosition').addEventListener('click', () => {
-  controls.iconSize.value = 180;
+  controls.iconSize.value = currentLayout().defaultIconSize;
   controls.iconX.value = 0;
   controls.iconY.value = 0;
   updateUI();
@@ -293,7 +379,9 @@ document.querySelector('#exportButton').addEventListener('click', async () => {
     if (!blob) return;
     const link = document.createElement('a');
     const cleanTitle = controls.title.value.trim().replace(/[\\/:*?"<>|]+/g, '-').slice(0, 48) || 'video-cover';
-    link.download = `${cleanTitle}${state.darkMode ? '-dark' : ''}-1920x1080.png`;
+    const layout = currentLayout();
+    const orientationSuffix = state.orientation === 'vertical' ? '-vertical' : '';
+    link.download = `${cleanTitle}${orientationSuffix}${state.darkMode ? '-dark' : ''}-${layout.width}x${layout.height}.png`;
     link.href = URL.createObjectURL(blob);
     link.click();
     setTimeout(() => URL.revokeObjectURL(link.href), 1000);
@@ -303,6 +391,6 @@ document.querySelector('#exportButton').addEventListener('click', async () => {
 
 Promise.all([
   document.fonts?.load('600 86px "Inter"'),
-  document.fonts?.load('italic 400 52px "Inter"'),
+  document.fonts?.load('italic 300 52px "Inter"'),
 ]).then(drawCover);
 updateUI();
