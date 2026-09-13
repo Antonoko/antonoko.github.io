@@ -1,0 +1,77 @@
+﻿<html> 
+    <head></head> 
+    <style> 
+    
+	@font-face {
+    font-family: 'fzxs15';
+    src: url('../../src/pixel.eot');
+    src: url('../../src/pixel.eot?#iefix') format('embedded-opentype'),
+         url('../../src/pixel.woff') format('woff'),
+         url('../../src/pixel.TTF') format('truetype'),
+         url('../../src/pixel.svg#webfont34M5alKg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+	}
+
+        body{padding-top:10px;padding-left:20px;padding-right:150px;} 
+        .fileDiv{float:left;width:80px;height:70px;text-align:center;line-height:24px;font-size:16px;border:0px solid #cccccc;margin-right:20px;margin-bottom:20px;} 
+        .seled{border:0px solid #cccccc;background-color:#05017c;}   
+          name {
+  font-family: fzxs15;
+  color:#ffffff;
+  font-size:14px;
+  }   
+  
+  body{ cursor:url("98icon_cursor.ico"),auto;}
+
+/*--------------------------------- 右键菜单 ----------------------------------------*/ 
+a:link {color: #000000;text-decoration:none;}
+#ul1{ width:130px; height:90px;  font-family: fzxs15;  color:#000000; padding:10px 3px; background:#e0dace; border-top:2px solid #ffffff; border-bottom:2px solid #626262; border-left:2px solid #ffffff; border-right:2px solid #626262; display:none; position:absolute; left:0;top:0;}  
+#ul1 li{ width:130px; height:28px; line-height:28px; font-size:14px;font-family: fzxs15;  text-align:left; list-style:none}  
+#ul1 li:hover{ background:#000a73;color:#ffffff;}  
+
+    </style> 
+    
+    
+    <script type="text/javascript">  
+    /*--------------------------------- 右键菜单 ----------------------------------------*/ 
+window.onload=function()  
+{  
+var ul=document.getElementById("ul1")  
+document.oncontextmenu=function(ev)  
+{  
+var ev=ev||window.event  
+var l=ev.clientX  
+var t=ev.clientY  
+ul.style.display="block"  
+ul.style.left=l+'px'  
+ul.style.top=t-16+'px'  
+return false;  
+}  
+document.onclick=function()  
+{  
+ul.style.display="none"  
+}  
+}  
+</script>  
+
+
+    <body> 
+    <ul id="ul1">  
+<a href="http://tonoko.moe/blog"><li>　Blog</li></a>
+<a href="http://tonoko.moe/"><li>　断开连接</li></a>
+<li><p style="color:#777777;">　Calicomp System</p></li> 
+</ul>  
+
+
+
+
+
+    </body>     
+    <script> 
+new RegionSelect({ 
+    region:'div.fileDiv', 
+    selectedClass: 'seled' 
+}).select(); 
+    </script> 
+</html>

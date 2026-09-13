@@ -1,0 +1,1287 @@
+﻿<!DOCTYPE HTML>
+<html>
+
+<head>
+<title>Project Progress</title>
+<style type="text/css">
+@font-face {
+    font-family: 'fzxs15';
+    src: url('../src/pixel.eot');
+    src: url('../src/pixel.eot?#iefix') format('embedded-opentype'),
+         url('../src/pixel.woff') format('woff'),
+         url('../src/pixel.TTF') format('truetype'),
+         url('../src/pixel.svg#webfont34M5alKg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+#canvas{
+    font-family: 'fzxs15';
+    font-size:12px;
+        }
+
+#content {
+    font-family: fzxs15;
+    font-size:15px;
+    line-height:20px
+    }
+    a {
+      text-decoration: none;
+      color:#3649d8;
+    }
+    
+    project_name{
+    font-family: fzxs15;
+    font-size:15px;
+    font-weight:900;
+    }
+    project_inform{
+    font-family: fzxs15;
+    color:#009484;
+    font-size:12px;
+    }
+    checkbox{
+        font-size:12px;
+        font-weight:900;
+        color:#000000;
+        background-color:#ffffff;border-top:2px solid #626262; border-bottom:2px solid #cacac7; border-left:2px solid #626262; border-right:2px solid #cacac7;
+    }
+    list_item{
+        font-size:12px;
+        color:#424c96;
+    }
+    list_item_time{
+        font-size:12px;
+        color:#967742;
+    }
+    star_Y{
+        font-size:12px;
+        color:#e8ba00;
+    }
+    star_N{
+        font-size:12px;
+        color:#a8a8a8;
+    }
+    hidebar{
+    }
+</style>
+<link rel="stylesheet" type="text/css" href="oicq_style.css" />
+</head>
+
+<body>
+<SCRIPT>
+    function isHidden(oDiv){
+      var vDiv = document.getElementById(oDiv);
+      vDiv.style.display = (vDiv.style.display == 'none')?'block':'none';
+    }
+  </SCRIPT>
+
+<div class="nui-scroll">
+  <p style=color:#804b00;font-family:fzxs15;font-size:12px;>上回更新：2019-01-24 22:41:37</p>
+<!-- =========正在进行的项目======= -->
+
+	<!-- ===项目开始=== -->
+	<!-- 折叠内容 -->
+	<DIV style="cursor:hand" onclick="isHidden('div24')"><project_name>假期　&lt;</project_name></DIV>
+	<DIV id="div24" style="display:none">
+	<div id="content">
+		  <!-- 清单 -->
+	      <checkbox>√</checkbox><list_item>　《周易的智慧》期末考试</list_item><br>
+	      <checkbox>√</checkbox><list_item>　《阴影之内》拍摄任务</list_item><br>
+	      <checkbox>　</checkbox><list_item>　春节</list_item><br>
+	      <checkbox>　</checkbox><list_item>　假期余额</list_item><br>
+	</div>
+	</DIV>
+	<!-- 折叠结束 -->
+	<!-- 项目描述 -->
+	<project_inform>Jan.1.2019 <br>2/4 - 生活的延续性</project_inform><br>
+	<hidebar>
+	<!-- 进度条 -->
+	<canvas id="progress24" width="205" height="15" style=" background-color:#ffffff;border-top:2px solid #626262; border-bottom:2px solid #cacac7; border-left:2px solid #626262; border-right:2px solid #cacac7;">
+	Your browser does not support the canvas element.
+	</canvas>
+	
+	<script type="text/javascript">
+	
+	//绘制进度
+	//进度条
+	var c=document.getElementById("progress24");
+	var cxt=c.getContext("2d");
+	cxt.fillStyle="#7b0057";
+	cxt.fillRect(0,0,210*(2.5/4),15);
+	
+	//百分比
+	var c=document.getElementById("progress24");
+	var ctx=c.getContext("2d");
+	cxt.fillStyle="#ffffff";
+	ctx.font="12px fzxs15";
+	ctx.textAlign = 'center';
+	ctx.fillText("50%",100,12);
+	</script>
+	<br><br>
+	</hidebar>
+	<!-- ===项目结束=== -->
+
+
+	
+	<!-- ===项目开始=== -->
+	<!-- 折叠内容 -->
+	<DIV style="cursor:hand" onclick="isHidden('div2')"><project_name>月光润色女孩　&lt;</project_name></DIV>
+	<DIV id="div2" style="display:none">
+	<div id="content">
+	  <!-- 清单 -->
+      <checkbox>√</checkbox><list_item>　策划与脚本</list_item><list_item_time>　Stp.7</list_item_time><br>
+      <checkbox>　</checkbox><list_item>　绘制</list_item><br>
+      <checkbox>　</checkbox><list_item>　动画</list_item><br>
+      <checkbox>　</checkbox><list_item>　二次后期</list_item><br>
+      <checkbox>　</checkbox><list_item>　投稿</list_item><br>
+</div>
+	</DIV>
+	<!-- 折叠结束 -->
+	<!-- 项目描述 -->
+	<project_inform><u><a href="http://tonoko.moe/blog/2018/09/06/%E6%9C%88%E5%85%89%E6%B6%A6%E8%89%B2%E3%82%AC%E3%83%BC%E3%83%AB/" target="_blank">详细：月光润色ガール</a></u></project_inform><br>
+	<project_inform>Aug.30.2018 遥遥无期，希望圣诞节前能完成<br>20/270s - 少女不值得一提的故事</project_inform><br>
+	<hidebar>
+<!-- 进度条 -->
+<canvas id="progress2" width="205" height="15" style=" background-color:#ffffff;border-top:2px solid #626262; border-bottom:2px solid #cacac7; border-left:2px solid #626262; border-right:2px solid #cacac7;">
+Your browser does not support the canvas element.
+</canvas>
+
+<script type="text/javascript">
+
+//绘制进度
+//进度条
+var c=document.getElementById("progress2");
+var cxt=c.getContext("2d");
+cxt.fillStyle="#010080";
+cxt.fillRect(0,0,210*(6/100),15);
+
+//百分比
+var c=document.getElementById("progress2");
+var ctx=c.getContext("2d");
+cxt.fillStyle="#000000";
+ctx.font="12px fzxs15";
+ctx.textAlign = 'center';
+ctx.fillText("6%",100,12);
+cxt.fillStyle="#801c7c";
+ctx.fillText("+1%",185,12);
+</script><br><br>
+</hidebar>
+	<!-- ===项目结束=== -->
+	
+	
+	<!-- ===项目开始=== -->
+	<!-- 折叠内容 -->
+	<DIV style="cursor:hand" onclick="isHidden('div23')"><project_name>《游戏剧本怎么写》　　&lt;</project_name></DIV>
+	<DIV id="div23" style="display:none">
+	<div id="content">
+
+		  <!-- 清单 -->
+	      <checkbox>　</checkbox><list_item>　第 1 章　主题与故事　</list_item><br>
+	      <checkbox>　</checkbox><list_item>　第 2 章　角色　</list_item><br>
+	      <checkbox>　</checkbox><list_item>　第 3 章　角色的定位　</list_item><br>
+	      <checkbox>　</checkbox><list_item>　第 4 章　世界　</list_item><br>
+	      <checkbox>　</checkbox><list_item>　第 2 部分　结构　</list_item><br>
+	      <checkbox>　</checkbox><list_item>　第 5 章　结构的基础　</list_item><br>
+	      <checkbox>　</checkbox><list_item>　第 6 章　结构的要素　</list_item><br>
+	      <checkbox>　</checkbox><list_item>　第 7 章　好结构与坏结构　</list_item><br>
+	      <checkbox>　</checkbox><list_item>　第 8 章　选项　</list_item><br>
+	      <checkbox>　</checkbox><list_item>　第 9 章　让结构更有趣　</list_item><br>
+	      <checkbox>　</checkbox><list_item>　第 3 部分　文本　</list_item><br>
+	      <checkbox>　</checkbox><list_item>　第 10 章　文本的基础　</list_item><br>
+	      <checkbox>　</checkbox><list_item>　第 11 章　外观与台词　</list_item><br>
+	
+	</div>
+	</DIV>
+	<!-- 折叠结束 -->
+	<!-- 项目描述 -->
+	<project_inform>Dec.07.2018 <br>430/3504 - 打折买的闲书</project_inform><br>
+	<hidebar>
+	<!-- 进度条 -->
+	<canvas id="progress23" width="205" height="15" style=" background-color:#ffffff;border-top:2px solid #626262; border-bottom:2px solid #cacac7; border-left:2px solid #626262; border-right:2px solid #cacac7;">
+	Your browser does not support the canvas element.
+	</canvas>
+	
+	<script type="text/javascript">
+	
+	//绘制进度
+	//进度条
+	var c=document.getElementById("progress23");
+	var cxt=c.getContext("2d");
+	cxt.fillStyle="#010080";
+	cxt.fillRect(0,0,210*(430/3504),15);
+	
+	//百分比
+	var c=document.getElementById("progress23");
+	var ctx=c.getContext("2d");
+	cxt.fillStyle="#000000";
+	ctx.font="12px fzxs15";
+	ctx.textAlign = 'center';
+	ctx.fillText("12%",100,12);
+	cxt.fillStyle="#801c7c";
+	ctx.fillText("+12%",185,12);
+	</script>
+	<br><br>
+	</hidebar>
+	<!-- ===项目结束=== -->
+	
+	
+
+	
+
+	
+
+	
+	
+	<!-- ===项目开始=== -->
+	<!-- 折叠内容 -->
+	<DIV style="cursor:hand" onclick="isHidden('div19')"><project_name>《事物的味道，我尝得太早了：<br>石川啄木诗歌集》　&lt;</project_name></DIV>
+	<DIV id="div19" style="display:none">
+<div id="content">
+	  <!-- 清单 -->
+      <checkbox>　</checkbox><list_item>　一握砂　</list_item><br>
+	  <checkbox>　</checkbox><list_item>　可悲的玩具　</list_item><br>
+	  <checkbox>　</checkbox><list_item>　叫子和口哨　</list_item><br>
+	  <checkbox>　</checkbox><list_item>　可以吃的诗　</list_item><br>
+</div>
+</DIV>
+	<!-- 折叠结束 -->
+	<!-- 项目描述 -->
+	<project_inform>Nov.23.2018 <br>908/3422p - 人类所共通之情</project_inform><br>
+	<hidebar>
+	<!-- 进度条 -->
+	<canvas id="progress19" width="205" height="15" style=" background-color:#ffffff;border-top:2px solid #626262; border-bottom:2px solid #cacac7; border-left:2px solid #626262; border-right:2px solid #cacac7;">
+	Your browser does not support the canvas element.
+	</canvas>
+	
+	<script type="text/javascript">
+	
+	//绘制进度
+	//进度条
+	var c=document.getElementById("progress19");
+	var cxt=c.getContext("2d");
+	cxt.fillStyle="#010080";
+	cxt.fillRect(0,0,210*(908/3422),15);
+	
+	//百分比
+	var c=document.getElementById("progress19");
+	var ctx=c.getContext("2d");
+	cxt.fillStyle="#000000";
+	ctx.font="12px fzxs15";
+	ctx.textAlign = 'center';
+	ctx.fillText("27%",100,12);
+	</script>
+	<br><br>
+	</hidebar>
+	<!-- ===项目结束=== -->
+	
+	
+	
+	<!-- ===项目开始=== -->
+	<!-- 折叠内容 -->
+	<DIV style="cursor:hand" onclick="isHidden('div3')"><project_name>《视觉人类学导论》　&lt;</project_name></DIV>
+	<DIV id="div3" style="display:none">
+	<div id="content">
+	  <!-- 清单 -->
+      <checkbox>　</checkbox><list_item>　第一章</list_item><br>
+      <checkbox>　</checkbox><list_item>　第二章</list_item><br>
+      <checkbox>　</checkbox><list_item>　第三章</list_item><br>
+      <checkbox>　</checkbox><list_item>　第四章</list_item><br>
+      <checkbox>　</checkbox><list_item>　第五章</list_item><br>
+      <checkbox>　</checkbox><list_item>　第六章</list_item><br>
+      <checkbox>　</checkbox><list_item>　第七章</list_item><br>
+      <checkbox>　</checkbox><list_item>　第八章</list_item><br>
+      <checkbox>　</checkbox><list_item>　第九章</list_item><br>
+      <checkbox>　</checkbox><list_item>　结语</list_item><br>
+</div>
+	</DIV>
+	<!-- 折叠结束 -->
+	<!-- 项目描述 -->
+	<project_inform>Oct.10.2018 <br>10/337p - 被取消开课的自学教材</project_inform><br>
+	<hidebar>
+<!-- 进度条 -->
+<canvas id="progress3" width="205" height="15" style=" background-color:#ffffff;border-top:2px solid #626262; border-bottom:2px solid #cacac7; border-left:2px solid #626262; border-right:2px solid #cacac7;">
+Your browser does not support the canvas element.
+</canvas>
+
+<script type="text/javascript">
+//绘制进度
+//进度条
+var c=document.getElementById("progress3");
+var cxt=c.getContext("2d");
+cxt.fillStyle="#010080";
+cxt.fillRect(0,0,210*(10/337),15);
+
+//百分比
+var c=document.getElementById("progress3");
+var ctx=c.getContext("2d");
+cxt.fillStyle="#000000";
+ctx.font="12px fzxs15";
+ctx.textAlign = 'center';
+ctx.fillText("3%",100,12);
+</script><br><br>
+</hidebar>
+	<!-- ===项目结束=== -->
+	
+	
+	<!-- ===项目开始=== -->
+	<!-- 折叠内容 -->
+	<DIV style="cursor:hand" onclick="isHidden('div4')"><project_name>《开发故事创意》　&lt;</project_name></DIV>
+	<DIV id="div4" style="display:none">
+	<div id="content">
+	  <!-- 清单 -->
+      <checkbox>√</checkbox><list_item>　第一部分</list_item><br>
+      <checkbox>　</checkbox><list_item>　第二部分</list_item><br>
+      <checkbox>　</checkbox><list_item>　第三部分</list_item><br>
+      <checkbox>　</checkbox><list_item>　第四部分</list_item><br>
+      <checkbox>　</checkbox><list_item>　第五部分</list_item><br>
+      <checkbox>　</checkbox><list_item>　第六部分</list_item><br>
+</div>
+	</DIV>
+	<!-- 折叠结束 -->
+	<!-- 项目描述 -->
+	<project_inform>Stp.15.2018 <br>66/297p - 学习</project_inform><br>
+	<hidebar>
+<!-- 进度条 -->
+<canvas id="progress4" width="205" height="15" style=" background-color:#ffffff;border-top:2px solid #626262; border-bottom:2px solid #cacac7; border-left:2px solid #626262; border-right:2px solid #cacac7;">
+Your browser does not support the canvas element.
+</canvas>
+
+<script type="text/javascript">
+//绘制进度
+//进度条
+var c=document.getElementById("progress4");
+var cxt=c.getContext("2d");
+cxt.fillStyle="#010080";
+cxt.fillRect(0,0,210*(66/297),15);
+
+//百分比
+var c=document.getElementById("progress4");
+var ctx=c.getContext("2d");
+cxt.fillStyle="#000000";
+ctx.font="12px fzxs15";
+ctx.textAlign = 'center';
+ctx.fillText("22%",100,12);
+</script><br><br>
+</hidebar>
+	<!-- ===项目结束=== -->
+	
+	
+	
+	
+	
+	<!-- ===项目开始=== -->
+	<!-- 折叠内容 -->
+	<DIV style="cursor:hand" onclick="isHidden('div7')"><project_name>《缘分的天空》　<star_Y>★</star_Y><star_Y>★</star_Y><star_N>★</star_N><star_N>★</star_N><star_N>★</star_N>　&lt;</project_name></DIV>
+	<DIV id="div7" style="display:none">
+	<div id="content">
+		  <project_inform>一星是给分镜监督的。</project_inform><br>
+		  <!-- 清单 -->
+	      <checkbox>√</checkbox><list_item>　1</list_item><list_item_time>　-</list_item_time><br>
+	      <checkbox>√</checkbox><list_item>　2</list_item><list_item_time>　Nov.27</list_item_time><br>
+	      <checkbox>√</checkbox><list_item>　3</list_item><list_item_time>　Nov.30</list_item_time><br>
+	      <checkbox>　</checkbox><list_item>　4</list_item><br>
+	      <checkbox>　</checkbox><list_item>　5</list_item><br>
+	      <checkbox>　</checkbox><list_item>　6</list_item><br>
+	      <checkbox>　</checkbox><list_item>　7</list_item><br>
+	      <checkbox>　</checkbox><list_item>　8</list_item><br>
+	      <checkbox>　</checkbox><list_item>　9</list_item><br>
+	      <checkbox>　</checkbox><list_item>　10</list_item><br>
+	      <checkbox>　</checkbox><list_item>　11</list_item><br>
+	      <checkbox>　</checkbox><list_item>　12</list_item><br>
+	
+	</div>
+	</DIV>
+	<!-- 折叠结束 -->
+	<!-- 项目描述 -->
+	<project_inform>Oct.11.2018 <br>3/12 - 重温，印象里怎么只有6集（人物线</project_inform><br>
+	<hidebar>
+	<!-- 进度条 -->
+	<canvas id="progress7" width="205" height="15" style=" background-color:#ffffff;border-top:2px solid #626262; border-bottom:2px solid #cacac7; border-left:2px solid #626262; border-right:2px solid #cacac7;">
+Your browser does not support the canvas element.
+</canvas>
+	
+	<script type="text/javascript">
+	
+	//绘制进度
+	//进度条
+	var c=document.getElementById("progress7");
+	var cxt=c.getContext("2d");
+	cxt.fillStyle="#010080";
+	cxt.fillRect(0,0,210*(3/12),15);
+	
+	//百分比
+	var c=document.getElementById("progress7");
+	var ctx=c.getContext("2d");
+	cxt.fillStyle="#000000";
+	ctx.font="12px fzxs15";
+	ctx.textAlign = 'center';
+	ctx.fillText("25%",100,12);
+	</script>
+	<br><br>
+	</hidebar>
+	<!-- ===项目结束=== -->
+	
+	
+	<!-- ===项目开始=== -->
+	<!-- 折叠内容 -->
+	<DIV style="cursor:hand" onclick="isHidden('div8')"><project_name>映画通行包 Vol.1　&lt;</project_name></DIV>
+	<DIV id="div8" style="display:none">
+	<div id="content">
+	  <!-- 清单 -->
+      <checkbox>　</checkbox><list_item>　千年女优　</list_item><br>
+      <checkbox>√</checkbox><list_item>　你好，之华　</list_item><star_Y>★</star_Y><star_Y>★</star_Y><star_Y>★</star_Y><star_Y>★</star_Y><star_N>★</star_N><list_item_time>　Nov.10</list_item_time><br>
+      <checkbox>√</checkbox><list_item>　机械姬　</list_item><star_Y>★</star_Y><star_Y>★</star_Y><star_Y>★</star_Y><star_Y>★</star_Y><star_N>★</star_N><list_item_time>　Dec.05</list_item_time><br>
+      <checkbox>√</checkbox><list_item>　大佛普拉斯　</list_item><star_Y>★</star_Y><star_Y>★</star_Y><star_Y>★</star_Y><star_Y>★</star_Y><star_Y>★</star_Y><list_item_time>　Oct.22</list_item_time><br>
+      <checkbox>　</checkbox><list_item>　寻梦环游记　</list_item><br>
+      <checkbox>√</checkbox><list_item>　西虹市首富　</list_item><star_Y>★</star_Y><star_Y>★</star_Y><star_Y>★</star_Y><star_N>★</star_N><star_N>★</star_N><list_item_time>　Dec.01</list_item_time><br>
+	  <checkbox>√</checkbox><list_item>　摄影机不要停！　</list_item><star_Y>★</star_Y><star_Y>★</star_Y><star_Y>★</star_Y><star_Y>★</star_Y><star_Y>★</star_Y><list_item_time>　Dec.25</list_item_time><br>
+	  <checkbox>√</checkbox><list_item>　网络迷踪　</list_item><star_Y>★</star_Y><star_Y>★</star_Y><star_Y>★</star_Y><star_Y>★</star_Y><star_N>★</star_N><list_item_time>　Oct.15</list_item_time><br>
+	</div>
+	</DIV>
+	<!-- 折叠结束 -->
+	<!-- 项目描述 -->
+	<project_inform>Oct.11.2018 <br>6/8 - Vol.1 电影补课</project_inform><br>
+	<hidebar>
+	<!-- 进度条 -->
+	<canvas id="progress8" width="205" height="15" style=" background-color:#ffffff;border-top:2px solid #626262; border-bottom:2px solid #cacac7; border-left:2px solid #626262; border-right:2px solid #cacac7;">
+	Your browser does not support the canvas element.
+	</canvas>
+	
+	<script type="text/javascript">
+
+//绘制进度
+//进度条
+var c=document.getElementById("progress8");
+var cxt=c.getContext("2d");
+cxt.fillStyle="#010080";
+cxt.fillRect(0,0,210*(6/8),15);
+
+//百分比
+var c=document.getElementById("progress8");
+var ctx=c.getContext("2d");
+cxt.fillStyle="#ffffff";
+ctx.font="12px fzxs15";
+ctx.textAlign = 'center';
+ctx.fillText("75%",100,12);
+cxt.fillStyle="#801c7c";
+ctx.fillText("+13%",185,12);
+</script>
+	<br><br>
+	</hidebar>
+	<!-- ===项目结束=== -->
+	
+	
+	<!-- ===项目开始=== -->
+	<!-- 折叠内容 -->
+	<DIV style="cursor:hand" onclick="isHidden('div10')"><project_name>《电影摄影应用美学》　&lt;</project_name></DIV>
+	<DIV id="div10" style="display:none">
+<div id="content">
+	  <!-- 清单 -->
+      <checkbox>√</checkbox><list_item>　第一章　</list_item><list_item_time>　Nov.4</list_item_time><br>
+	  <checkbox>　</checkbox><list_item>　第二章　</list_item><br>
+	  <checkbox>　</checkbox><list_item>　第三章　</list_item><br>
+	  <checkbox>　</checkbox><list_item>　第四章　</list_item><br>
+	  <checkbox>　</checkbox><list_item>　第五章　</list_item><br>
+	  <checkbox>　</checkbox><list_item>　第六章　</list_item><br>
+	  <checkbox>　</checkbox><list_item>　第七章　</list_item><br>
+	  <checkbox>　</checkbox><list_item>　第八章　</list_item><br>
+	  <checkbox>　</checkbox><list_item>　第九章　</list_item><br>
+	  <checkbox>　</checkbox><list_item>　阅读总结　</list_item><br>
+</div>
+</DIV>
+	<!-- 折叠结束 -->
+	<!-- 项目描述 -->
+	<project_inform>Oct.17.2018 <br>32/285p - 毕设准备</project_inform><br>
+	<hidebar>
+<!-- 进度条 -->
+<canvas id="progress10" width="205" height="15" style=" background-color:#ffffff;border-top:2px solid #626262; border-bottom:2px solid #cacac7; border-left:2px solid #626262; border-right:2px solid #cacac7;">
+Your browser does not support the canvas element.
+</canvas>
+
+<script type="text/javascript">
+
+//绘制进度
+//进度条
+var c=document.getElementById("progress10");
+var cxt=c.getContext("2d");
+cxt.fillStyle="#010080";
+cxt.fillRect(0,0,210*(32/285),15);
+
+//百分比
+var c=document.getElementById("progress10");
+var ctx=c.getContext("2d");
+cxt.fillStyle="#000000";
+ctx.font="12px fzxs15";
+ctx.textAlign = 'center';
+ctx.fillText("11%",100,12);
+</script>
+<br><br>
+</hidebar>
+	<!-- ===项目结束=== -->
+	
+	
+	<!-- ===项目开始=== -->
+	<!-- 折叠内容 -->
+	<DIV style="cursor:hand" onclick="isHidden('div17')"><project_name>《王小波全集》　&lt;</project_name></DIV>
+	<DIV id="div17" style="display:none">
+<div id="content">
+	  <!-- 清单 -->
+      <checkbox>　</checkbox><list_item>　第一卷：沉默的大多数　</list_item><br>
+      <checkbox>　</checkbox><list_item>　第二卷：我的精神家园　</list_item><br>
+      <checkbox>　</checkbox><list_item>　第三卷：万寿寺　</list_item><br>
+      <checkbox>　</checkbox><list_item>　第四卷：红拂夜奔　</list_item><br>
+      <checkbox>　</checkbox><list_item>　第五卷：寻找无双·东宫·西宫　</list_item><br>
+      <checkbox>　</checkbox><list_item>　第六卷：黄金时代　</list_item><br>
+      <checkbox>　</checkbox><list_item>　第七卷：白银时代　</list_item><br>
+      <checkbox>　</checkbox><list_item>　第八卷：似水柔情　</list_item><br>
+      <checkbox>　</checkbox><list_item>　第九卷：爱你就像爱生命　</list_item><br>
+      <checkbox>　</checkbox><list_item>　第十卷：黑铁时代　</list_item><br>
+</div>
+</DIV>
+	<!-- 折叠结束 -->
+	<!-- 项目描述 -->
+	<project_inform>Nov.11.2018 <br>816/36067p - 思想与感性</project_inform><br>
+	<hidebar>
+	<!-- 进度条 -->
+	<canvas id="progress17" width="205" height="15" style=" background-color:#ffffff;border-top:2px solid #626262; border-bottom:2px solid #cacac7; border-left:2px solid #626262; border-right:2px solid #cacac7;">
+	Your browser does not support the canvas element.
+	</canvas>
+	
+	<script type="text/javascript">
+	
+	//绘制进度
+	//进度条
+	var c=document.getElementById("progress17");
+	var cxt=c.getContext("2d");
+	cxt.fillStyle="#010080";
+	cxt.fillRect(0,0,210*(816/36067),15);
+	
+	//百分比
+	var c=document.getElementById("progress17");
+	var ctx=c.getContext("2d");
+	cxt.fillStyle="#000000";
+	ctx.font="12px fzxs15";
+	ctx.textAlign = 'center';
+	ctx.fillText("2%",100,12);
+	</script>
+	<br><br>
+	</hidebar>
+	<!-- ===项目结束=== -->
+	
+	
+	
+<!-- =========正在进行的项目======= -->
+
+
+
+
+<!-- =========已完成项目======= -->
+<DIV style="cursor:hand" onclick="isHidden('divdone')"><p style=color:#eb9230;font-family:fzxs15;font-size:14px;>&gt;　已完成的项目（3）　&lt;</p></DIV>
+<DIV id="divdone" style="display:none">
+
+	<!-- ===项目开始=== -->
+	<!-- 折叠内容 -->
+	<DIV style="cursor:hand" onclick="isHidden('div9')"><project_name>2018秋季学期　&lt;</project_name></DIV>
+	<DIV id="div9" style="display:none">
+	<div id="content">
+		  <!-- 清单 -->
+	      <checkbox>√</checkbox><list_item>　week 1</list_item><br>
+	      <checkbox>√</checkbox><list_item>　week 2</list_item><br>
+	      <checkbox>√</checkbox><list_item>　week 3</list_item><br>
+	      <checkbox>√</checkbox><list_item>　国庆节</list_item><br>
+	      <checkbox>√</checkbox><list_item>　week 4</list_item><br>
+	      <checkbox>√</checkbox><list_item>　week 5</list_item><br>
+	      <checkbox>√</checkbox><list_item>　week 6</list_item><br>
+	      <checkbox>√</checkbox><list_item>　week 7</list_item><br>
+	      <checkbox>√</checkbox><list_item>　week 8</list_item><br>
+	      <checkbox>√</checkbox><list_item>　week 9</list_item><br>
+	      <checkbox>√</checkbox><list_item>　week 10</list_item><br>
+	      <checkbox>√</checkbox><list_item>　week 11</list_item><br>
+	      <checkbox>√</checkbox><list_item>　week 12</list_item><br>
+	      <checkbox>√</checkbox><list_item>　week 13</list_item><br>
+	      <checkbox>√</checkbox><list_item>　week 14</list_item><br>
+	      <checkbox>√</checkbox><list_item>　week 15</list_item><br>
+	      <checkbox>√</checkbox><list_item>　圣诞节</list_item><br>
+	      <checkbox>√</checkbox><list_item>　week 16</list_item><br>
+	</div>
+	</DIV>
+	<!-- 折叠结束 -->
+	<!-- 项目描述 -->
+	<project_inform>Stp.9.2018 <br>18/18 - 不管喜不喜欢，都是要过的</project_inform><br>
+	<hidebar>
+	<!-- 进度条 -->
+	<canvas id="progress9" width="205" height="15" style=" background-color:#ffffff;border-top:2px solid #626262; border-bottom:2px solid #cacac7; border-left:2px solid #626262; border-right:2px solid #cacac7;">
+	Your browser does not support the canvas element.
+	</canvas>
+	
+	<script type="text/javascript">
+	
+	//绘制进度
+	//进度条
+	var c=document.getElementById("progress9");
+	var cxt=c.getContext("2d");
+	cxt.fillStyle="#7b0057";
+	cxt.fillRect(0,0,210*(18/18),15);
+	
+	//百分比
+	var c=document.getElementById("progress9");
+	var ctx=c.getContext("2d");
+	cxt.fillStyle="#ffffff";
+	ctx.font="12px fzxs15";
+	ctx.textAlign = 'center';
+	ctx.fillText("100%",100,12);
+	</script>
+	<br><br>
+	</hidebar>
+	<!-- ===项目结束=== -->
+	
+
+	<!-- ===项目开始=== -->
+	<!-- 折叠内容 -->
+	<DIV style="cursor:hand" onclick="isHidden('div1')"><project_name>进度清单管理页面　&lt;</project_name></DIV>
+	<DIV id="div1" style="display:none">
+<div id="content">
+	  <!-- 清单 -->
+      <checkbox>√</checkbox><list_item>　页面更新程序</list_item><br>
+      <checkbox>√</checkbox><list_item>　前端</list_item><br>
+</div>
+</DIV>
+	<!-- 折叠结束 -->
+	<!-- 项目描述 -->
+	<project_inform>Oct.10.2018 完成于当日，おめでとう<br>2/2 - 简单自用的项目</project_inform><br>
+	<hidebar>
+<!-- 进度条 -->
+<canvas id="progress1" width="205" height="15" style=" background-color:#ffffff;border-top:2px solid #626262; border-bottom:2px solid #cacac7; border-left:2px solid #626262; border-right:2px solid #cacac7;">
+Your browser does not support the canvas element.
+</canvas>
+
+<script type="text/javascript">
+//绘制进度
+//进度条
+var c=document.getElementById("progress1");
+var cxt=c.getContext("2d");
+cxt.fillStyle="#176e1d";
+cxt.fillRect(0,0,205,15);
+
+//百分比
+var c=document.getElementById("progress1");
+var ctx=c.getContext("2d");
+cxt.fillStyle="#ffffff";
+ctx.font="12px fzxs15";
+ctx.textAlign = 'center';
+ctx.fillText("100%",100,12);
+</script><br><br>
+</hidebar>
+	<!-- ===项目结束=== -->
+	
+	
+	<!-- ===项目开始=== -->
+	<!-- 折叠内容 -->
+	<DIV style="cursor:hand" onclick="isHidden('div5')"><project_name>Splatoon视频混剪　&lt;</project_name></DIV>
+	<DIV id="div5" style="display:none">
+<div id="content">
+	  <!-- 清单 -->
+      <checkbox>√</checkbox><list_item>　素材归纳</list_item><list_item_time>　Oct.16</list_item_time><br>
+      <checkbox>√</checkbox><list_item>　构思整理</list_item><list_item_time>　Oct.24</list_item_time><br>
+      <checkbox>√</checkbox><list_item>　剪辑制作</list_item><list_item_time>　-</list_item_time><br>
+      <checkbox>√</checkbox><list_item>　投稿</list_item><list_item_time>　Oct.27</list_item_time><br>
+</div>
+</DIV>
+	<!-- 折叠结束 -->
+	<!-- 项目描述 -->
+	<project_inform><u><a href="https://www.bilibili.com/video/av34744042" target="_blank">【Splatoon 2】于是想和大家成为朋友</a></u></project_inform><br>
+	<project_inform>Oct.16.2018 - Oct.27<br>4/4 - 把新的素材剪个视频出来</project_inform><br>
+	<hidebar>
+<!-- 进度条 -->
+<canvas id="progress5" width="205" height="15" style=" background-color:#ffffff;border-top:2px solid #626262; border-bottom:2px solid #cacac7; border-left:2px solid #626262; border-right:2px solid #cacac7;">
+Your browser does not support the canvas element.
+</canvas>
+
+<script type="text/javascript">
+//绘制进度
+//进度条
+var c=document.getElementById("progress5");
+var cxt=c.getContext("2d");
+cxt.fillStyle="#176e1d";
+cxt.fillRect(0,0,210*(4/4),15);
+
+//百分比
+var c=document.getElementById("progress5");
+var ctx=c.getContext("2d");
+cxt.fillStyle="#ffffff";
+ctx.font="12px fzxs15";
+ctx.textAlign = 'center';
+ctx.fillText("100%",100,12);
+</script><br><br>
+</hidebar>
+	<!-- ===项目结束=== -->
+	
+	
+</DIV>
+<!-- =========已完成项目======= -->
+
+
+
+
+<!-- =========书影项目======= -->
+<DIV style="cursor:hand" onclick="isHidden('divmoviebook')"><p style=color:#eb9230;font-family:fzxs15;font-size:14px;>&gt;　已完成的书影（5）　&lt;</p></DIV>
+<DIV id="divmoviebook" style="display:none">
+
+	<!-- ===项目开始=== -->
+	<!-- 折叠内容 -->
+	<DIV style="cursor:hand" onclick="isHidden('div22')"><project_name>《日本版式设计原理》　&lt;</project_name></DIV>
+	<DIV id="div22" style="display:none">
+<div id="content">
+	  <!-- 清单 -->
+      <checkbox>√</checkbox><list_item>　第一章：布局　</list_item><list_item_time>　-</list_item_time><br>
+	  <checkbox>√</checkbox><list_item>　第二章：文字　</list_item><list_item_time>　Dec.05</list_item_time><br>
+	  <checkbox>√</checkbox><list_item>　第三章：颜色搭配　</list_item><br>
+	  <checkbox>√</checkbox><list_item>　第四章：图片　</list_item><list_item_time>　Jan.15</list_item_time><br>
+</div>
+</DIV>
+	<!-- 折叠结束 -->
+	<!-- 项目描述 -->
+	<project_inform>Dec.03.2018 - Jan.15.2019<br>158/158 - 平面设计</project_inform><br>
+	<hidebar>
+	<!-- 进度条 -->
+	<canvas id="progress22" width="205" height="15" style=" background-color:#ffffff;border-top:2px solid #626262; border-bottom:2px solid #cacac7; border-left:2px solid #626262; border-right:2px solid #cacac7;">
+	Your browser does not support the canvas element.
+	</canvas>
+	
+	<script type="text/javascript">
+	
+	//绘制进度
+	//进度条
+	var c=document.getElementById("progress22");
+	var cxt=c.getContext("2d");
+	cxt.fillStyle="#176e1d";
+	cxt.fillRect(0,0,210*(158/158),15);
+	
+	//百分比
+	var c=document.getElementById("progress22");
+	var ctx=c.getContext("2d");
+	cxt.fillStyle="#ffffff";
+	ctx.font="12px fzxs15";
+	ctx.textAlign = 'center';
+	ctx.fillText("100%",100,12);
+	</script>
+	<br><br>
+	</hidebar>
+	<!-- ===项目结束=== -->
+
+	<!-- ===项目开始=== -->
+	<!-- 折叠内容 -->
+	<DIV style="cursor:hand" onclick="isHidden('div18')"><project_name>《青春期笨蛋不做兔女郎学姐的梦》　<br><star_Y>★</star_Y><star_Y>★</star_Y><star_Y>★</star_Y><star_Y>★</star_Y><star_N>★</star_N>　&lt;</project_name></DIV>
+	<DIV id="div18" style="display:none">
+	<div id="content">
+	      <project_inform>半星扣给尴尬量子力学。</project_inform><br>
+		  <!-- 清单 -->
+	      <checkbox>√</checkbox><list_item>　1 学姐是兔女郎</list_item><list_item_time>　-</list_item_time><br>
+	      <checkbox>√</checkbox><list_item>　2 初次约会难免风波</list_item><list_item_time>　Nov.23</list_item_time><br>
+	      <checkbox>√</checkbox><list_item>　3 唯独没有你的世界</list_item><list_item_time>　-</list_item_time><br>
+	      <checkbox>√</checkbox><list_item>　4 猪头少年没有明天</list_item><list_item_time>　-</list_item_time><br>
+	      <checkbox>√</checkbox><list_item>　5 全力对你说谎</list_item><list_item_time>　-</list_item_time><br>
+	      <checkbox>√</checkbox><list_item>　6 你所选择的这个世界</list_item><list_item_time>　Nov.24</list_item_time><br>
+	      <checkbox>√</checkbox><list_item>　7 青春是悖论</list_item><list_item_time>　Nov.25</list_item_time><br>
+	      <checkbox>√</checkbox><list_item>　8 大雨之夜冲洗一切</list_item><list_item_time>　Nov.26</list_item_time><br>
+	      <checkbox>√</checkbox><list_item>　9 姐妹恐慌</list_item><list_item_time>　Nov.29</list_item_time><br>
+	      <checkbox>√</checkbox><list_item>　10 百感交集的祝贺</list_item><list_item_time>　Dec.6</list_item_time><br>
+	      <checkbox>√</checkbox><list_item>　11 枫任务</list_item><list_item_time>　Dec.13</list_item_time><br>
+	      <checkbox>√</checkbox><list_item>　12 生在不醒梦之中</list_item><list_item_time>　Dec.20</list_item_time><br>
+	      <checkbox>√</checkbox><list_item>　13 不明之夜的黎明</list_item><list_item_time>　Dec.27</list_item_time><br>
+	</div>
+	</DIV>
+	<!-- 折叠结束 -->
+	<!-- 项目描述 -->
+	<project_inform>Nov.23.2018 - Dec.27 <br>13/13 - 氛围</project_inform><br>
+	<hidebar>
+	<!-- 进度条 -->
+	<canvas id="progress18" width="205" height="15" style=" background-color:#ffffff;border-top:2px solid #626262; border-bottom:2px solid #cacac7; border-left:2px solid #626262; border-right:2px solid #cacac7;">
+	Your browser does not support the canvas element.
+	</canvas>
+	
+	<script type="text/javascript">
+	
+	//绘制进度
+	//进度条
+	var c=document.getElementById("progress18");
+	var cxt=c.getContext("2d");
+	cxt.fillStyle="#176e1d";
+	cxt.fillRect(0,0,210*(13/13),15);
+	
+	//百分比
+	var c=document.getElementById("progress18");
+	var ctx=c.getContext("2d");
+	cxt.fillStyle="#ffffff";
+	ctx.font="12px fzxs15";
+	ctx.textAlign = 'center';
+	ctx.fillText("100%",100,12);
+	</script>
+	<br><br>
+	</hidebar>
+	<!-- ===项目结束=== -->
+
+	<!-- ===项目开始=== -->
+	<!-- 折叠内容 -->
+	<DIV style="cursor:hand" onclick="isHidden('div20')"><project_name>《文字的设计原理》　&lt;</project_name></DIV>
+	<DIV id="div20" style="display:none">
+<div id="content">
+	  <!-- 清单 -->
+      <checkbox>√</checkbox><list_item>　Step1：认识文字　</list_item><list_item_time>　Nov.26</list_item_time><br>
+      <checkbox>√</checkbox><list_item>　Step2：文字与意象　</list_item><list_item_time>　-</list_item_time><br>
+      <checkbox>√</checkbox><list_item>　Step3：容易阅读的文字组合　</list_item><list_item_time>　Nov.28</list_item_time><br>
+      <checkbox>√</checkbox><list_item>　Step4：做出美观的版面　</list_item><list_item_time>　Dec.02</list_item_time><br>
+      <checkbox>√</checkbox><list_item>　Step5：各种作品中的文字编排　</list_item><list_item_time>　Dec.03</list_item_time><br>
+</div>
+</DIV>
+	<!-- 折叠结束 -->
+	<!-- 项目描述 -->
+	<project_inform>Nov.26.2018 - Dec.03.2018 <br>155/155p - 平面设计</project_inform><br>
+	<hidebar>
+<!-- 进度条 -->
+<canvas id="progress20" width="205" height="15" style=" background-color:#ffffff;border-top:2px solid #626262; border-bottom:2px solid #cacac7; border-left:2px solid #626262; border-right:2px solid #cacac7;">
+Your browser does not support the canvas element.
+</canvas>
+
+<script type="text/javascript">
+
+//绘制进度
+//进度条
+var c=document.getElementById("progress20");
+var cxt=c.getContext("2d");
+cxt.fillStyle="#176e1d";
+cxt.fillRect(0,0,210*(155/155),15);
+
+//百分比
+var c=document.getElementById("progress20");
+var ctx=c.getContext("2d");
+cxt.fillStyle="#ffffff";
+ctx.font="12px fzxs15";
+ctx.textAlign = 'center';
+ctx.fillText("100%",100,12);
+</script>
+<br><br>
+</hidebar>
+	<!-- ===项目结束=== -->
+	
+	<!-- ===项目开始=== -->
+	<!-- 折叠内容 -->
+	<DIV style="cursor:hand" onclick="isHidden('div14')"><project_name>《月色真美》　<star_Y>★</star_Y><star_Y>★</star_Y><star_Y>★</star_Y><star_Y>★</star_Y><star_Y>★</star_Y>　&lt;</project_name></DIV>
+	<DIV id="div14" style="display:none">
+<div id="content">
+	  <!-- 清单 -->
+      <checkbox>√</checkbox><list_item>　1 春与修罗</list_item><list_item_time>　Oct.28</list_item_time><br>
+      <checkbox>√</checkbox><list_item>　2 一握之砂</list_item><list_item_time>　Oct.29</list_item_time><br>
+      <checkbox>√</checkbox><list_item>　3 吠月</list_item><list_item_time>　Nov.3</list_item_time><br>
+      <checkbox>√</checkbox><list_item>　4 阵雨</list_item><list_item_time>　-</list_item_time><br>
+      <checkbox>√</checkbox><list_item>　5 心</list_item><list_item_time>　Nov.11</list_item_time><br>
+      <checkbox>√</checkbox><list_item>　6 奔跑吧梅洛斯</list_item><list_item_time>　-</list_item_time><br>
+      <checkbox>√</checkbox><list_item>　道程</list_item><list_item_time>　-</list_item_time><br>
+      <checkbox>√</checkbox><list_item>　7 为爱不顾一切</list_item><list_item_time>　Nov.12</list_item_time><br>
+      <checkbox>√</checkbox><list_item>　8 	Vita Sexualis</list_item><list_item_time>　-</list_item_time><br>
+      <checkbox>√</checkbox><list_item>　9 起风了</list_item><list_item_time>　Nov.13</list_item_time><br>
+      <checkbox>√</checkbox><list_item>　10 斜阳</list_item><list_item_time>　Nov.14</list_item_time><br>
+      <checkbox>√</checkbox><list_item>　11 劝学篇</list_item><list_item_time>　-</list_item_time><br>
+      <checkbox>√</checkbox><list_item>　12 从此以后</list_item><list_item_time>　-</list_item_time><br>
+	  <checkbox>√</checkbox><list_item>　SP </list_item><list_item_time>　Nov.17</list_item_time><br>
+</div>
+</DIV>
+	<!-- 折叠结束 -->
+	<!-- 项目描述 -->
+	<project_inform>Oct.24.2018 - Nov.17.2018 <br>14/14 - 关于依托</project_inform><br>
+	<hidebar>
+<!-- 进度条 -->
+<canvas id="progress14" width="205" height="15" style=" background-color:#ffffff;border-top:2px solid #626262; border-bottom:2px solid #cacac7; border-left:2px solid #626262; border-right:2px solid #cacac7;">
+Your browser does not support the canvas element.
+</canvas>
+
+<script type="text/javascript">
+
+//绘制进度
+//进度条
+var c=document.getElementById("progress14");
+var cxt=c.getContext("2d");
+cxt.fillStyle="#176e1d";
+cxt.fillRect(0,0,210*(14/14),15);
+
+//百分比
+var c=document.getElementById("progress14");
+var ctx=c.getContext("2d");
+cxt.fillStyle="#ffffff";
+ctx.font="12px fzxs15";
+ctx.textAlign = 'center';
+ctx.fillText("100%",100,12);
+</script>
+<br><br>
+</hidebar>
+	<!-- ===项目结束=== -->
+	
+	
+	<!-- ===项目开始=== -->
+	<!-- 折叠内容 -->
+	<DIV style="cursor:hand" onclick="isHidden('div6')"><project_name>《回转企鹅罐》　<star_Y>★</star_Y><star_Y>★</star_Y><star_Y>★</star_Y><star_Y>★</star_Y><star_Y>★</star_Y>　&lt;</project_name></DIV>
+	<DIV id="div6" style="display:none">
+<div id="content">
+	  <!-- 清单 -->
+      <checkbox>√</checkbox><list_item>　1 命运之钟响起</list_item><list_item_time>　-</list_item_time><br>
+      <checkbox>√</checkbox><list_item>　2 危险的生存战略</list_item><list_item_time>　Oct.11</list_item_time><br>
+      <checkbox>√</checkbox><list_item>　3 然后豪迈地吃掉我</list_item><list_item_time>　-</list_item_time><br>
+      <checkbox>√</checkbox><list_item>　4 从天飘落的公主</list_item><list_item_time>　Oct.14</list_item_time><br>
+      <checkbox>√</checkbox><list_item>　5 所以我要这么做</list_item><list_item_time>　Oct.15</list_item_time><br>
+      <checkbox>√</checkbox><list_item>　6 被M联系的我和你</list_item><list_item_time>　-</list_item_time><br>
+      <checkbox>√</checkbox><list_item>　7 让青蛙产卵的女人</list_item><list_item_time>　-</list_item_time><br>
+      <checkbox>√</checkbox><list_item>　8 就算你的恋情是谎言我依然</list_item><list_item_time>　Oct.16</list_item_time><br>
+      <checkbox>√</checkbox><list_item>　9 冰之世界</list_item><list_item_time>　-</list_item_time><br>
+      <checkbox>√</checkbox><list_item>　10 因为我喜欢你</list_item><list_item_time>　-</list_item_time><br>
+      <checkbox>√</checkbox><list_item>　11 你总算注意到了啊</list_item><list_item_time>　-</list_item_time><br>
+      <checkbox>√</checkbox><list_item>　12 围绕著我们的环</list_item><list_item_time>　Oct.17</list_item_time><br>
+      <checkbox>√</checkbox><list_item>　13 我跟你的罪与罚</list_item><list_item_time>　-</list_item_time><br>
+      <checkbox>√</checkbox><list_item>　14 说谎的公主</list_item><list_item_time>　-</list_item_time><br>
+      <checkbox>√</checkbox><list_item>　15 拯救世界的人</list_item><list_item_time>　-</list_item_time><br>
+      <checkbox>√</checkbox><list_item>　16 不死的男人</list_item><list_item_time>　Oct.18</list_item_time><br>
+      <checkbox>√</checkbox><list_item>　17 不被原谅的人</list_item><list_item_time>　-</list_item_time><br>
+      <checkbox>√</checkbox><list_item>　18 所以请为我留下来</list_item><list_item_time>　-</list_item_time><br>
+      <checkbox>√</checkbox><list_item>　19 我命中注定的人</list_item><list_item_time>　-</list_item_time><br>
+      <checkbox>√</checkbox><list_item>　20 谢谢你选了我</list_item><list_item_time>　-</list_item_time><br>
+      <checkbox>√</checkbox><list_item>　21 我们选择的命运之门</list_item><list_item_time>　Oct.19</list_item_time><br>
+      <checkbox>√</checkbox><list_item>　22 美丽之棺</list_item><list_item_time>　-</list_item_time><br>
+      <checkbox>√</checkbox><list_item>　23 命运所至之处</list_item><list_item_time>　Oct.20</list_item_time><br>
+      <checkbox>√</checkbox><list_item>　24 我爱你</list_item><list_item_time>　Oct.21</list_item_time><br>
+      <checkbox>　</checkbox><list_item>　sp </list_item><br>
+
+</div>
+</DIV>
+	<!-- 折叠结束 -->
+	<!-- 项目描述 -->
+	<project_inform>Oct.11.2018 - Oct.21.2018<br>24/25 - 命运换乘</project_inform><br>
+	<hidebar>
+<!-- 进度条 -->
+<canvas id="progress6" width="205" height="15" style=" background-color:#ffffff;border-top:2px solid #626262; border-bottom:2px solid #cacac7; border-left:2px solid #626262; border-right:2px solid #cacac7;">
+Your browser does not support the canvas element.
+</canvas>
+
+<script type="text/javascript">
+
+//绘制进度
+//进度条
+var c=document.getElementById("progress6");
+var cxt=c.getContext("2d");
+cxt.fillStyle="#176e1d";
+cxt.fillRect(0,0,210*(25/25),15);
+
+//百分比
+var c=document.getElementById("progress6");
+var ctx=c.getContext("2d");
+cxt.fillStyle="#ffffff";
+ctx.font="12px fzxs15";
+ctx.textAlign = 'center';
+ctx.fillText("100%",100,12);
+</script>
+<br><br>
+</hidebar>
+	<!-- ===项目结束=== -->
+
+
+
+</DIV>
+<!-- =========书影项目======= -->
+
+
+
+
+<!-- =========未来项目======= -->
+<DIV style="cursor:hand" onclick="isHidden('divfuture')"><p style=color:#eb9230;font-family:fzxs15;font-size:14px;>&gt;　未来的项目（4）　&lt;</p></DIV>
+<DIV id="divfuture" style="display:none">
+
+
+	<!-- ===项目开始=== -->
+	<!-- 折叠内容 -->
+	<DIV style="cursor:hand" onclick="isHidden('div12')"><project_name>Python 入门　&lt;</project_name></DIV>
+	<DIV id="div12" style="display:none">
+<div id="content">
+	  <!-- 清单 -->
+      <checkbox>√</checkbox><list_item>　教程　</list_item><list_item_time>　-</list_item_time><br>
+      <checkbox>√</checkbox><list_item>　环境搭建　</list_item><list_item_time>　-</list_item_time><br>
+      <checkbox>√</checkbox><list_item>　基础语法　</list_item><list_item_time>　-</list_item_time><br>
+      <checkbox>√</checkbox><list_item>　基本数据类型　</list_item><list_item_time>　-</list_item_time><br>
+      <checkbox>√</checkbox><list_item>　解释器　</list_item><list_item_time>　-</list_item_time><br>
+      <checkbox>√</checkbox><list_item>　注释　</list_item><list_item_time>　Oct.22</list_item_time><br>
+      <checkbox>　</checkbox><list_item>　运算符　</list_item><br>
+      <checkbox>　</checkbox><list_item>　数字(Number)　</list_item><br>
+      <checkbox>　</checkbox><list_item>　字符串　</list_item><br>
+      <checkbox>　</checkbox><list_item>　列表　</list_item><br>
+      <checkbox>　</checkbox><list_item>　元组　</list_item><br>
+      <checkbox>　</checkbox><list_item>　字典　</list_item><br>
+      <checkbox>　</checkbox><list_item>　集合　</list_item><br>
+      <checkbox>　</checkbox><list_item>　编程第一步　</list_item><br>
+      <checkbox>　</checkbox><list_item>　条件控制　</list_item><br>
+      <checkbox>　</checkbox><list_item>　循环语句　</list_item><br>
+      <checkbox>　</checkbox><list_item>　迭代器与生成器　</list_item><br>
+      <checkbox>　</checkbox><list_item>　函数　</list_item><br>
+      <checkbox>　</checkbox><list_item>　数据结构　</list_item><br>
+      <checkbox>　</checkbox><list_item>　模块　</list_item><br>
+      <checkbox>　</checkbox><list_item>　输入和输出　</list_item><br>
+      <checkbox>　</checkbox><list_item>　File　</list_item><br>
+      <checkbox>　</checkbox><list_item>　OS　</list_item><br>
+      <checkbox>　</checkbox><list_item>　错误和异常　</list_item><br>
+      <checkbox>　</checkbox><list_item>　面向对象　</list_item><br>
+      <checkbox>　</checkbox><list_item>　标准库概览　</list_item><br>
+      <checkbox>　</checkbox><list_item>　实例　</list_item><br>
+</div>
+</DIV>
+	<!-- 折叠结束 -->
+	<!-- 项目描述 -->
+	<project_inform>Oct.21.2018 - <br>6/27 - 学习</project_inform><br>
+	<hidebar>
+<!-- 进度条 -->
+<canvas id="progress12" width="205" height="15" style=" background-color:#ffffff;border-top:2px solid #626262; border-bottom:2px solid #cacac7; border-left:2px solid #626262; border-right:2px solid #cacac7;">
+Your browser does not support the canvas element.
+</canvas>
+
+<script type="text/javascript">
+
+//绘制进度
+//进度条
+var c=document.getElementById("progress12");
+var cxt=c.getContext("2d");
+cxt.fillStyle="#010080";
+cxt.fillRect(0,0,210*(6/27),15);
+
+//百分比
+var c=document.getElementById("progress12");
+var ctx=c.getContext("2d");
+cxt.fillStyle="#000000";
+ctx.font="12px fzxs15";
+ctx.textAlign = 'center';
+ctx.fillText("22%",100,12);
+</script>
+<br><br>
+</hidebar>
+	<!-- ===项目结束=== -->
+	
+	
+	<!-- ===项目开始=== -->
+	<!-- 折叠内容 -->
+	<DIV style="cursor:hand" onclick="isHidden('div15')"><project_name>《新标准日本语-初级（上）》　&lt;</project_name></DIV>
+	<DIV id="div15" style="display:none">
+<div id="content">
+	  <!-- 清单 -->
+      <checkbox>　</checkbox><list_item>　Lesson 1　</list_item><br>
+      <checkbox>　</checkbox><list_item>　Lesson 2　</list_item><br>
+      <checkbox>　</checkbox><list_item>　Lesson 3　</list_item><br>
+      <checkbox>　</checkbox><list_item>　Lesson 4　</list_item><br>
+      <checkbox>　</checkbox><list_item>　Lesson 5　</list_item><br>
+      <checkbox>　</checkbox><list_item>　Lesson 6　</list_item><br>
+      <checkbox>　</checkbox><list_item>　Lesson 7　</list_item><br>
+      <checkbox>　</checkbox><list_item>　Lesson 8　</list_item><br>
+      <checkbox>　</checkbox><list_item>　Lesson 9　</list_item><br>
+      <checkbox>　</checkbox><list_item>　Lesson 10　</list_item><br>
+      <checkbox>　</checkbox><list_item>　Lesson 11　</list_item><br>
+      <checkbox>　</checkbox><list_item>　Lesson 12　</list_item><br>
+      <checkbox>　</checkbox><list_item>　Lesson 13　</list_item><br>
+      <checkbox>　</checkbox><list_item>　Lesson 14　</list_item><br>
+      <checkbox>　</checkbox><list_item>　Lesson 15　</list_item><br>
+      <checkbox>　</checkbox><list_item>　Lesson 16　</list_item><br>
+      <checkbox>　</checkbox><list_item>　Lesson 17　</list_item><br>
+      <checkbox>　</checkbox><list_item>　Lesson 18　</list_item><br>
+      <checkbox>　</checkbox><list_item>　Lesson 19　</list_item><br>
+      <checkbox>　</checkbox><list_item>　Lesson 19　</list_item><br>
+      <checkbox>　</checkbox><list_item>　Lesson 20　</list_item><br>
+      <checkbox>　</checkbox><list_item>　Lesson 21　</list_item><br>
+      <checkbox>　</checkbox><list_item>　Lesson 22　</list_item><br>
+      <checkbox>　</checkbox><list_item>　Lesson 23　</list_item><br>
+      <checkbox>　</checkbox><list_item>　Lesson 24　</list_item><br>
+</div>
+</DIV>
+	<!-- 折叠结束 -->
+	<!-- 项目描述 -->
+	<project_inform>Oct.24.2018 <br>0/24 - 重修</project_inform><br>
+	<hidebar>
+<!-- 进度条 -->
+<canvas id="progress15" width="205" height="15" style=" background-color:#ffffff;border-top:2px solid #626262; border-bottom:2px solid #cacac7; border-left:2px solid #626262; border-right:2px solid #cacac7;">
+Your browser does not support the canvas element.
+</canvas>
+
+<script type="text/javascript">
+
+//绘制进度
+//进度条
+var c=document.getElementById("progress15");
+var cxt=c.getContext("2d");
+cxt.fillStyle="#010080";
+cxt.fillRect(0,0,210*(0/24),15);
+
+//百分比
+var c=document.getElementById("progress15");
+var ctx=c.getContext("2d");
+cxt.fillStyle="#000000";
+ctx.font="12px fzxs15";
+ctx.textAlign = 'center';
+ctx.fillText("0%",100,12);
+</script>
+<br><br>
+</hidebar>
+	<!-- ===项目结束=== -->
+	
+	
+	<!-- ===项目开始=== -->
+	<!-- 折叠内容 -->
+	<DIV style="cursor:hand" onclick="isHidden('div16')"><project_name>《网络是怎样连接的》　&lt;</project_name></DIV>
+	<DIV id="div16" style="display:none">
+<div id="content">
+	  <!-- 清单 -->
+      <checkbox>　</checkbox><list_item>　第1章　</list_item><br>
+      <checkbox>　</checkbox><list_item>　第2章　</list_item><br>
+      <checkbox>　</checkbox><list_item>　第3章　</list_item><br>
+      <checkbox>　</checkbox><list_item>　第4章　</list_item><br>
+      <checkbox>　</checkbox><list_item>　第5章　</list_item><br>
+      <checkbox>　</checkbox><list_item>　第6章　</list_item><br>
+</div>
+</DIV>
+	<!-- 折叠结束 -->
+	<!-- 项目描述 -->
+	<project_inform>Oct.28.2018 <br>0/359p - 不知道会不会看完就是了</project_inform><br>
+	<hidebar>
+	<!-- 进度条 -->
+	<canvas id="progress16" width="205" height="15" style=" background-color:#ffffff;border-top:2px solid #626262; border-bottom:2px solid #cacac7; border-left:2px solid #626262; border-right:2px solid #cacac7;">
+	Your browser does not support the canvas element.
+	</canvas>
+	
+	<script type="text/javascript">
+	
+	//绘制进度
+	//进度条
+	var c=document.getElementById("progress16");
+	var cxt=c.getContext("2d");
+	cxt.fillStyle="#010080";
+	cxt.fillRect(0,0,210*(0/359),15);
+	
+	//百分比
+	var c=document.getElementById("progress16");
+	var ctx=c.getContext("2d");
+	cxt.fillStyle="#000000";
+	ctx.font="12px fzxs15";
+	ctx.textAlign = 'center';
+	ctx.fillText("0%",100,12);
+	</script>
+	<br><br>
+</hidebar>
+	<!-- ===项目结束=== -->
+	
+	
+	<!-- ===项目开始=== -->
+	<!-- 折叠内容 -->
+	<DIV style="cursor:hand" onclick="isHidden('div13')"><project_name>映画通行包 Vol.2　&lt;</project_name></DIV>
+	<DIV id="div13" style="display:none">
+	<div id="content">
+		  <!-- 清单 -->
+	      <checkbox>　</checkbox><list_item>　春光乍泄　</list_item><br>
+	      <checkbox>　</checkbox><list_item>　犬之岛　</list_item><br>
+	      <checkbox>　</checkbox><list_item>　水果硬糖　</list_item><br>
+	      <checkbox>　</checkbox><list_item>　布达佩斯大饭店　</list_item><br>
+	      <checkbox>　</checkbox><list_item>　社交网络　</list_item><br>
+	</div>
+	</DIV>
+	<!-- 折叠结束 -->
+	<!-- 项目描述 -->
+	<project_inform>Oct.11.2018 <br>0/8 - Vol.1 电影补课</project_inform><br>
+	<hidebar>
+<!-- 进度条 -->
+<canvas id="progress13" width="205" height="15" style=" background-color:#ffffff;border-top:2px solid #626262; border-bottom:2px solid #cacac7; border-left:2px solid #626262; border-right:2px solid #cacac7;">
+Your browser does not support the canvas element.
+</canvas>
+
+<script type="text/javascript">
+
+//绘制进度
+//进度条
+var c=document.getElementById("progress13");
+var cxt=c.getContext("2d");
+cxt.fillStyle="#010080";
+cxt.fillRect(0,0,210*(0/8),15);
+
+//百分比
+var c=document.getElementById("progress13");
+var ctx=c.getContext("2d");
+cxt.fillStyle="#000000";
+ctx.font="12px fzxs15";
+ctx.textAlign = 'center';
+ctx.fillText("0%",100,12);
+</script>
+<br><br>
+</hidebar>
+	<!-- ===项目结束=== -->
+
+
+</DIV>
+<!-- =========未来项目======= -->
+
+
+
+
+<!-- =========已废弃项目======= -->
+<DIV style="cursor:hand" onclick="isHidden('divundone')"><p style=color:#eb9230;font-family:fzxs15;font-size:14px;>&gt;　已废弃项目（1）　&lt;</p></DIV>
+<DIV id="divundone" style="display:none">
+
+
+	<!-- ===项目开始=== -->
+	<!-- 折叠内容 -->
+	<DIV style="cursor:hand" onclick="isHidden('div21')"><project_name>《时之笛N64》　<star_Y>★</star_Y><star_Y>★</star_Y><star_Y>★</star_Y><star_Y>★</star_Y><star_N>★</star_N>　&lt;</project_name></DIV>
+	<DIV id="div21" style="display:none">
+	<div id="content">
+		  <!-- 清单 -->
+		  <project_inform>因为恶性bug真理之镜+树莓派刷了别的用途，暂时弃坑。</project_inform><br>
+	      <checkbox>√</checkbox><list_item>　搭建Retropie</list_item><list_item_time>　Nov.15</list_item_time><br>
+	      <checkbox>　</checkbox><list_item>　时之笛通关（进度以攻略页数计算）</list_item><br>
+	
+	</div>
+	</DIV>
+	<!-- 折叠结束 -->
+	<!-- 项目描述 -->
+	<project_inform>Nov.15.2018 <br>11/18 - 经典作</project_inform><br>
+	<hidebar>
+	<!-- 进度条 -->
+	<canvas id="progress21" width="205" height="15" style=" background-color:#ffffff;border-top:2px solid #626262; border-bottom:2px solid #cacac7; border-left:2px solid #626262; border-right:2px solid #cacac7;">
+	Your browser does not support the canvas element.
+	</canvas>
+	
+	<script type="text/javascript">
+	
+	//绘制进度
+	//进度条
+	var c=document.getElementById("progress21");
+	var cxt=c.getContext("2d");
+	cxt.fillStyle="#010080";
+	cxt.fillRect(0,0,210*(11/18),15);
+	
+	//百分比
+	var c=document.getElementById("progress21");
+	var ctx=c.getContext("2d");
+	cxt.fillStyle="#ffffff";
+	ctx.font="12px fzxs15";
+	ctx.textAlign = 'center';
+	ctx.fillText("61%",100,12);
+	</script>
+	<br><br>
+	</hidebar>
+	<!-- ===项目结束=== -->
+	
+	
+</DIV>
+<!-- =========已废弃项目======= -->
+
+
+
+
+<!-- =========总汇信息======= -->
+<br>
+<p style=color:#804b00;font-family:fzxs15;font-size:12px;>系统归档总项目数：24</p>
+<p style=color:#804b00;font-family:fzxs15;font-size:12px;>Powered by tonoko.moe</p>
+<!-- =========总汇信息======= -->
+
+
+
+
+</div>
+</body>
+</html>

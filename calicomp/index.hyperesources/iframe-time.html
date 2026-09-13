@@ -1,0 +1,55 @@
+<html>
+    <head>
+	<!-- Custom Fonts -->
+	<style>
+@font-face {
+    font-family: 'fzxs15';
+    src: url('../src/pixel.TTF');
+    src: url('../src/pixel.eot?#iefix') format('embedded-opentype'),
+         url('../src/pixel.woff') format('woff'),
+         url('../src/pixel.TTF') format('truetype'),
+         url('../src/pixel.svg#webfont34M5alKg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+</style>
+        <title>timeGUI plugin</title>
+        <script language="JavaScript">
+            function startTime()   
+            {   
+                var today=new Date();//定义日期对象   
+                var yyyy = today.getFullYear();//通过日期对象的getFullYear()方法返回年    
+                var MM = today.getMonth()+1;//通过日期对象的getMonth()方法返回年    
+                var dd = today.getDate();//通过日期对象的getDate()方法返回年     
+                var hh=today.getHours();//通过日期对象的getHours方法返回小时   
+                var mm=today.getMinutes();//通过日期对象的getMinutes方法返回分钟   
+                var ss=today.getSeconds();//通过日期对象的getSeconds方法返回秒   
+                var str;
+   				 if(hh>12) {
+    				    hh -= 12;
+    				    str = " PM";
+   				 }else{
+    				    str = " AM";
+   				 }
+                // 如果分钟或小时的值小于10，则在其值前加0，比如如果时间是下午3点20分9秒的话，则显示15：20：09   
+                MM=checkTime(MM);
+                dd=checkTime(dd);
+                mm=checkTime(mm);   
+                ss=checkTime(ss);    
+                document.getElementById('nowDateTimeSpan').innerHTML=hh+":"+mm+str;     
+                setTimeout('startTime()',1000);//每一秒中重新加载startTime()方法 
+            }   
+             
+            function checkTime(i)   
+            {   
+                if (i<10){
+                    i="0" + i;
+                }   
+                  return i;
+            }  
+        </script>
+    </head>
+    <body onload="startTime()">
+        <p style="font-family:fzxs15;color:black;font-size:15px;text-align:center"><span id="nowDateTimeSpan"></p>
+    </body>
+</html>

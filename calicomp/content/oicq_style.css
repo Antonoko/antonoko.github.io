@@ -1,0 +1,228 @@
+﻿		html,body{
+            height: 100%;
+        }
+        body{
+            margin: 0;
+        }
+        .nui-scroll{
+            border: 0px solid #000; 
+            width: auto;
+            height: 100%;
+            overflow: auto;
+        }
+        .nui-scroll::-webkit-scrollbar {
+            width: 15px;
+            height: 8px;
+        }
+        /*正常情况下滑块的样式*/
+        .nui-scroll::-webkit-scrollbar-thumb {
+            background-color: #bfbdaf;
+			border-top:2px solid #ffffff; border-bottom:2px solid #626262; border-left:2px solid #ffffff; border-right:2px solid #626262;
+        }
+        /*鼠标悬浮在该类指向的控件上时滑块的样式
+        .nui-scroll:hover::-webkit-scrollbar-thumb {
+            background-color: rgba(0,0,0,.1);
+        }*/
+        /*鼠标悬浮在滑块上时滑块的样式*/
+        .nui-scroll::-webkit-scrollbar-thumb:hover {
+            background-color: rgba(0,0,0,.1);
+        }
+        /*正常时候的主干部分*/
+        .nui-scroll::-webkit-scrollbar-track {
+            background-color: #e1e0d9;
+        }
+        /*鼠标悬浮在滚动条上的主干部分
+        .nui-scroll::-webkit-scrollbar-track:hover {
+            background-color: rgba(0,0,0,0);
+        }*/
+  update {
+  font-family: fzxs15;
+  color:#6c6c6c;
+  font-size:15px;
+  text-decoration:underline;
+  white-space:pre;
+  }
+  time {
+  font-family: fzxs15;
+  color:#276cb2;
+  font-size:15px;
+  margin:0% 0% 0% 5%;
+  line-height:30px
+  }  
+  time_2 {
+  font-family: fzxs15;
+  color:#a9008f;
+  font-size:15px;
+  margin:0% 0% 0% 5%;
+  line-height:30px
+  }
+  time_3 {
+  font-family: fzxs15;
+  color:#9c8f00;
+  font-size:15px;
+  margin:0% 0% 0% 5%;
+  line-height:30px
+  }  
+  time_qutoe {
+  font-family: fzxs15;
+  color:#3da5a4;
+  font-size:15px;
+  margin:0% 0% 0% 6%;
+  line-height:30px
+  }  
+  time_qutoe_wotashi {
+  font-family: fzxs15;
+  color:#276cb2;
+  font-size:15px;
+  margin:0% 0% 0% 6%;
+  line-height:30px
+  }  
+  time_mailpost {
+  font-family: fzxs15;
+  color:#d4d2c7;
+  background-color:#cb2e87;
+  font-size:15px;
+  margin:0% 0% 0% 5%;
+  line-height:30px
+  }
+  time_mailpost_reply {
+  font-family: fzxs15;
+  color:#d4d2c7;
+  background-color:#276cb2;
+  font-size:15px;
+  margin:0% 0% 0% 5%;
+  line-height:30px
+  }  
+  msg {
+  font-family: fzxs15;
+  color:#000000;
+  font-size:15px;
+  margin:0% 0% 0% 5%;
+  line-height:25px
+  }
+  msg_hide {
+  font-family: fzxs15;
+  color:#d4d2c7;
+  font-size:15px;
+  margin:0% 0% 0% 5%;
+  line-height:25px
+  } 
+  msg_quote {
+  font-family: fzxs15;
+  color:#000000;
+  font-size:15px;
+  margin:0% 0% 0% 6%;
+  line-height:25px
+  } 
+  quote {
+  font-family: fzxs15;
+  color:#bf53a2;
+  font-size:15px;
+  margin:0% 0% 0% 5%;
+  line-height:25px
+  } 
+  msg_mailpost {
+  font-family: fzxs15;
+  color:#cb2e87;
+  font-size:15px;
+  margin:0% 0% 0% 5%;
+  line-height:25px
+  } 
+  msg_mailpost_reply {
+  font-family: fzxs15;
+  color:#276cb2;
+  font-size:15px;
+  margin:0% 0% 0% 5%;
+  line-height:25px
+  } 
+  annotation {
+  font-family: fzxs15;
+  color:#00a31f;
+  font-size:15px;
+  margin:0% 0% 0% 5%;
+  line-height:25px
+  } 
+  blank {
+  line-height:20px
+  } 
+  alarm {
+  font-family: fzxs15;
+  color:#c40000;
+  font-size:15px;
+  margin:0% 0% 0% 5%;
+  line-height:25px
+  } 
+  arch a{
+  font-family: fzxs15;
+  color:#858585;
+  font-size:15px;
+  text-decoration:none;
+  white-space:pre;
+  }
+  arch a:hover{
+  font-family: fzxs15;
+  color:#858585;
+  font-size:15px;
+  text-decoration:underline;
+  white-space:pre;
+  }
+  arch_title {
+  font-family: fzxs15;
+  color:#9000eb;
+  font-size:15px;
+  margin:0% 0% 0% 5%;
+  line-height:25px
+  } 
+  arch_file a{
+  font-family: fzxs15;
+  color:#858585;
+  font-size:15px;
+  text-decoration:none;
+  margin:0% 0% 0% 5%;
+  white-space:pre;
+  }
+  arch_file a:hover{
+  font-family: fzxs15;
+  color:#858585;
+  font-size:15px;
+  text-decoration:underline;
+  margin:0% 0% 0% 5%;
+  white-space:pre;
+  }
+  search_title {
+  font-family: fzxs15;
+  color:#3649d8;
+  font-size:24px;
+  margin:0% 0% 0% 5%;
+  line-height:25px
+  }
+  search_article {
+  font-family: fzxs15;
+  color:#3649d8;
+  font-size:15px;
+  margin:0% 0% 0% 5%;
+  line-height:25px
+  } 
+/*
+<a href="_" target="_blank"><img src="_" width="128" height="128" /></a>
+<a href="_" target="_blank"><img src="_" width="128" /></a>
+<a href="_" target="_blank">_</a>
+<update><center><br><br><br> 2018/08/11 <br><br></center></update>
+<time>tonoko  22:33:24<br></time>
+<msg>你好..这是一句示例。世界，你好？<br></msg>
+<annotation>//注释吐槽<br></annotation>
+<blank><br></blank>
+<center><arch><a href="arch/20180811_to_20180816.html">[更早之前]</a>  <a href="msg_arch_select.html">[查看归档]</a><br><br></arch></center>
+<center><arch_title>======= 记录归档 =======<br><br></arch_title></center>
+<arch_file><a href="arch/20180811_to_20180816.html">20180811_to_20180816.html</a><br></arch_file>
+<div class="nui-scroll">滚动条</div>
+<time_mailpost>　【ROKU（化名）】　20180919 10:24:00 来自邮件回复　<br></time_mailpost>
+<msg_mailpost>要不要来一杯Branditi？我请。<br></msg_mailpost>
+<time_mailpost_reply>　【tonoko】　20180920 11:08:05 来自CALICOMP回复　<br></time_mailpost_reply>
+<msg_mailpost_reply>//谢谢阿鹿陆没有把看起来这么幼稚的回复系统当做很蠢的事情。。<br></msg_mailpost_reply>
+<quote>┏━━━━━━━━消息引用━━━━━━━━┓<br></quote>
+<time_qutoe>对方  00:35:46<br></time_qutoe>
+<time_qutoe_wotashi>我方  00:36:23<br></time_qutoe_wotashi>
+<msg_quote>文本<br></msg_quote>
+<quote>┗━━━━━━━━引用结束━━━━━━━━┛<br></quote>
+*/

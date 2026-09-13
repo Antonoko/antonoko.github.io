@@ -1,0 +1,460 @@
+﻿<html> 
+    <head>
+    
+    
+	<div id="BackgroundArea">
+		<script type="text/javascript">
+        var bodyBgs = [];
+        bodyBgs[0] = "wallpaper/Dorothy.png";
+        bodyBgs[1] = "wallpaper/MikuDuck.png";
+        bodyBgs[2] = "wallpaper/MikuSea.png";
+        bodyBgs[3] = "wallpaper/Rem.png";
+        bodyBgs[4] = "wallpaper/Stillgirl.png";
+		bodyBgs[5] = "wallpaper/Tsuki.png";
+
+        var randomBgIndex = Math.round( Math.random() * 5 );
+
+        document.write('<style>body{background:url(' + bodyBgs[randomBgIndex] + ') no-repeat 50% 0;background-position:center;background-attachment: fixed;}</style>');
+		</script>
+	</div> 
+    
+    </head> 
+    <style> 
+    
+	@font-face {
+    font-family: 'fzxs15';
+    src: url('../../src/pixel.TTF');
+    src: url('../../src/pixel.eot?#iefix') format('embedded-opentype'),
+         url('../../src/pixel.woff') format('woff'),
+         url('../../src/pixel.TTF') format('truetype'),
+         url('../../src/pixel.svg#webfont34M5alKg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+	}
+
+        body{padding-top:10px;padding-left:20px;padding-right:150px;} 
+        .fileDiv{float:left;width:80px;height:70px;text-align:center;line-height:24px;font-size:16px;border:0px solid #cccccc;margin-right:20px;margin-bottom:20px;} 
+        .seled{border:0px solid #cccccc;background-color:#05017c;}   
+          name {
+  font-family: fzxs15;
+  color:#ffffff;
+  font-size:15px;
+  }   
+  
+  body{ cursor:url("98icon_cursor.ico"),auto;}
+  
+
+
+/*--------------------------------- 右键菜单 ----------------------------------------*/ 
+a:link {color: #000000;text-decoration:none;}
+#ul1{ width:130px; height:90px;  font-family: fzxs15;  color:#000000; padding:10px 3px; background:#e0dace; border-top:2px solid #ffffff; border-bottom:2px solid #626262; border-left:2px solid #ffffff; border-right:2px solid #626262; display:none; position:absolute; left:0;top:0;}  
+#ul1 li{ width:130px; height:28px; line-height:28px; font-size:15px;font-family: fzxs15;  text-align:left; list-style:none}  
+#ul1 li:hover{ background:#000a73;color:#ffffff;}  
+
+
+		
+
+    </style> 
+    
+    
+    <script type="text/javascript">  
+    /*--------------------------------- 右键菜单 ----------------------------------------*/ 
+window.onload=function()  
+{  
+var ul=document.getElementById("ul1")  
+document.oncontextmenu=function(ev)  
+{  
+var ev=ev||window.event  
+var l=ev.clientX  
+var t=ev.clientY  
+ul.style.display="block"  
+ul.style.left=l+'px'  
+ul.style.top=t-16+'px'  
+return false;  
+}  
+document.onclick=function()  
+{  
+ul.style.display="none"  
+}  
+}  
+</script>  
+
+
+
+
+    <script type="text/javascript"> 
+/*--------------------------------- 以下4个方法 摘自网络 ----------------------------------------*/ 
+Array.prototype.remove = function( item ){ 
+        for( var i = 0 ; i < this.length ; i++ ){ 
+            if( item == this[i] ) 
+                break; 
+        } 
+        if( i == this.length ) 
+            return; 
+        for( var j = i ; j < this.length - 1 ; j++ ){ 
+            this[ j ] = this[ j + 1 ]; 
+        } 
+        this.length--; 
+     }     
+     
+String.prototype.replaceAll = function (AFindText,ARepText){ raRegExp = new RegExp(AFindText,"g"); return this.replace(raRegExp,ARepText);} 
+     
+function getAllChildren(e) { 
+return e.all ? e.all : e.getElementsByTagName('*'); 
+} 
+
+document.getElementsBySelector = function(selector) { 
+
+if (!document.getElementsByTagName) { 
+return new Array(); 
+} 
+
+var tokens = selector.split(' '); 
+var currentContext = new Array(document); 
+for (var i = 0; i < tokens.length; i++) { 
+token = tokens[i].replace(/^\s+/,'').replace(/\s+$/,'');; 
+if (token.indexOf('#') > -1) { 
+
+var bits = token.split('#'); 
+var tagName = bits[0]; 
+var id = bits[1]; 
+var element = document.getElementById(id); 
+if (tagName && element.nodeName.toLowerCase() != tagName) { 
+
+return new Array(); 
+} 
+currentContext = new Array(element); 
+continue; 
+} 
+if (token.indexOf('.') > -1) { 
+
+var bits = token.split('.'); 
+var tagName = bits[0]; 
+var className = bits[1]; 
+if (!tagName) { 
+tagName = '*'; 
+} 
+
+var found = new Array; 
+var foundCount = 0; 
+for (var h = 0; h < currentContext.length; h++) { 
+var elements; 
+if (tagName == '*') { 
+elements = getAllChildren(currentContext[h]); 
+} else { 
+elements = currentContext[h].getElementsByTagName(tagName); 
+} 
+for (var j = 0; j < elements.length; j++) { 
+found[foundCount++] = elements[j]; 
+} 
+} 
+currentContext = new Array; 
+var currentContextIndex = 0; 
+for (var k = 0; k < found.length; k++) { 
+if (found[k].className && found[k].className.match(new RegExp('\\b'+className+'\\b'))) { 
+currentContext[currentContextIndex++] = found[k]; 
+} 
+} 
+continue; 
+} 
+if (token.match(/^(\w*)\[(\w+)([=~\|\^\$\*]?)=?"?([^\]"]*)"?\]$/)) { 
+var tagName = RegExp.$1; 
+var attrName = RegExp.$2; 
+var attrOperator = RegExp.$3; 
+var attrValue = RegExp.$4; 
+if (!tagName) { 
+tagName = '*'; 
+} 
+var found = new Array; 
+var foundCount = 0; 
+for (var h = 0; h < currentContext.length; h++) { 
+var elements; 
+if (tagName == '*') { 
+elements = getAllChildren(currentContext[h]); 
+} else { 
+elements = currentContext[h].getElementsByTagName(tagName); 
+} 
+for (var j = 0; j < elements.length; j++) { 
+found[foundCount++] = elements[j]; 
+} 
+} 
+currentContext = new Array; 
+var currentContextIndex = 0; 
+var checkFunction; 
+switch (attrOperator) { 
+case '=': 
+checkFunction = function(e) { return (e.getAttribute(attrName) == attrValue); }; 
+break; 
+case '~': 
+checkFunction = function(e) { return (e.getAttribute(attrName).match(new RegExp('\\b'+attrValue+'\\b'))); }; 
+break; 
+case '|': 
+checkFunction = function(e) { return (e.getAttribute(attrName).match(new RegExp('^'+attrValue+'-?'))); }; 
+break; 
+case '^': 
+checkFunction = function(e) { return (e.getAttribute(attrName).indexOf(attrValue) == 0); }; 
+break; 
+case '$': 
+checkFunction = function(e) { return (e.getAttribute(attrName).lastIndexOf(attrValue) == e.getAttribute(attrName).length - attrValue.length); }; 
+break; 
+case '*': 
+checkFunction = function(e) { return (e.getAttribute(attrName).indexOf(attrValue) > -1); }; 
+break; 
+default : 
+checkFunction = function(e) { return e.getAttribute(attrName); }; 
+} 
+currentContext = new Array; 
+var currentContextIndex = 0; 
+for (var k = 0; k < found.length; k++) { 
+if (checkFunction(found[k])) { 
+currentContext[currentContextIndex++] = found[k]; 
+} 
+} 
+continue; 
+} 
+tagName = token; 
+var found = new Array; 
+var foundCount = 0; 
+for (var h = 0; h < currentContext.length; h++) { 
+var elements = currentContext[h].getElementsByTagName(tagName); 
+for (var j = 0; j < elements.length; j++) { 
+found[foundCount++] = elements[j]; 
+} 
+} 
+currentContext = found; 
+} 
+return currentContext; 
+} 
+
+     
+/*--------------------------------------------------------------------------------------------------------*/ 
+/** 
+* author: 王永山 
+* version: 1.1 beta 
+* date: 2008-09-09 
+* email: [email]wangys0927@163.com[/email] 
+* 
+* update: 
+* 1. 针对前2个beta版，该版本修复了前两个版本出现的 bug ， 
+* 2. 进行了代码的简单封装（由于本人初学js，对js掌握的很浅，因此面向对象的理解很差，封装的不好）； 
+* 3. 增加了对 Ctrl 和 Shift 键的支持(目前shift键的功能和ctrl键的功能一样，还不能达到仿windows的选区Shift键的功能)。 
+* 4. 增加了获取"被选区选中元素"的方法，可以点击按钮"getRegions"看效果。 
+*/ 
+
+
+function addEvent(eventType,eventFunc,eventObj){ 
+     eventObj = eventObj || document; 
+     if(window.attachEvent) eventObj.attachEvent("on"+eventType,eventFunc); 
+if(window.addEventListener) eventObj.addEventListener(eventType,eventFunc,false); 
+} 
+function clearEventBubble(evt){ 
+         evt = evt || window.event; 
+     if (evt.stopPropagation) evt.stopPropagation(); else evt.cancelBubble = true; 
+if (evt.preventDefault) evt.preventDefault(); else evt.returnValue = false; 
+} 
+     
+function posXY(event){ 
+    event = event || window.event; 
+var posX = event.pageX || (event.clientX + 
+            (document.documentElement.scrollLeft || document.body.scrollLeft)); 
+var posY = event.pageY || (event.clientY + 
+            (document.documentElement.scrollTop || document.body.scrollTop)); 
+return {x:posX, y:posY}; 
+} 
+//----------- 区域选择关键方法 ----------------------- 
+    var _selectedRegions = []; 
+    function RegionSelect(selRegionProp){ 
+         this.regions =[]; 
+         var _regions = document.getElementsBySelector(selRegionProp["region"]); 
+         if(_regions && _regions.length > 0){ 
+             var _self = this; 
+              for(var i=0; i< _regions.length;i++){ 
+                      _regions[i].onmousedown = function(){ 
+                              var evt = window.event || arguments[0]; 
+                              if(!evt.shiftKey && !evt.ctrlKey){ 
+                                  // 清空所有select样式 
+                                  _self.clearSelections(_regions); 
+                                  this.className += " "+_self.selectedClass; 
+                                  // 清空selected数组，并加入当前select中的元素 
+                                  _selectedRegions = []; 
+                                  _selectedRegions.push(this); 
+                              }else{ 
+                                  if(this.className.indexOf(_self.selectedClass) == -1){ 
+                                          this.className += " "+_self.selectedClass; 
+                                          _selectedRegions.push(this); 
+                                  }else{ 
+                                       this.className = this.className.replaceAll(_self.selectedClass,""); 
+                                       _selectedRegions.remove(this); 
+                                  } 
+                              } 
+                              clearEventBubble(evt); 
+                      } 
+                      this.regions.push(_regions[i]); 
+              } 
+         } 
+         this.selectedClass = selRegionProp["selectedClass"]; 
+         this.selectedRegion = []; 
+         this.selectDiv = null; 
+         this.startX = null; 
+         this.startY = null; 
+    } 
+     
+    RegionSelect.prototype.select = function(){ 
+        var _self = this; 
+        addEvent("mousedown",function(){ 
+                var evt = window.event || arguments[0]; 
+                _self.onBeforeSelect(evt); 
+                clearEventBubble(evt); 
+        },document); 
+         
+        addEvent("mousemove",function(){ 
+                var evt = window.event || arguments[0]; 
+                _self.onSelect(evt); 
+                clearEventBubble(evt); 
+        },document); 
+         
+        addEvent("mouseup",function(){ 
+                _self.onEnd(); 
+        },document); 
+    } 
+     
+    RegionSelect.prototype.onBeforeSelect = function(evt){ 
+         // 创建模拟 选择框 
+        if(!document.getElementById("selContainer")){ 
+                 this.selectDiv = document.createElement("div"); 
+             this.selectDiv.style.cssText = "position:absolute;width:0px;height:0px;font-size:0px;margin:0px;padding:0px;border:1px dashed #222222;z-index:1000;filter:alpha(opacity:60);opacity:0.6;display:none;"; 
+             this.selectDiv.id = "selContainer"; 
+             document.body.appendChild(this.selectDiv); 
+    }else{ 
+         this.selectDiv = document.getElementById("selContainer"); 
+    } 
+     
+    this.startX = posXY(evt).x; 
+    this.startY = posXY(evt).y; 
+    this.isSelect = true; 
+     
+    } 
+     
+    RegionSelect.prototype.onSelect = function(evt){ 
+         var _self = this; 
+         if(_self.isSelect){ 
+              if(_self.selectDiv.style.display == "none") _self.selectDiv.style.display = ""; 
+               
+          var posX = posXY(evt).x; 
+          var poxY = posXY(evt).y; 
+          
+          _self.selectDiv.style.left = Math.min(posX, this.startX); 
+             _self.selectDiv.style.top = Math.min(poxY, this.startY); 
+             _self.selectDiv.style.width = Math.abs(posX - this.startX); 
+             _self.selectDiv.style.height = Math.abs(poxY - this.startY);     
+              
+             var regionList = _self.regions; 
+             for(var i=0; i< regionList.length; i++){ 
+                  var r = regionList[i], sr = _self.innerRegion(_self.selectDiv,r); 
+                  if(sr && r.className.indexOf(_self.selectedClass) == -1){ 
+                       r.className = r.className + " "+_self.selectedClass;     
+                       _selectedRegions.push(r); 
+                  }else if(!sr && r.className.indexOf(_self.selectedClass) != -1){ 
+                       r.className = r.className.replaceAll(_self.selectedClass,""); 
+                       _selectedRegions.remove(r); 
+                      } 
+                  
+             } 
+    } 
+    } 
+     
+    RegionSelect.prototype.onEnd = function(){ 
+        if(this.selectDiv){ 
+             this.selectDiv.style.display = "none";     
+        } 
+        this.isSelect = false; 
+        //_selectedRegions = this.selectedRegion; 
+    } 
+     
+    // 判断一个区域是否在选择区内 
+    RegionSelect.prototype.innerRegion = function(selDiv, region){ 
+         var s_top = parseInt(selDiv.style.top); 
+         var s_left = parseInt(selDiv.style.left); 
+         var s_right = s_left + parseInt(selDiv.offsetWidth); 
+         var s_bottom = s_top + parseInt(selDiv.offsetHeight); 
+         
+         var r_top = parseInt(region.offsetTop); 
+         var r_left = parseInt(region.offsetLeft); 
+         var r_right = r_left + parseInt(region.offsetWidth); 
+         var r_bottom = r_top + parseInt(region.offsetHeight); 
+         
+     var t = Math.max(s_top, r_top); 
+var r = Math.min(s_right, r_right); 
+var b = Math.min(s_bottom, r_bottom); 
+var l = Math.max(s_left, r_left); 
+     
+if (b > t+5 && r > l+5) { 
+return region; 
+} else { 
+return null; 
+} 
+         
+    } 
+     
+    RegionSelect.prototype.clearSelections = function(regions){ 
+        for(var i=0; i<regions.length;i++){ 
+            regions[i].className = regions[i].className.replaceAll(this.selectedClass,""); 
+        } 
+    } 
+     
+    function getSelectedRegions(){ 
+        return     _selectedRegions; 
+    } 
+/*-------------------------------------- 区域选择方法结束 --------------------------------------------*/ 
+     
+    function showSelDiv(){ 
+         var selInfo = ""; 
+         var arr = getSelectedRegions(); 
+         for(var i=0; i<arr.length;i++){ 
+                   selInfo += arr[i].innerHTML+"\n"; 
+         } 
+
+         alert("共选择 "+arr.length+" 个文件，分别是：\n"+selInfo); 
+         
+    } 
+     
+        </script>     
+
+
+    <body> 
+
+    <ul id="ul1">  
+<a href="desktop.html"><li>　刷新</li></a>
+<a href="http://tonoko.moe/"><li>　断开连接</li></a>
+<li><p style="color:#777777;">　Calicomp System</p></li> 
+</ul>  
+
+<div class="fileDiv"><img src="98icon_server.png"/><br><name>tonoko</name></div> <br><br><br><br><br>
+<div class="fileDiv"><img src="98icon_mail.png"/><br><name>Calicomp</name></div>
+<div class="fileDiv"><img src="98icon_lock.png"/><br><name>HeartLock</name></div><br><br><br><br><br>
+<div class="fileDiv"><img src="98icon_document.png"/><br><name>System</name></div>
+<div class="fileDiv"><img src="98icon_document.png"/><br><name>Archive</name></div><br><br><br><br><br>
+<div class="fileDiv"><img src="98icon_search.png"/><br><name>Search</name></div>
+<div class="fileDiv"><a href="../../progressbar/index.html" target="_blank"><img src="98icon_progress.png"/><br><name>Progress.exe</name></a></div><br><br><br><br><br>
+<div class="fileDiv"><img src="98icon_duck.png"/><br><name>duck.exe</name></div>
+<div class="fileDiv"><img src="98icon_filter.png"/><br><name>filter.exe</name></div>
+<div class="fileDiv"><img src="98icon_note.png"/><br><name>Note.exe</name></div> <br><br><br><br><br>
+<div class="fileDiv"><a href="wallpaper/Rem.png" target="_blank"><img src="98icon_bmp.png"/><br><name>Rem.bmp</name></a></div>
+<div class="fileDiv"><a href="wallpaper/Dorothy.png" target="_blank"><img src="98icon_bmp.png"/><br><name>Dorothy.bmp</name></a></div>
+<div class="fileDiv"><a href="wallpaper/MikuDuck.png" target="_blank"><img src="98icon_bmp.png"/><br><name>MikuDuck.bmp</name></a></div>
+<div class="fileDiv"><a href="wallpaper/MikuSea.png" target="_blank"><img src="98icon_bmp.png"/><br><name>MikuSea.bmp</name></a></div>
+<div class="fileDiv"><a href="wallpaper/Stillgirl.png" target="_blank"><img src="98icon_bmp.png"/><br><name>Stillgirl.bmp</name></a></div>
+<br><br><br><br><br>
+<div class="fileDiv"><a href="wallpaper/Tsuki.png" target="_blank"><img src="98icon_bmp.png"/><br><name>Tsuki.bmp</name></a></div>
+<br><br><br><br><br>
+
+
+
+    </body>     
+    <script> 
+new RegionSelect({ 
+    region:'div.fileDiv', 
+    selectedClass: 'seled' 
+}).select(); 
+    </script> 
+</html>
