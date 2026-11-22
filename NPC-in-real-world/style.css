@@ -6,48 +6,61 @@
 
 :root {
   color-scheme: light;
-  background: #f4eddd;
+  background: #f4efe5;
   color: #352c21;
   font-family: "LXGW WenKai", "Kaiti SC", KaiTi, STKaiti, serif;
   font-size: 100%;
-  --card-gap: clamp(0.8rem, 2vw, 1.2rem);
-  --pad-x: clamp(1.15rem, 5vw, 2.5rem);
-  --pad-y: clamp(1.05rem, 3vw, 1.55rem);
+  --card-gap: clamp(1rem, 2vw, 1.65rem);
+  --pad-x: clamp(1.15rem, 2.1vw, 1.85rem);
+  --pad-y: clamp(1.05rem, 2vw, 1.5rem);
   --copy-size: clamp(1.045rem, 1rem + 0.15vw, 1.08rem);
 }
 
 body { margin: 0; }
 .sheet {
-  width: min(100% - clamp(1.5rem, 8vw, 5rem), 43rem);
+  width: min(100% - clamp(2rem, 8vw, 9rem), 96rem);
   margin: 0 auto;
   padding: clamp(1.5rem, 5vw, 3rem) 0 3rem;
   font-size: var(--copy-size);
   line-height: 1.78;
 }
-.updated {
-  margin: 0 0 1.25rem;
+.updated, .closing {
   color: #6f604e;
   font-size: 0.875rem;
   line-height: 1.5;
   text-align: center;
   font-variant-numeric: tabular-nums;
 }
+.updated {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.25em 1.2em;
+  margin: 0 0 clamp(1.2rem, 3vw, 2rem);
+}
+.closing { margin: 2.5rem 0 0; font-size: 1.05rem; }
 
 .card {
+  --paper: #f8efd7;
   position: relative;
   box-sizing: border-box;
-  margin: 0 0 var(--card-gap);
+  min-width: 0;
+  margin-top: var(--note-offset, 0px);
   padding: var(--pad-y) var(--pad-x);
-  border: 1px solid #e6dac4;
-  border-radius: 0.65rem;
-  background: linear-gradient(165deg, #fffaf0, #fdf5e7);
-  box-shadow: 0 2px 4px #5b401016, inset 0 1px #fffdf8;
+  border: 1px solid color-mix(in srgb, var(--paper), #88745d 13%);
+  border-radius: 0.3rem 0.34rem 0.55rem 0.35rem;
+  background: linear-gradient(173deg, #ffffff70, transparent 32%), var(--paper);
+  box-shadow: 0 2px 4px #5b40101a, inset 0 1px #ffffff9e;
   font-size: calc(1em * var(--size-factor, 1));
   line-break: strict;
   word-break: normal;
   overflow-wrap: anywhere;
   text-wrap: pretty;
 }
+.card[data-tint="1"] { --paper: #f6e4e3; }
+.card[data-tint="2"] { --paper: #e8eee0; }
+.card[data-tint="3"] { --paper: #ebe7f4; }
+.card[data-tint="4"] { --paper: #f6e7da; }
 .card--balance { text-wrap: balance; }
 .card > :first-child { margin-top: 0; }
 .card > :last-child { margin-bottom: 0; }
@@ -64,28 +77,61 @@ body { margin: 0; }
 .card a:focus-visible { outline: 2px solid #956d3b; outline-offset: 3px; }
 ::selection { background: #ecd3a1; }
 
-#cards.virtual { position: relative; overflow-anchor: none; row-gap: var(--card-gap); }
-.virtual > .card {
+.remaining, #cards:not(.virtual), .note-row {
+  display: grid;
+  align-items: start;
+  gap: var(--card-gap);
+}
+.remaining, #cards:not(.virtual) {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+}
+.remaining { margin-top: var(--card-gap); }
+#cards {
+  --note-columns: 3;
+  row-gap: var(--card-gap);
+}
+#cards.virtual { position: relative; overflow-anchor: none; }
+.note-row {
   position: absolute;
   inset: 0 0 auto;
-  margin: 0;
+}
+
+@media (max-width: 70rem) { #cards { --note-columns: 2; } }
+@media (max-width: 45rem) {
+  #cards { --note-columns: 1; }
+  .card { margin-top: 0; }
+  .remaining, #cards:not(.virtual) { grid-template-columns: 1fr; }
 }
 
 @media screen and (hover: hover) and (pointer: fine) {
-  .card { transition: transform 180ms ease-out, box-shadow 180ms ease-out; }
+  .card { transition: transform 280ms cubic-bezier(.2, .75, .3, 1); }
+  .card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    box-shadow: 0 5px 9px #4d361428, 0 18px 28px #4d36142c;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 320ms ease;
+  }
   .card:hover {
     z-index: 1;
-    transform: translateY(-3px);
-    box-shadow: 0 3px 6px #5b401022, 0 13px 24px #5b401026, inset 0 1px #fffdf8;
+    transform: translateY(-4px);
   }
+  .card:hover::after { opacity: 1; }
 }
 
+.auto-scrolling, .auto-scrolling * { cursor: all-scroll !important; }
+
 @media (prefers-reduced-motion: reduce) {
-  .card { transition: none; }
+  .card, .card::after { transition: none; }
+  .card:hover { transform: none; }
 }
 
 @media print {
   :root { background: white; }
   .sheet { width: 100%; padding: 0; }
+  #cards:not(.virtual) { grid-template-columns: 1fr; }
   .card { break-inside: avoid; box-shadow: none; }
 }
