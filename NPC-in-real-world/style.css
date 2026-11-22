@@ -6,26 +6,26 @@
 
 :root {
   color-scheme: light;
-  background: #f4efe5;
-  color: #352c21;
+  background: #e5e5e5 url("data:image/png;base64,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") repeat;
+  color: #292929;
   font-family: "LXGW WenKai", "Kaiti SC", KaiTi, STKaiti, serif;
   font-size: 100%;
-  --card-gap: clamp(1rem, 2vw, 1.65rem);
-  --pad-x: clamp(1.15rem, 2.1vw, 1.85rem);
-  --pad-y: clamp(1.05rem, 2vw, 1.5rem);
+  --card-gap: clamp(0.65rem, 1.1vw, 1rem);
+  --pad-x: clamp(0.9rem, 1.3vw, 1.25rem);
+  --pad-y: clamp(0.85rem, 1.15vw, 1.125rem);
   --copy-size: clamp(1.045rem, 1rem + 0.15vw, 1.08rem);
 }
 
 body { margin: 0; }
 .sheet {
-  width: min(100% - clamp(2rem, 8vw, 9rem), 96rem);
+  width: min(100% - clamp(1.25rem, 4vw, 4rem), 104rem);
   margin: 0 auto;
-  padding: clamp(1.5rem, 5vw, 3rem) 0 3rem;
+  padding: clamp(1.1rem, 3vw, 2rem) 0 2rem;
   font-size: var(--copy-size);
   line-height: 1.78;
 }
 .updated, .closing {
-  color: #6f604e;
+  color: #5e5e5e;
   font-size: 0.875rem;
   line-height: 1.5;
   text-align: center;
@@ -36,46 +36,39 @@ body { margin: 0; }
   flex-wrap: wrap;
   justify-content: center;
   gap: 0.25em 1.2em;
-  margin: 0 0 clamp(1.2rem, 3vw, 2rem);
+  margin: 0 0 clamp(0.8rem, 1.8vw, 1.35rem);
 }
 .closing { margin: 2.5rem 0 0; font-size: 1.05rem; }
 
 .card {
-  --paper: #f8efd7;
   position: relative;
   box-sizing: border-box;
   min-width: 0;
-  margin-top: var(--note-offset, 0px);
   padding: var(--pad-y) var(--pad-x);
-  border: 1px solid color-mix(in srgb, var(--paper), #88745d 13%);
-  border-radius: 0.3rem 0.34rem 0.55rem 0.35rem;
-  background: var(--paper);
-  box-shadow: 0 2px 4px #5b40101a, inset 0 1px #ffffff9e;
+  border: 1px solid #d8d8d8;
+  border-radius: 0.3rem;
+  background: #f6f6f6;
+  box-shadow: 0 1px 2px #0000000d;
   font-size: calc(1em * var(--size-factor, 1));
   line-break: strict;
   word-break: normal;
   overflow-wrap: anywhere;
   text-wrap: pretty;
 }
-.card[data-tint="1"] { --paper: #f6e4e3; }
-.card[data-tint="2"] { --paper: #e8eee0; }
-.card[data-tint="3"] { --paper: #ebe7f4; }
-.card[data-tint="4"] { --paper: #f6e7da; }
-.card--balance { text-wrap: balance; }
 .card > :first-child { margin-top: 0; }
 .card > :last-child { margin-bottom: 0; }
 .card p, .card pre, .card blockquote, .card ul, .card ol { margin: 0.65em 0; }
 .card h1, .card h2, .card h3, .card h4, .card h5, .card h6 { font-size: inherit; }
 .card ul, .card ol { padding-inline-start: 1.35em; }
 .card blockquote {
-  border-inline-start: 2px solid #d8c8ad;
+  border-inline-start: 2px solid #cdcdcd;
   padding-inline-start: 0.8em;
 }
 .card pre { white-space: pre-wrap; text-wrap: wrap; }
 .card code { font: inherit; }
-.card a { color: #76552d; text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
-.card a:focus-visible { outline: 2px solid #956d3b; outline-offset: 3px; }
-::selection { background: #ecd3a1; }
+.card a { color: #505050; text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
+.card a:focus-visible { outline: 2px solid #707070; outline-offset: 3px; }
+::selection { background: #d4d4d4; }
 
 .remaining, #cards:not(.virtual) {
   columns: 3 18rem;
@@ -99,7 +92,6 @@ body { margin: 0; }
 @media (max-width: 70rem) { #cards { --note-columns: 2; } }
 @media (max-width: 45rem) {
   #cards { --note-columns: 1; }
-  .card { margin-top: 0; }
   .remaining, #cards:not(.virtual) { columns: 1; }
 }
 
@@ -110,7 +102,7 @@ body { margin: 0; }
     position: absolute;
     inset: 0;
     border-radius: inherit;
-    box-shadow: 0 5px 9px #4d361428, 0 18px 28px #4d36142c;
+    box-shadow: 0 4px 8px #00000019, 0 16px 25px #00000021;
     opacity: 0;
     pointer-events: none;
     transition: opacity 320ms ease;

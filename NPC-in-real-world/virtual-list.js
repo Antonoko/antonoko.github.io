@@ -42,14 +42,11 @@ class Heights {
 }
 
 function makeCard(index) {
-  const [html, lines, factor, , tint, offset] = data[index];
+  const [html, , factor] = data[index];
   const card = document.createElement("article");
   card.className = "card";
-  card.classList.toggle("card--balance", lines.length === 1 && lines[0] <= 90);
   card.dataset.index = index;
-  card.dataset.tint = tint;
   card.style.setProperty("--size-factor", factor);
-  card.style.setProperty("--note-offset", offset + "px");
   card.innerHTML = html;
   return card;
 }
@@ -59,19 +56,16 @@ function makeCard(index) {
 function buildColumns(entries, { count, boardWidth, gap, fontSize, lineHeight, padX, padY }) {
   const columnWidth = (boardWidth - gap * (count - 1)) / count;
   const columns = Array.from({length: count}, () => ({ indices: [], estimates: [], total: 0 }));
-  const positions = entries.map(([, lines, scale, weight, , offset], index) => {
+  const positions = entries.map(([, lines, scale], index) => {
     let lane = 0;
     for (let i = 1; i < count; i++) {
       if (columns[i].total < columns[lane].total) lane = i;
     }
     const column = columns[lane];
-    const widthFactor = count === 1 ? 1 : 0.84 + 0.16 * Math.min(1, (weight - 0.84) / 0.86);
-    const width = columnWidth * widthFactor;
-    const left = lane * (columnWidth + gap) + (columnWidth - width) * offset / 9;
-    const charactersPerLine = Math.max(1, (width - padX) / (fontSize * scale));
+    const charactersPerLine = Math.max(1, (columnWidth - padX) / (fontSize * scale));
     const lineCount = Math.max(1, lines.reduce((total, line) => total + Math.ceil(line / charactersPerLine), 0));
     const height = padY + lineCount * lineHeight * scale + gap;
-    const position = { lane, slot: column.indices.length, width, left };
+    const position = { lane, slot: column.indices.length };
     column.indices.push(index);
     column.estimates.push(height);
     column.total += height;
@@ -81,7 +75,7 @@ function buildColumns(entries, { count, boardWidth, gap, fontSize, lineHeight, p
   for (const column of columns) {
     if (column.indices.length) column.heights = new Heights(Float64Array.from(column.estimates));
   }
-  return { columns, positions };
+  return { columns, positions, columnWidth };
 }
 
 function virtualize(list, entries) {
@@ -192,9 +186,9 @@ function virtualize(list, entries) {
         mounted.set(index, card);
         observer.observe(card);
       }
-      const { width, left } = layout.positions[index];
-      card.style.width = width + "px";
-      card.style.left = left + "px";
+      const { lane } = layout.positions[index];
+      card.style.width = layout.columnWidth + "px";
+      card.style.left = lane * (layout.columnWidth + gap) + "px";
       card.style.top = topOf(index) + "px";
       next = card;
     }
