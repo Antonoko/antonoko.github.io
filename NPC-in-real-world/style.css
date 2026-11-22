@@ -13,7 +13,6 @@
   --card-gap: clamp(0.65rem, 1.1vw, 1rem);
   --pad-x: clamp(0.9rem, 1.3vw, 1.25rem);
   --pad-y: clamp(0.85rem, 1.15vw, 1.125rem);
-  --copy-size: clamp(1.045rem, 1rem + 0.15vw, 1.08rem);
 }
 
 body { margin: 0; }
@@ -21,7 +20,7 @@ body { margin: 0; }
   width: min(100% - clamp(1.25rem, 4vw, 4rem), 104rem);
   margin: 0 auto;
   padding: clamp(1.1rem, 3vw, 2rem) 0 2rem;
-  font-size: var(--copy-size);
+  font-size: 1rem;
   line-height: 1.78;
 }
 .updated, .closing {
