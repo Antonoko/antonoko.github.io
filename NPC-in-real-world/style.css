@@ -21,7 +21,7 @@ body { margin: 0; }
   margin: 0 auto;
   padding: clamp(1.1rem, 3vw, 2rem) 0 2rem;
   font-size: 1rem;
-  line-height: 1.78;
+  line-height: 1.7;
 }
 .updated, .closing {
   color: #5e5e5e;
@@ -48,7 +48,7 @@ body { margin: 0; }
   border-radius: 0.3rem;
   background: #f6f6f6;
   box-shadow: 0 1px 2px #0000000d;
-  font-size: calc(1em * var(--size-factor, 1));
+  font-size: calc(1rem * var(--size-factor, 1));
   line-break: strict;
   word-break: normal;
   overflow-wrap: anywhere;
