@@ -13,8 +13,7 @@
   --card-gap: clamp(0.8rem, 2vw, 1.2rem);
   --pad-x: clamp(1.15rem, 5vw, 2.5rem);
   --pad-y: clamp(1.05rem, 3vw, 1.55rem);
-  --copy-size: clamp(1.15rem, 0.98rem + 0.38vw, 1.3rem);
-  --copy-leading: 1.75;
+  --copy-size: clamp(1.045rem, 1rem + 0.15vw, 1.08rem);
 }
 
 body { margin: 0; }
@@ -22,6 +21,8 @@ body { margin: 0; }
   width: min(100% - clamp(1.5rem, 8vw, 5rem), 43rem);
   margin: 0 auto;
   padding: clamp(1.5rem, 5vw, 3rem) 0 3rem;
+  font-size: var(--copy-size);
+  line-height: 1.78;
 }
 .updated {
   margin: 0 0 1.25rem;
@@ -33,6 +34,7 @@ body { margin: 0; }
 }
 
 .card {
+  position: relative;
   box-sizing: border-box;
   margin: 0 0 var(--card-gap);
   padding: var(--pad-y) var(--pad-x);
@@ -40,11 +42,13 @@ body { margin: 0; }
   border-radius: 0.65rem;
   background: linear-gradient(165deg, #fffaf0, #fdf5e7);
   box-shadow: 0 2px 4px #5b401016, inset 0 1px #fffdf8;
-  font-size: var(--copy-size);
-  line-height: var(--copy-leading);
+  font-size: calc(1em * var(--size-factor, 1));
   line-break: strict;
+  word-break: normal;
   overflow-wrap: anywhere;
+  text-wrap: pretty;
 }
+.card--balance { text-wrap: balance; }
 .card > :first-child { margin-top: 0; }
 .card > :last-child { margin-bottom: 0; }
 .card p, .card pre, .card blockquote, .card ul, .card ol { margin: 0.65em 0; }
@@ -54,7 +58,7 @@ body { margin: 0; }
   border-inline-start: 2px solid #d8c8ad;
   padding-inline-start: 0.8em;
 }
-.card pre { white-space: pre-wrap; }
+.card pre { white-space: pre-wrap; text-wrap: wrap; }
 .card code { font: inherit; }
 .card a { color: #76552d; text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
 .card a:focus-visible { outline: 2px solid #956d3b; outline-offset: 3px; }
@@ -65,6 +69,19 @@ body { margin: 0; }
   position: absolute;
   inset: 0 0 auto;
   margin: 0;
+}
+
+@media screen and (hover: hover) and (pointer: fine) {
+  .card { transition: transform 180ms ease-out, box-shadow 180ms ease-out; }
+  .card:hover {
+    z-index: 1;
+    transform: translateY(-3px);
+    box-shadow: 0 3px 6px #5b401022, 0 13px 24px #5b401026, inset 0 1px #fffdf8;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card { transition: none; }
 }
 
 @media print {

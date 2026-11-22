@@ -62,10 +62,13 @@ function virtualize(list, data) {
   let printing = false;
 
   function makeCard(index) {
+    const [html, lines, factor] = data[index];
     const card = document.createElement("article");
     card.className = "card";
+    card.classList.toggle("card--balance", lines.length === 1 && lines[0] <= 90);
     card.dataset.index = index;
-    card.innerHTML = data[index][0];
+    card.style.setProperty("--size-factor", factor);
+    card.innerHTML = html;
     return card;
   }
 
@@ -82,21 +85,23 @@ function virtualize(list, data) {
     const atEnd = pageEnd > 0 && scrollY >= pageEnd - 2;
     const sample = mounted.values().next().value;
     const style = getComputedStyle(sample);
-    const gap = parseFloat(getComputedStyle(list).rowGap);
+    const listStyle = getComputedStyle(list);
+    const gap = parseFloat(listStyle.rowGap);
     const width = list.clientWidth;
-    const lineHeight = parseFloat(style.lineHeight);
+    const fontSize = parseFloat(listStyle.fontSize);
+    const lineHeight = parseFloat(listStyle.lineHeight);
     const innerWidth = width - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight) - 2;
     const padding = parseFloat(style.paddingTop) + parseFloat(style.paddingBottom) + 2;
-    const key = [width, lineHeight, padding, gap].join();
+    const key = [innerWidth, fontSize, lineHeight, padding, gap].join();
     const anchor = heights?.at(scrollY - top) ?? 0;
     const before = heights?.offset(anchor) ?? 0;
 
     if (key !== layoutKey) {
       // Seed unknown heights from the content's line widths, then measure the real cards.
-      const columns = Math.max(1, innerWidth / parseFloat(style.fontSize));
-      heights = new Heights(Float64Array.from(data, ([, lines]) => {
+      heights = new Heights(Float64Array.from(data, ([, lines, factor]) => {
+        const columns = Math.max(1, innerWidth / (fontSize * factor));
         const rows = lines.reduce((sum, line) => sum + Math.max(1, Math.ceil(line / columns)), 0);
-        return padding + rows * lineHeight + gap;
+        return padding + rows * lineHeight * factor + gap;
       }));
       layoutKey = key;
       pending.clear();
