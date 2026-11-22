@@ -54,61 +54,69 @@ function makeCard(index) {
   return card;
 }
 
-function defineRows(entries, columns) {
-  const rows = [];
-  const rowOfCard = new Int32Array(entries.length);
-  for (let start = 0; start < entries.length;) {
-    let count = Math.min(columns, entries.length - start);
-    if (count === 3 && entries.slice(start, start + count).some(entry => entry[3] > 1.53)) {
-      count = 2;
+// Assign each note to the shortest estimated column. Actual heights are
+// measured independently per column, so a long note cannot push its neighbors down.
+function buildColumns(entries, { count, boardWidth, gap, fontSize, lineHeight, padX, padY }) {
+  const columnWidth = (boardWidth - gap * (count - 1)) / count;
+  const columns = Array.from({length: count}, () => ({ indices: [], estimates: [], total: 0 }));
+  const positions = entries.map(([, lines, scale, weight, , offset], index) => {
+    let lane = 0;
+    for (let i = 1; i < count; i++) {
+      if (columns[i].total < columns[lane].total) lane = i;
     }
-    const weights = entries.slice(start, start + count).map(entry => Math.max(1, entry[3]));
-    rowOfCard.fill(rows.length, start, start + count);
-    rows.push({ start, weights });
-    start += count;
+    const column = columns[lane];
+    const widthFactor = count === 1 ? 1 : 0.84 + 0.16 * Math.min(1, (weight - 0.84) / 0.86);
+    const width = columnWidth * widthFactor;
+    const left = lane * (columnWidth + gap) + (columnWidth - width) * offset / 9;
+    const charactersPerLine = Math.max(1, (width - padX) / (fontSize * scale));
+    const lineCount = Math.max(1, lines.reduce((total, line) => total + Math.ceil(line / charactersPerLine), 0));
+    const height = padY + lineCount * lineHeight * scale + gap;
+    const position = { lane, slot: column.indices.length, width, left };
+    column.indices.push(index);
+    column.estimates.push(height);
+    column.total += height;
+    return position;
+  });
+
+  for (const column of columns) {
+    if (column.indices.length) column.heights = new Heights(Float64Array.from(column.estimates));
   }
-  return { rows, rowOfCard };
+  return { columns, positions };
 }
 
 function virtualize(list, entries) {
-  if (entries.length === 0) return;
-
-  const initial = new Map([...list.children].map(card => [Number(card.dataset.index), card]));
-  const mounted = new Map();
+  if (!entries.length) return;
+  const mounted = new Map([...list.children].map(card => [Number(card.dataset.index), card]));
   const pending = new Map();
   const observer = new ResizeObserver(changes => {
     for (const entry of changes) {
-      const row = Number(entry.target.dataset.row);
-      if (mounted.get(row) === entry.target) {
-        pending.set(row, entry.borderBoxSize[0].blockSize);
-      }
+      const index = Number(entry.target.dataset.index);
+      if (mounted.get(index) === entry.target) pending.set(index, entry.borderBoxSize[0].blockSize);
     }
     schedule();
   });
 
-  let rows, rowOfCard, heights, layoutKey, rowColumns;
-  let frame = 0;
+  let layout, layoutKey, frame = 0, savedScroll = 0;
   let printing = false;
-  let savedScroll = 0;
 
-  function makeRow(index) {
-    const { start, weights } = rows[index];
-    const row = document.createElement("div");
-    row.className = "note-row";
-    row.dataset.row = index;
-    row.style.gridTemplateColumns = weights.map(weight => `minmax(0, ${weight}fr)`).join(" ");
-    for (let card = start; card < start + weights.length; card++) {
-      row.append(initial.get(card) ?? makeCard(card));
-      initial.delete(card);
-    }
-    return row;
+  function topOf(index) {
+    const { lane, slot } = layout.positions[index];
+    return layout.columns[lane].heights.offset(slot);
   }
 
-  function clearRows() {
-    observer.disconnect();
-    mounted.clear();
-    pending.clear();
-    list.replaceChildren();
+  function anchorAt(y) {
+    let nearest = 0;
+    let distance = Infinity;
+    for (const { indices, heights } of layout.columns) {
+      if (!heights || y >= heights.offset(indices.length)) continue;
+      const slot = heights.at(y);
+      const difference = Math.abs(y - heights.offset(slot));
+      if (difference < distance) {
+        nearest = indices[slot];
+        distance = difference;
+      }
+    }
+    return nearest;
   }
 
   function schedule() {
@@ -121,80 +129,86 @@ function virtualize(list, entries) {
     const top = list.getBoundingClientRect().top + scrollY;
     const viewport = window.innerHeight;
     const pageEnd = document.documentElement.scrollHeight - viewport;
-    const atEnd = Boolean(heights) && pageEnd > 0 && scrollY >= pageEnd - 2;
-    const anchor = heights?.at(scrollY - top) ?? 0;
-    const anchorCard = rows?.[anchor].start ?? 0;
-    const before = heights?.offset(anchor) ?? 0;
+    const atEnd = Boolean(layout) && pageEnd > 0 && scrollY >= pageEnd - 2;
+    const anchor = layout ? anchorAt(scrollY - top) : 0;
+    const previousTop = layout ? topOf(anchor) : 0;
 
     const style = getComputedStyle(list);
-    const width = list.clientWidth;
     const gap = parseFloat(style.rowGap);
-    const columns = Number(style.getPropertyValue("--note-columns"));
+    const boardWidth = list.clientWidth;
+    const count = Number(style.getPropertyValue("--note-columns"));
     const fontSize = parseFloat(style.fontSize);
     const lineHeight = parseFloat(style.lineHeight);
-    const key = [width, gap, columns, fontSize, lineHeight].join();
+    const key = [boardWidth, gap, count, fontSize, lineHeight].join();
+    const resized = key !== layoutKey;
 
-    if (key !== layoutKey) {
+    if (resized) {
       const sample = list.querySelector(".card");
       const cardStyle = sample && getComputedStyle(sample);
       const padX = cardStyle ? parseFloat(cardStyle.paddingLeft) * 2 + 2 : 48;
       const padY = cardStyle ? parseFloat(cardStyle.paddingTop) * 2 + 2 : 42;
-      if (columns !== rowColumns) {
-        ({ rows, rowOfCard } = defineRows(entries, columns));
-        rowColumns = columns;
-        clearRows();
-      }
-
-      heights = new Heights(Float64Array.from(rows, ({ start, weights }) => {
-        const available = width - gap * (weights.length - 1);
-        const totalWeight = weights.reduce((total, weight) => total + weight, 0);
-        return gap + Math.max(...weights.map((weight, relative) => {
-          const [, lines, factor, , , offset] = entries[start + relative];
-          const characters = Math.max(1, (available * weight / totalWeight - padX) / (fontSize * factor));
-          const linesNeeded = lines.reduce((total, line) => total + Math.max(1, Math.ceil(line / characters)), 0);
-          return padY + linesNeeded * lineHeight * factor + (columns === 1 ? 0 : offset);
-        }));
-      }));
+      layout = buildColumns(entries, { count, boardWidth, gap, fontSize, lineHeight, padX, padY });
       layoutKey = key;
       pending.clear();
-      for (const [index, row] of mounted) pending.set(index, row.getBoundingClientRect().height);
     }
 
-    for (const [index, height] of pending) heights.measure(index, height + gap);
+    for (const [index, height] of pending) {
+      const { lane, slot } = layout.positions[index];
+      layout.columns[lane].heights.measure(slot, height + gap);
+    }
     pending.clear();
-    list.style.height = heights.offset(rows.length) - gap + "px";
+    const maxHeight = Math.max(...layout.columns.map(({ indices, heights }) => heights?.offset(indices.length) ?? 0));
+    list.style.height = maxHeight - gap + "px";
 
-    const delta = heights.offset(rowOfCard[anchorCard]) - before;
-    const desired = atEnd ? document.documentElement.scrollHeight - viewport : scrollY + delta;
+    const desired = atEnd ? document.documentElement.scrollHeight - viewport : scrollY + topOf(anchor) - previousTop;
     if (!isAutoScrolling() && Math.abs(scrollY - desired) >= 1) window.scrollTo(0, desired);
 
     const offset = window.scrollY - top;
-    const first = heights.at(offset - viewport);
-    const last = heights.at(offset + viewport * 2);
-    const focused = document.activeElement?.closest(".note-row");
-    for (const [index, row] of mounted) {
-      if ((index < first || index > last) && row !== focused) {
-        observer.unobserve(row);
+    const wanted = new Set();
+    for (const { indices, heights } of layout.columns) {
+      if (!heights || offset - viewport > heights.offset(indices.length)) continue;
+      const first = heights.at(offset - viewport);
+      const last = heights.at(offset + viewport * 2);
+      for (let slot = first; slot <= last; slot++) wanted.add(indices[slot]);
+    }
+
+    const focused = document.activeElement?.closest(".card");
+    if (focused?.parentElement === list) wanted.add(Number(focused.dataset.index));
+    for (const [index, card] of mounted) {
+      if (!wanted.has(index)) {
+        observer.unobserve(card);
         mounted.delete(index);
-        row.remove();
+        card.remove();
       }
     }
 
-    let next = focused && Number(focused.dataset.row) > last ? focused : null;
-    for (let index = last; index >= first; index--) {
-      let row = mounted.get(index);
-      if (!row) {
-        row = makeRow(index);
-        list.insertBefore(row, next);
-        mounted.set(index, row);
-        observer.observe(row);
+    // Keep DOM and keyboard order consistent with the source.
+    let next = null;
+    for (const index of [...wanted].sort((a, b) => b - a)) {
+      let card = mounted.get(index);
+      if (!card) {
+        card = makeCard(index);
+        list.insertBefore(card, next);
+        mounted.set(index, card);
+        observer.observe(card);
       }
-      next = row;
+      const { width, left } = layout.positions[index];
+      card.style.width = width + "px";
+      card.style.left = left + "px";
+      card.style.top = topOf(index) + "px";
+      next = card;
     }
-    for (const [index, row] of mounted) row.style.top = heights.offset(index) + "px";
+
+    if (resized) {
+      // Re-read all mounted heights on a width change, even if a card's height
+      // happens to stay the same and ResizeObserver has nothing new to report.
+      for (const [index, card] of mounted) pending.set(index, card.getBoundingClientRect().height);
+      schedule();
+    }
   }
 
   list.classList.add("virtual");
+  for (const card of mounted.values()) observer.observe(card);
   const size = new ResizeObserver(schedule);
   size.observe(list);
   window.addEventListener("scroll", schedule, { passive: true });
@@ -207,19 +221,21 @@ function virtualize(list, entries) {
     savedScroll = window.scrollY;
     cancelAnimationFrame(frame);
     frame = 0;
-    clearRows();
+    observer.disconnect();
+    mounted.clear();
+    pending.clear();
     list.classList.remove("virtual");
     list.style.height = "";
     const all = document.createDocumentFragment();
     for (let i = 0; i < entries.length; i++) all.append(makeCard(i));
-    list.append(all);
+    list.replaceChildren(all);
   });
   window.addEventListener("afterprint", () => {
     if (!printing) return;
     printing = false;
     list.classList.add("virtual");
     list.replaceChildren();
-    list.style.height = heights.offset(rows.length) + "px";
+    list.style.height = Math.max(...layout.columns.map(({ indices, heights }) => heights?.offset(indices.length) ?? 0)) + "px";
     window.scrollTo(0, savedScroll);
     render();
   });

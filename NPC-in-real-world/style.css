@@ -49,7 +49,7 @@ body { margin: 0; }
   padding: var(--pad-y) var(--pad-x);
   border: 1px solid color-mix(in srgb, var(--paper), #88745d 13%);
   border-radius: 0.3rem 0.34rem 0.55rem 0.35rem;
-  background: linear-gradient(173deg, #ffffff70, transparent 32%), var(--paper);
+  background: var(--paper);
   box-shadow: 0 2px 4px #5b40101a, inset 0 1px #ffffff9e;
   font-size: calc(1em * var(--size-factor, 1));
   line-break: strict;
@@ -77,30 +77,30 @@ body { margin: 0; }
 .card a:focus-visible { outline: 2px solid #956d3b; outline-offset: 3px; }
 ::selection { background: #ecd3a1; }
 
-.remaining, #cards:not(.virtual), .note-row {
-  display: grid;
-  align-items: start;
-  gap: var(--card-gap);
-}
 .remaining, #cards:not(.virtual) {
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+  columns: 3 18rem;
+  column-gap: var(--card-gap);
 }
-.remaining { margin-top: var(--card-gap); }
+.remaining > .card, #cards:not(.virtual) > .card {
+  break-inside: avoid;
+  margin: 0 0 var(--card-gap);
+}
 #cards {
   --note-columns: 3;
   row-gap: var(--card-gap);
 }
 #cards.virtual { position: relative; overflow-anchor: none; }
-.note-row {
+.virtual > .card {
   position: absolute;
-  inset: 0 0 auto;
+  inset: 0 auto auto 0;
+  margin: 0;
 }
 
 @media (max-width: 70rem) { #cards { --note-columns: 2; } }
 @media (max-width: 45rem) {
   #cards { --note-columns: 1; }
   .card { margin-top: 0; }
-  .remaining, #cards:not(.virtual) { grid-template-columns: 1fr; }
+  .remaining, #cards:not(.virtual) { columns: 1; }
 }
 
 @media screen and (hover: hover) and (pointer: fine) {
@@ -132,6 +132,6 @@ body { margin: 0; }
 @media print {
   :root { background: white; }
   .sheet { width: 100%; padding: 0; }
-  #cards:not(.virtual) { grid-template-columns: 1fr; }
+  .remaining, #cards:not(.virtual) { columns: 1; }
   .card { break-inside: avoid; box-shadow: none; }
 }
