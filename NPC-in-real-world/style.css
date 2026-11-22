@@ -1,0 +1,74 @@
+@font-face {
+  font-family: "LXGW WenKai";
+  src: url("./wenkai.woff2?v=8afa6638d056") format("woff2");
+  font-display: swap;
+}
+
+:root {
+  color-scheme: light;
+  background: #f4eddd;
+  color: #352c21;
+  font-family: "LXGW WenKai", "Kaiti SC", KaiTi, STKaiti, serif;
+  font-size: 100%;
+  --card-gap: clamp(0.8rem, 2vw, 1.2rem);
+  --pad-x: clamp(1.15rem, 5vw, 2.5rem);
+  --pad-y: clamp(1.05rem, 3vw, 1.55rem);
+  --copy-size: clamp(1.15rem, 0.98rem + 0.38vw, 1.3rem);
+  --copy-leading: 1.75;
+}
+
+body { margin: 0; }
+.sheet {
+  width: min(100% - clamp(1.5rem, 8vw, 5rem), 43rem);
+  margin: 0 auto;
+  padding: clamp(1.5rem, 5vw, 3rem) 0 3rem;
+}
+.updated {
+  margin: 0 0 1.25rem;
+  color: #6f604e;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.card {
+  box-sizing: border-box;
+  margin: 0 0 var(--card-gap);
+  padding: var(--pad-y) var(--pad-x);
+  border: 1px solid #e6dac4;
+  border-radius: 0.65rem;
+  background: linear-gradient(165deg, #fffaf0, #fdf5e7);
+  box-shadow: 0 2px 4px #5b401016, inset 0 1px #fffdf8;
+  font-size: var(--copy-size);
+  line-height: var(--copy-leading);
+  line-break: strict;
+  overflow-wrap: anywhere;
+}
+.card > :first-child { margin-top: 0; }
+.card > :last-child { margin-bottom: 0; }
+.card p, .card pre, .card blockquote, .card ul, .card ol { margin: 0.65em 0; }
+.card h1, .card h2, .card h3, .card h4, .card h5, .card h6 { font-size: inherit; }
+.card ul, .card ol { padding-inline-start: 1.35em; }
+.card blockquote {
+  border-inline-start: 2px solid #d8c8ad;
+  padding-inline-start: 0.8em;
+}
+.card pre { white-space: pre-wrap; }
+.card code { font: inherit; }
+.card a { color: #76552d; text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
+.card a:focus-visible { outline: 2px solid #956d3b; outline-offset: 3px; }
+::selection { background: #ecd3a1; }
+
+#cards.virtual { position: relative; overflow-anchor: none; row-gap: var(--card-gap); }
+.virtual > .card {
+  position: absolute;
+  inset: 0 0 auto;
+  margin: 0;
+}
+
+@media print {
+  :root { background: white; }
+  .sheet { width: 100%; padding: 0; }
+  .card { break-inside: avoid; box-shadow: none; }
+}
