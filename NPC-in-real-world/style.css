@@ -1,6 +1,6 @@
 @font-face {
   font-family: "LXGW WenKai";
-  src: url("./wenkai.woff2?v=8afa6638d056") format("woff2");
+  src: url("./wenkai.woff2?v=d535d33a031f") format("woff2");
   font-display: swap;
 }
 
@@ -23,21 +23,41 @@ body { margin: 0; }
   font-size: 1rem;
   line-height: 1.7;
 }
-.updated, .closing {
+.top-info, .closing {
   color: #5e5e5e;
   font-size: 0.875rem;
   line-height: 1.5;
   text-align: center;
   font-variant-numeric: tabular-nums;
 }
+.top-info {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: baseline;
+  gap: 0.75rem;
+  margin-bottom: clamp(0.8rem, 1.8vw, 1.35rem);
+}
+.home-link {
+  justify-self: start;
+  color: inherit;
+  white-space: nowrap;
+  text-underline-offset: 0.18em;
+  text-decoration-color: transparent;
+}
+.home-link:hover, .home-link:focus-visible { text-decoration-color: currentColor; }
 .updated {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 0.25em 1.2em;
-  margin: 0 0 clamp(0.8rem, 1.8vw, 1.35rem);
+  margin: 0;
 }
 .closing { margin: 2.5rem 0 0; font-size: 1.05rem; }
+
+@media (max-width: 38rem) {
+  .top-info { grid-template-columns: auto minmax(0, 1fr); }
+  .updated { justify-content: end; }
+}
 
 .card {
   position: relative;
